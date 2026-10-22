@@ -1,0 +1,8 @@
+{
+  "total_links": 2627,
+  "counts": {
+    "access_denied": 3,
+    "not_attempted_host_blocked_after_3_denials": 2624
+  },
+  "policy": "Stop after 3 access denials per host; do not bypass restrictions"
+}

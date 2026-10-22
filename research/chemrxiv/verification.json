@@ -1,0 +1,16 @@
+{
+  "records": 57658,
+  "unique_dois": 57658,
+  "candidate_entries": 2625,
+  "missing_pdf_records": 53,
+  "unique_deposited_pdf_urls": 57604,
+  "checks": [
+    "pagination count reconciled",
+    "DOI uniqueness",
+    "CSV row counts",
+    "URLs use HTTP(S)",
+    "evidence excerpts <=20 words",
+    "all alias/version identifiers retained",
+    "CSV formula-injection protection"
+  ]
+}

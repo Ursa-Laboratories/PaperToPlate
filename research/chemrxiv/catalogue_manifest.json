@@ -1,0 +1,34 @@
+{
+  "snapshot_date": "2026-10-21",
+  "raw_records": 57658,
+  "chemrxiv_doi_records": 57658,
+  "doi_families": 45635,
+  "workflow_candidate_families": 2628,
+  "direct_assay_or_liquid_handling_families": 1663,
+  "deduplicated_workflow_candidates": 2625,
+  "exact_title_author_alias_families_grouped": 3,
+  "all_pdf_urls": 57604,
+  "workflow_pdf_urls_all_versions": 3344,
+  "workflow_latest_pdf_urls": 2627,
+  "records_missing_pdf_url": 53,
+  "records_missing_abstract": 514,
+  "families_with_duplicate_title": 507,
+  "candidate_categories": {
+    "Assays / bioassays": 1470,
+    "Pipetting / liquid handling": 109,
+    "Plate assays / readers": 93,
+    "Screening / experimental workflows": 827,
+    "Named assays": 156,
+    "Readout / assay context": 476
+  },
+  "screening_rules_regex": {
+    "Pipetting / liquid handling": "\\b(?:pipett(?:e|es|ed|ing|ors?)|pipet(?:s|ting)?|liquid[- ]handl\\w*|serial[- ]dilutions?|aliquots?|dispens(?:e|ed|ing|ers?)|aspirat(?:e|ed|ing|ion))\\b",
+    "Plate assays / readers": "\\b(?:microplates?|microwells?|multiwell|microtit(?:er|re)|well[- ]plates?|(?:96|384|1536)[- ]well|plate[- ]readers?)\\b",
+    "Assays / bioassays": "\\b(?:assays?|bioassays?|immunoassays?|enzyme[- ]activity|cell[- ]viability|protein[- ]quantification|antioxidant[- ]activity)\\b",
+    "Named assays": "\\b(?:bradford|bicinchoninic|elisa|mtt|resazurin|alamar[- ]?blue|luciferase|dpph|abts|western[- ]blot|enzyme[- ]linked[- ]immunosorbent)\\b",
+    "Screening / experimental workflows": "\\b(?:high[- ]throughput[- ]screen\\w*|high[- ]throughput[- ]experiment\\w*|sample[- ]preparation|automated[- ]synthesis|reaction[- ]screen\\w*|reaction[- ]optimi[sz]ation|design[- ]of[- ]experiments)\\b",
+    "Readout / assay context": "\\b(?:colorimetric|fluorometric|fluorogenic|spectrophotometric|chemiluminescen\\w*|absorbance|dose[- ]response|ic50|ec50|radical[- ]scaveng\\w*)\\b"
+  },
+  "readout_context_rule": "\\b(?:protocols?|workflows?|incubat\\w*|reagents?|dilut\\w*|calibrat\\w*|detect\\w*|quantif\\w*|measur\\w*)\\b",
+  "full_text_protocol_verification": "Not performed; metadata screening only"
+}

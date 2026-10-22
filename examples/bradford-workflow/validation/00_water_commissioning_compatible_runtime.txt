@@ -1,0 +1,30 @@
+------------------------------------------------------------
+Protocol Setup Validation
+------------------------------------------------------------
+
+[1/4] Loading gantry config...
+  OK: examples/bradford-workflow/setup/picus120_fast_camera_20261014.yaml
+  Gantry type: cub
+  Working volume: X[0.0, 257.0]  Y[0.0, 160.0]  Z[28.2, 84.2]
+
+[2/4] Loading deck config...
+  ERROR: ValidationError: 5 validation errors for DeckYamlSchema
+labware.plate.well_plate.motion
+  Extra inputs are not permitted [type=extra_forbidden, input_value={'box': {'anchor': 'A1', ...strategy': 'vertical'}}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden
+labware.tips.tip_rack.motion
+  Extra inputs are not permitted [type=extra_forbidden, input_value={'box': {'anchor': 'A1', ...strategy': 'vertical'}}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden
+labware.waste.vial.motion
+  Extra inputs are not permitted [type=extra_forbidden, input_value={'box': {'anchor': 'locat...strategy': 'vertical'}}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden
+labware.10_vial_holder.well_plate.motion
+  Extra inputs are not permitted [type=extra_forbidden, input_value={'box': {'anchor': 'A1', ...strategy': 'vertical'}}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden
+motion_planning
+  Extra inputs are not permitted [type=extra_forbidden, input_value={'clearance_mm': 1}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/extra_forbidden
+
+------------------------------------------------------------
+RESULT: ERROR - could not load deck config
+------------------------------------------------------------

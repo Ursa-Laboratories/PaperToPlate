@@ -1,0 +1,11 @@
+{
+  "source": "https://api.crossref.org/prefixes/10.26434/works",
+  "filter": "type:posted-content,until-pub-date:2026-10-21",
+  "snapshot_date": "2026-10-21",
+  "started_at_utc": "2026-10-22T01:14:55.915716+00:00",
+  "updated_at_utc": "2026-10-22T01:17:20.819811+00:00",
+  "reported_total_latest_page": 57658,
+  "retrieved_records": 57658,
+  "pages_with_items": 58,
+  "complete": true
+}

@@ -1,0 +1,68 @@
+Paper to Plate: morning lab review
+October 22, 2026 • Alex and labmate • Decisions before the first reference run
+Aim: choose one assay that can be measured reliably today, review its source method together, establish a human-reviewed reference, and then use the app to generate, review and validate an alternative protocol. This document is a decision worksheet, not authorization to run an uncommissioned setup.
+1. Choose the assay and the measurable outcome
+Which assay can we complete today with the reagents, time and reader actually available? Bradford is the current software example, not a confirmed laboratory choice. If it is unavailable, should today's reference be a quantified dye-dilution experiment before moving to a protein assay?
+Decision / owner: __________________________________________
+Do we have the main paper and its supporting information? Which exact version and method are we reproducing? Mark the pages supporting every critical volume, concentration, control, timing window and readout. Separate facts from our adaptations.
+Paper / version / method pages: ______________________________
+What result would count as success? Choose assay-specific criteria before looking at generated results: known-sample recovery, replicate variability, blank/background behavior, acceptable calibration range and any carryover limit. Do not use a high calibration R² alone as proof of accuracy.
+Acceptance criteria / rationale: ______________________________
+2. Resolve the Bradford-specific assumptions
+The reference method is Ernst and Zor, Linearization of the Bradford Protein Assay: https://pmc.ncbi.nlm.nih.gov/articles/PMC3164080/ . It uses measurements at 590 and 450 nm, a water-only optical blank, and a zero-protein dye well retained in the calibration. Does our reader support the method? Who will operate it and export the raw readings?
+Which exact Bradford reagent do we have: manufacturer, product, stock concentration and lot? The current draft assumes the paper's reagent diluted 2.5-fold. Confirm that this is appropriate for the actual product; do not dilute a ready-to-use formulation by assumption.
+Reagent and approved preparation: ____________________________
+What are the identities and matrices of the three unknowns? Is 1:10 dilution appropriate, or should we test additional dilutions? Are sufficient sample volumes available in the chosen tubes? The current draft consumes 100 µL of each original sample but proposes a larger loading reserve that has not been validated against tube geometry.
+Samples / dilution factors / minimum usable loads: ______________
+Can we prepare the BSA reference stock and blinded known-concentration samples independently? Who will hold the expected values? Confirm standards, triplicates, water blanks, dye-only controls and the plate map before the model sees the scoring answer.
+Reference preparation / blinding owner: ________________________
+Who records first and last dye-addition times and the reader timestamps? The current routing-compatible YAML does not enforce incubation. For this method, plan the minimum development time after the final addition and complete reading before the earliest well exceeds the allowed window.
+Timing owner / planned maximum elapsed time: _________________
+3. Commission the physical setup
+Which gantry/deck calibration is approved for today's actual hardware? Verify bare-pipette XY, tip-attached clearance, source and plate immersion depths, and bottom clearance at the lowest planned volumes. The supplied deck is a camera-derived candidate; offline validation does not verify liquid reachability.
+Approved configuration / calibration evidence: _________________
+Resolve the tip-rack discrepancy: its description mentions pickup Z 81.0 mm, while the numeric pickup and A1 Z values are 73.28 mm. Which physical calibration is correct? Verify tip seating, ejection and the waste location, and confirm enough fresh tips and waste capacity.
+Resolution / operator sign-off: ________________________________
+What independent volume check will we use for the water rehearsal, especially the 10–50 µL standard additions? Are mixing and transfer speeds appropriate without bubbles, splashing or incomplete aspiration? Define stop criteria for a missed tip, air aspiration, unexpected motion or unexplained inventory change.
+Method / tolerances / stop criteria: ___________________________
+4. Freeze the benchmark rules
+Which required scientific conditions should every acceptable protocol preserve? Allow equivalent implementations, but identify critical omissions such as the wrong blank, incorrect dilution, missing controls or missing timing requirements. Label the reviewed checklist with reviewer names and date.
+Critical requirements / reviewers: _____________________________
+What information is supplied to the model, and which questions may it ask? Decide whether it receives the full paper, supplements, labware map, stock identities and manual capabilities. A correct request for missing information should be distinguished from a hallucinated assumption.
+Allowed inputs / clarification budget: _________________________
+Which configurations will we compare: generator alone, generator plus reviewer, and generator plus reviewer plus validator feedback? Fix the allowed attempts and record every human protocol edit. Keep offline-valid, operator-approved and physically successful as separate outcomes.
+Configurations / attempt budget / edit log owner: _______________
+How many independent repeat runs can we afford today, and how will we randomize or balance order? Keep paper revisions in the same dataset split. Describe this as a benchmark pilot until coverage and repeated measurements support broader claims.
+Repeat plan / ordering / held-out cases: ________________________
+5. Capture useful evidence
+Which existing video will we attach, and is it footage of this exact protocol or unrelated demo footage? Record its origin and label it accordingly. For today's experiment, choose a view that can reveal relevant actions while avoiding misleading claims about quantities that video cannot measure.
+Video / provenance / camera position: _________________________
+What visible or logged event anchors video time to protocol steps? Record the offset and any dropped or missing sections. Keep intended steps, command logs, visually observed actions and instrument measurements separate.
+Alignment marker / offset / evidence owner: ____________________
+Who exports the plate-reader file and checks its well identifiers, units, wavelengths, blank correction and sample dilution factors? Keep raw data and analysis outputs together, linked to the run and plate map.
+Export format / sample mapping / analyst: ______________________
+6. Suggested order for the morning
+Read the selected paper and supplements together; record unresolved parameters.
+Confirm assay, materials, reader and acceptance criteria.
+Complete physical calibration checks and a supervised water rehearsal.
+Run the human-reviewed reference and inspect raw measurements.
+Generate and review the model protocol in the app; resolve scientific questions and run offline checks.
+Have the operator review the final setup and explicitly start any approved physical run in CubOS.
+Compare outcomes, record interventions, and identify the next benchmark case.
+End-of-session decisions
+Assay selected: ______________________________________________
+Reference result acceptable: yes / no / unresolved
+Model protocol physically tested: yes / no
+Main failure or uncertainty: __________________________________
+Next experiment and owner: ___________________________________
+Artifacts and source files saved at: _____________________________
+
+
+Available paper choices for tomorrow
+The application now includes a Morning paper library with the 16-paper review shortlist and locally available source PDFs, including supporting information where recovered. The extracted method drafts remain unreviewed scientific proposals.
+Keep the two Bradford methods separate. The original JoVE method uses a 200 µL assay and A590/A450 ratios. The recovered RotiQuant protocol uses 50 µL of prepared standard plus 200 µL working reagent, five minutes at room temperature and OD595. Its source gives an explicit working-reagent recipe of 4 mL reagent plus 11 mL water. Do not combine the reagent preparation, blank convention, volumes or readout from these different methods.
+First discussion: which formulation and reader match the reagents and equipment actually in the lab? The RotiQuant source also leaves mixing, tip policy, usable stock reserve and acceptance limits for us to review. The cydex blue paper is a second protein-assay option when detergent compatibility matters, but its exact cyclodextrin condition must be selected from the paper.
+Advanced cases should be deferred until their equipment and sample needs are clear. The dust-particle DTT module needs timed incubations and has a stated well volume above our current 300 µL plate setting. Cell-culture and clinical-sample methods are not quick substitutes for a first plate-preparation reference.
+Application and source pack
+On the build Mac, open Paper to Plate at http://127.0.0.1:8785/ . Use Morning paper library to open the curated PDFs or select one as an AI source. The app prepares and validates protocols; a human must deliberately approve any physical run in CubOS.
+The complete source pack remains in the separate Instrument Scraper chat, “Extract assay workflows from the existing paper collection.” It includes the shortlist, nine source-linked draft methods, the worked RotiQuant example and the coverage report. Read the source method together before treating any draft as reference truth.

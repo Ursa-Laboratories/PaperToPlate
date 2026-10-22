@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-22",
+  "application_tests_passed": 21,
+  "bradford_offline_tests_passed": 6,
+  "frontend_production_build": "passed",
+  "three_paper_source_hashes": "verified",
+  "extraction_source_excerpts_matched": 28,
+  "physical_hardware_executed": false,
+  "validation_scope": "Software, offline CubOS and source-extraction verification only."
+}

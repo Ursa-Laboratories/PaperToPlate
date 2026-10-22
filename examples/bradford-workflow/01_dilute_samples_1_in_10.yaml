@@ -1,0 +1,66 @@
+# Run on a homed, physically verified station; read README.md before loading.
+# Routing v1 accepts liquid commands only. Homing, operator checks and timing are manual.
+# Three unknown samples, 1:10 in stock tubes (100 uL sample + 900 uL water).
+# Uses tips A1-A6. Geometry is an unverified supplied candidate; read README.md.
+# No Bradford reagent is added in this protocol. Mixing is an automation adaptation.
+protocol:
+
+
+
+  # Water for dilution 1: 900 uL into empty tube B2
+  - pick_up_tip: {"position": "tips.A1"}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B2", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B2", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B2", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B2", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B2", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B2", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B2", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B2", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B2", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # Water for dilution 2: 900 uL into empty tube B3
+  - pick_up_tip: {"position": "tips.A2"}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B3", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B3", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B3", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B3", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B3", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B3", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B3", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B3", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B3", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # Water for dilution 3: 900 uL into empty tube B4
+  - pick_up_tip: {"position": "tips.A3"}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B4", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B4", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B4", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B4", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B4", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B4", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B4", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B4", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B4", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # Unknown 1: 100 uL neat sample into 900 uL water = 1000 uL at 1:10
+  - pick_up_tip: {"position": "tips.A4"}
+  - transfer: {"source": "10_vial_holder.A4", "destination": "10_vial_holder.B2", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "10_vial_holder.B2", "volume_ul": 100, "cycles": 10, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # Unknown 2: 100 uL neat sample into 900 uL water = 1000 uL at 1:10
+  - pick_up_tip: {"position": "tips.A5"}
+  - transfer: {"source": "10_vial_holder.A5", "destination": "10_vial_holder.B3", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "10_vial_holder.B3", "volume_ul": 100, "cycles": 10, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # Unknown 3: 100 uL neat sample into 900 uL water = 1000 uL at 1:10
+  - pick_up_tip: {"position": "tips.A6"}
+  - transfer: {"source": "10_vial_holder.B1", "destination": "10_vial_holder.B4", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "10_vial_holder.B4", "volume_ul": 100, "cycles": 10, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+

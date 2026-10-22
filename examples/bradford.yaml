@@ -1,0 +1,310 @@
+# Run on a homed, physically verified station; read README.md before loading.
+# Routing v1 accepts liquid commands only. Homing, operator checks and timing are manual.
+# Start timing at the FIRST dye transfer; wait >=5 min after the LAST dye transfer,
+# and finish BOTH absorbance readings <=60 min after the FIRST dye transfer.
+# This YAML does not enforce incubation timing and does not acquire absorbance.
+# Ernst & Zor, JoVE 1918 (2010), doi:10.3791/1918. Read README.md.
+# Six BSA levels (0-5 ug) + three prepared 1:10 unknowns + water blanks; triplicates.
+# 200 uL final volume. Uses 72 fresh tips A7-G6 after protocol 1.
+# Requires external 590/450 nm absorbance reader; camera is not an absorbance reader.
+# No physical calibration or assay performance has been validated.
+protocol:
+
+
+
+  # Standard column 1: 100 uL water per well
+  - pick_up_tip: {"position": "tips.A7"}
+  - transfer: {"source": "10_vial_holder.B5", "destination": "plate.A1", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.A8"}
+  - transfer: {"source": "10_vial_holder.B5", "destination": "plate.B1", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.A9"}
+  - transfer: {"source": "10_vial_holder.B5", "destination": "plate.C1", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # Standard column 2: 90 uL water per well
+  - pick_up_tip: {"position": "tips.A10"}
+  - transfer: {"source": "10_vial_holder.B5", "destination": "plate.A2", "volume_ul": 90, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.A11"}
+  - transfer: {"source": "10_vial_holder.B5", "destination": "plate.B2", "volume_ul": 90, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.A12"}
+  - transfer: {"source": "10_vial_holder.B5", "destination": "plate.C2", "volume_ul": 90, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # Standard column 3: 80 uL water per well
+  - pick_up_tip: {"position": "tips.B1"}
+  - transfer: {"source": "10_vial_holder.B5", "destination": "plate.A3", "volume_ul": 80, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.B2"}
+  - transfer: {"source": "10_vial_holder.B5", "destination": "plate.B3", "volume_ul": 80, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.B3"}
+  - transfer: {"source": "10_vial_holder.B5", "destination": "plate.C3", "volume_ul": 80, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # Standard column 4: 70 uL water per well
+  - pick_up_tip: {"position": "tips.B4"}
+  - transfer: {"source": "10_vial_holder.B5", "destination": "plate.A4", "volume_ul": 70, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.B5"}
+  - transfer: {"source": "10_vial_holder.B5", "destination": "plate.B4", "volume_ul": 70, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.B6"}
+  - transfer: {"source": "10_vial_holder.B5", "destination": "plate.C4", "volume_ul": 70, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # Standard column 5: 60 uL water per well
+  - pick_up_tip: {"position": "tips.B7"}
+  - transfer: {"source": "10_vial_holder.B5", "destination": "plate.A5", "volume_ul": 60, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.B8"}
+  - transfer: {"source": "10_vial_holder.B5", "destination": "plate.B5", "volume_ul": 60, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.B9"}
+  - transfer: {"source": "10_vial_holder.B5", "destination": "plate.C5", "volume_ul": 60, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # Standard column 6: 50 uL water per well
+  - pick_up_tip: {"position": "tips.B10"}
+  - transfer: {"source": "10_vial_holder.B5", "destination": "plate.A6", "volume_ul": 50, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.B11"}
+  - transfer: {"source": "10_vial_holder.B5", "destination": "plate.B6", "volume_ul": 50, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.B12"}
+  - transfer: {"source": "10_vial_holder.B5", "destination": "plate.C6", "volume_ul": 50, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # Optical blanks A10/B10/C10: water only, 200 uL each
+  - pick_up_tip: {"position": "tips.C1"}
+  - transfer: {"source": "10_vial_holder.B5", "destination": "plate.A10", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.B5", "destination": "plate.A10", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.C2"}
+  - transfer: {"source": "10_vial_holder.B5", "destination": "plate.B10", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.B5", "destination": "plate.B10", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.C3"}
+  - transfer: {"source": "10_vial_holder.B5", "destination": "plate.C10", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.B5", "destination": "plate.C10", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # Standard column 2: 1 ug BSA per well
+  - pick_up_tip: {"position": "tips.C4"}
+  - transfer: {"source": "10_vial_holder.A2", "destination": "plate.A2", "volume_ul": 10, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.C5"}
+  - transfer: {"source": "10_vial_holder.A2", "destination": "plate.B2", "volume_ul": 10, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.C6"}
+  - transfer: {"source": "10_vial_holder.A2", "destination": "plate.C2", "volume_ul": 10, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # Standard column 3: 2 ug BSA per well
+  - pick_up_tip: {"position": "tips.C7"}
+  - transfer: {"source": "10_vial_holder.A2", "destination": "plate.A3", "volume_ul": 20, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.C8"}
+  - transfer: {"source": "10_vial_holder.A2", "destination": "plate.B3", "volume_ul": 20, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.C9"}
+  - transfer: {"source": "10_vial_holder.A2", "destination": "plate.C3", "volume_ul": 20, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # Standard column 4: 3 ug BSA per well
+  - pick_up_tip: {"position": "tips.C10"}
+  - transfer: {"source": "10_vial_holder.A2", "destination": "plate.A4", "volume_ul": 30, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.C11"}
+  - transfer: {"source": "10_vial_holder.A2", "destination": "plate.B4", "volume_ul": 30, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.C12"}
+  - transfer: {"source": "10_vial_holder.A2", "destination": "plate.C4", "volume_ul": 30, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # Standard column 5: 4 ug BSA per well
+  - pick_up_tip: {"position": "tips.D1"}
+  - transfer: {"source": "10_vial_holder.A2", "destination": "plate.A5", "volume_ul": 40, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.D2"}
+  - transfer: {"source": "10_vial_holder.A2", "destination": "plate.B5", "volume_ul": 40, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.D3"}
+  - transfer: {"source": "10_vial_holder.A2", "destination": "plate.C5", "volume_ul": 40, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # Standard column 6: 5 ug BSA per well
+  - pick_up_tip: {"position": "tips.D4"}
+  - transfer: {"source": "10_vial_holder.A2", "destination": "plate.A6", "volume_ul": 50, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.D5"}
+  - transfer: {"source": "10_vial_holder.A2", "destination": "plate.B6", "volume_ul": 50, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.D6"}
+  - transfer: {"source": "10_vial_holder.A2", "destination": "plate.C6", "volume_ul": 50, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # Unknown 1: 100 uL of prepared 1:10 dilution per well
+  - pick_up_tip: {"position": "tips.D7"}
+  - transfer: {"source": "10_vial_holder.B2", "destination": "plate.A7", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.D8"}
+  - transfer: {"source": "10_vial_holder.B2", "destination": "plate.B7", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.D9"}
+  - transfer: {"source": "10_vial_holder.B2", "destination": "plate.C7", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # Unknown 2: 100 uL of prepared 1:10 dilution per well
+  - pick_up_tip: {"position": "tips.D10"}
+  - transfer: {"source": "10_vial_holder.B3", "destination": "plate.A8", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.D11"}
+  - transfer: {"source": "10_vial_holder.B3", "destination": "plate.B8", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.D12"}
+  - transfer: {"source": "10_vial_holder.B3", "destination": "plate.C8", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # Unknown 3: 100 uL of prepared 1:10 dilution per well
+  - pick_up_tip: {"position": "tips.E1"}
+  - transfer: {"source": "10_vial_holder.B4", "destination": "plate.A9", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.E2"}
+  - transfer: {"source": "10_vial_holder.B4", "destination": "plate.B9", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.E3"}
+  - transfer: {"source": "10_vial_holder.B4", "destination": "plate.C9", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+
+  # Dye column 1: 100 uL pre-diluted reagent, then 3 x 80 uL mix; discard each tip before revisiting stock
+  - pick_up_tip: {"position": "tips.E4"}
+  - transfer: {"source": "10_vial_holder.A3", "destination": "plate.A1", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.A1", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.E5"}
+  - transfer: {"source": "10_vial_holder.A3", "destination": "plate.B1", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.B1", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.E6"}
+  - transfer: {"source": "10_vial_holder.A3", "destination": "plate.C1", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.C1", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # Dye column 2: 100 uL pre-diluted reagent, then 3 x 80 uL mix; discard each tip before revisiting stock
+  - pick_up_tip: {"position": "tips.E7"}
+  - transfer: {"source": "10_vial_holder.A3", "destination": "plate.A2", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.A2", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.E8"}
+  - transfer: {"source": "10_vial_holder.A3", "destination": "plate.B2", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.B2", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.E9"}
+  - transfer: {"source": "10_vial_holder.A3", "destination": "plate.C2", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.C2", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # Dye column 3: 100 uL pre-diluted reagent, then 3 x 80 uL mix; discard each tip before revisiting stock
+  - pick_up_tip: {"position": "tips.E10"}
+  - transfer: {"source": "10_vial_holder.A3", "destination": "plate.A3", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.A3", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.E11"}
+  - transfer: {"source": "10_vial_holder.A3", "destination": "plate.B3", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.B3", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.E12"}
+  - transfer: {"source": "10_vial_holder.A3", "destination": "plate.C3", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.C3", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # Dye column 4: 100 uL pre-diluted reagent, then 3 x 80 uL mix; discard each tip before revisiting stock
+  - pick_up_tip: {"position": "tips.F1"}
+  - transfer: {"source": "10_vial_holder.A3", "destination": "plate.A4", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.A4", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.F2"}
+  - transfer: {"source": "10_vial_holder.A3", "destination": "plate.B4", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.B4", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.F3"}
+  - transfer: {"source": "10_vial_holder.A3", "destination": "plate.C4", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.C4", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # Dye column 5: 100 uL pre-diluted reagent, then 3 x 80 uL mix; discard each tip before revisiting stock
+  - pick_up_tip: {"position": "tips.F4"}
+  - transfer: {"source": "10_vial_holder.A3", "destination": "plate.A5", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.A5", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.F5"}
+  - transfer: {"source": "10_vial_holder.A3", "destination": "plate.B5", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.B5", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.F6"}
+  - transfer: {"source": "10_vial_holder.A3", "destination": "plate.C5", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.C5", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # Dye column 6: 100 uL pre-diluted reagent, then 3 x 80 uL mix; discard each tip before revisiting stock
+  - pick_up_tip: {"position": "tips.F7"}
+  - transfer: {"source": "10_vial_holder.A3", "destination": "plate.A6", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.A6", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.F8"}
+  - transfer: {"source": "10_vial_holder.A3", "destination": "plate.B6", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.B6", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.F9"}
+  - transfer: {"source": "10_vial_holder.A3", "destination": "plate.C6", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.C6", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # Dye column 7: 100 uL pre-diluted reagent, then 3 x 80 uL mix; discard each tip before revisiting stock
+  - pick_up_tip: {"position": "tips.F10"}
+  - transfer: {"source": "10_vial_holder.A3", "destination": "plate.A7", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.A7", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.F11"}
+  - transfer: {"source": "10_vial_holder.A3", "destination": "plate.B7", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.B7", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.F12"}
+  - transfer: {"source": "10_vial_holder.A3", "destination": "plate.C7", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.C7", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # Dye column 8: 100 uL pre-diluted reagent, then 3 x 80 uL mix; discard each tip before revisiting stock
+  - pick_up_tip: {"position": "tips.G1"}
+  - transfer: {"source": "10_vial_holder.A3", "destination": "plate.A8", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.A8", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.G2"}
+  - transfer: {"source": "10_vial_holder.A3", "destination": "plate.B8", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.B8", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.G3"}
+  - transfer: {"source": "10_vial_holder.A3", "destination": "plate.C8", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.C8", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # Dye column 9: 100 uL pre-diluted reagent, then 3 x 80 uL mix; discard each tip before revisiting stock
+  - pick_up_tip: {"position": "tips.G4"}
+  - transfer: {"source": "10_vial_holder.A3", "destination": "plate.A9", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.A9", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.G5"}
+  - transfer: {"source": "10_vial_holder.A3", "destination": "plate.B9", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.B9", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.G6"}
+  - transfer: {"source": "10_vial_holder.A3", "destination": "plate.C9", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.C9", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+

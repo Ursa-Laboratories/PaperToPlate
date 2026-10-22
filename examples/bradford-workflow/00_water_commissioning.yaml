@@ -1,0 +1,32 @@
+# Run on a homed, physically verified station; read README.md before loading.
+# Routing v1 accepts liquid commands only. Homing, operator checks and timing are manual.
+# Operator-run water test only, not assay data. Use a fresh test setup; read README.
+# No physical test was performed by the author.
+protocol:
+
+
+  # Prepare 1 mL water in B2
+  - pick_up_tip: {"position": "tips.A1"}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B2", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B2", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B2", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B2", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B2", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B2", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B2", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B2", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B2", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.A4"}
+  - transfer: {"source": "10_vial_holder.A1", "destination": "10_vial_holder.B2", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "10_vial_holder.B2", "volume_ul": 100, "cycles": 10, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}
+
+  # One plate well with 200 uL water
+  - pick_up_tip: {"position": "tips.A7"}
+  - transfer: {"source": "10_vial_holder.B2", "destination": "plate.A1", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - drop_tip: {"position": "waste"}
+  - pick_up_tip: {"position": "tips.A8"}
+  - transfer: {"source": "10_vial_holder.B2", "destination": "plate.A1", "volume_ul": 100, "speed": 50.0, "source_height": 0.0, "destination_height": 0.0}
+  - mix: {"position": "plate.A1", "volume_ul": 80, "cycles": 3, "speed": 50.0, "height": 0.0}
+  - drop_tip: {"position": "waste"}

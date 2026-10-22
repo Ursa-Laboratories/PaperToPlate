@@ -1,0 +1,330 @@
+# PLANNED loading amounts; only seed after physically verifying this inventory.
+fluids:
+  10_vial_holder.A1:
+    volume_ul: 3500
+    composition:
+      deionized_water: 3500
+  10_vial_holder.A2:
+    volume_ul: 1500
+    composition:
+      bsa_0_1_mg_ml: 1500
+  10_vial_holder.A3:
+    volume_ul: 3500
+    composition:
+      bradford_2_5_fold_diluted: 3500
+  10_vial_holder.A4:
+    volume_ul: 1500
+    composition:
+      unknown_1_neat: 1500
+  10_vial_holder.A5:
+    volume_ul: 1500
+    composition:
+      unknown_2_neat: 1500
+  10_vial_holder.B1:
+    volume_ul: 1500
+    composition:
+      unknown_3_neat: 1500
+  10_vial_holder.B2:
+    volume_ul: 0
+    composition: {}
+  10_vial_holder.B3:
+    volume_ul: 0
+    composition: {}
+  10_vial_holder.B4:
+    volume_ul: 0
+    composition: {}
+  10_vial_holder.B5:
+    volume_ul: 3000
+    composition:
+      deionized_water: 3000
+  plate.A1:
+    volume_ul: 0
+    composition: {}
+  plate.A2:
+    volume_ul: 0
+    composition: {}
+  plate.A3:
+    volume_ul: 0
+    composition: {}
+  plate.A4:
+    volume_ul: 0
+    composition: {}
+  plate.A5:
+    volume_ul: 0
+    composition: {}
+  plate.A6:
+    volume_ul: 0
+    composition: {}
+  plate.A7:
+    volume_ul: 0
+    composition: {}
+  plate.A8:
+    volume_ul: 0
+    composition: {}
+  plate.A9:
+    volume_ul: 0
+    composition: {}
+  plate.A10:
+    volume_ul: 0
+    composition: {}
+  plate.A11:
+    volume_ul: 0
+    composition: {}
+  plate.A12:
+    volume_ul: 0
+    composition: {}
+  plate.B1:
+    volume_ul: 0
+    composition: {}
+  plate.B2:
+    volume_ul: 0
+    composition: {}
+  plate.B3:
+    volume_ul: 0
+    composition: {}
+  plate.B4:
+    volume_ul: 0
+    composition: {}
+  plate.B5:
+    volume_ul: 0
+    composition: {}
+  plate.B6:
+    volume_ul: 0
+    composition: {}
+  plate.B7:
+    volume_ul: 0
+    composition: {}
+  plate.B8:
+    volume_ul: 0
+    composition: {}
+  plate.B9:
+    volume_ul: 0
+    composition: {}
+  plate.B10:
+    volume_ul: 0
+    composition: {}
+  plate.B11:
+    volume_ul: 0
+    composition: {}
+  plate.B12:
+    volume_ul: 0
+    composition: {}
+  plate.C1:
+    volume_ul: 0
+    composition: {}
+  plate.C2:
+    volume_ul: 0
+    composition: {}
+  plate.C3:
+    volume_ul: 0
+    composition: {}
+  plate.C4:
+    volume_ul: 0
+    composition: {}
+  plate.C5:
+    volume_ul: 0
+    composition: {}
+  plate.C6:
+    volume_ul: 0
+    composition: {}
+  plate.C7:
+    volume_ul: 0
+    composition: {}
+  plate.C8:
+    volume_ul: 0
+    composition: {}
+  plate.C9:
+    volume_ul: 0
+    composition: {}
+  plate.C10:
+    volume_ul: 0
+    composition: {}
+  plate.C11:
+    volume_ul: 0
+    composition: {}
+  plate.C12:
+    volume_ul: 0
+    composition: {}
+  plate.D1:
+    volume_ul: 0
+    composition: {}
+  plate.D2:
+    volume_ul: 0
+    composition: {}
+  plate.D3:
+    volume_ul: 0
+    composition: {}
+  plate.D4:
+    volume_ul: 0
+    composition: {}
+  plate.D5:
+    volume_ul: 0
+    composition: {}
+  plate.D6:
+    volume_ul: 0
+    composition: {}
+  plate.D7:
+    volume_ul: 0
+    composition: {}
+  plate.D8:
+    volume_ul: 0
+    composition: {}
+  plate.D9:
+    volume_ul: 0
+    composition: {}
+  plate.D10:
+    volume_ul: 0
+    composition: {}
+  plate.D11:
+    volume_ul: 0
+    composition: {}
+  plate.D12:
+    volume_ul: 0
+    composition: {}
+  plate.E1:
+    volume_ul: 0
+    composition: {}
+  plate.E2:
+    volume_ul: 0
+    composition: {}
+  plate.E3:
+    volume_ul: 0
+    composition: {}
+  plate.E4:
+    volume_ul: 0
+    composition: {}
+  plate.E5:
+    volume_ul: 0
+    composition: {}
+  plate.E6:
+    volume_ul: 0
+    composition: {}
+  plate.E7:
+    volume_ul: 0
+    composition: {}
+  plate.E8:
+    volume_ul: 0
+    composition: {}
+  plate.E9:
+    volume_ul: 0
+    composition: {}
+  plate.E10:
+    volume_ul: 0
+    composition: {}
+  plate.E11:
+    volume_ul: 0
+    composition: {}
+  plate.E12:
+    volume_ul: 0
+    composition: {}
+  plate.F1:
+    volume_ul: 0
+    composition: {}
+  plate.F2:
+    volume_ul: 0
+    composition: {}
+  plate.F3:
+    volume_ul: 0
+    composition: {}
+  plate.F4:
+    volume_ul: 0
+    composition: {}
+  plate.F5:
+    volume_ul: 0
+    composition: {}
+  plate.F6:
+    volume_ul: 0
+    composition: {}
+  plate.F7:
+    volume_ul: 0
+    composition: {}
+  plate.F8:
+    volume_ul: 0
+    composition: {}
+  plate.F9:
+    volume_ul: 0
+    composition: {}
+  plate.F10:
+    volume_ul: 0
+    composition: {}
+  plate.F11:
+    volume_ul: 0
+    composition: {}
+  plate.F12:
+    volume_ul: 0
+    composition: {}
+  plate.G1:
+    volume_ul: 0
+    composition: {}
+  plate.G2:
+    volume_ul: 0
+    composition: {}
+  plate.G3:
+    volume_ul: 0
+    composition: {}
+  plate.G4:
+    volume_ul: 0
+    composition: {}
+  plate.G5:
+    volume_ul: 0
+    composition: {}
+  plate.G6:
+    volume_ul: 0
+    composition: {}
+  plate.G7:
+    volume_ul: 0
+    composition: {}
+  plate.G8:
+    volume_ul: 0
+    composition: {}
+  plate.G9:
+    volume_ul: 0
+    composition: {}
+  plate.G10:
+    volume_ul: 0
+    composition: {}
+  plate.G11:
+    volume_ul: 0
+    composition: {}
+  plate.G12:
+    volume_ul: 0
+    composition: {}
+  plate.H1:
+    volume_ul: 0
+    composition: {}
+  plate.H2:
+    volume_ul: 0
+    composition: {}
+  plate.H3:
+    volume_ul: 0
+    composition: {}
+  plate.H4:
+    volume_ul: 0
+    composition: {}
+  plate.H5:
+    volume_ul: 0
+    composition: {}
+  plate.H6:
+    volume_ul: 0
+    composition: {}
+  plate.H7:
+    volume_ul: 0
+    composition: {}
+  plate.H8:
+    volume_ul: 0
+    composition: {}
+  plate.H9:
+    volume_ul: 0
+    composition: {}
+  plate.H10:
+    volume_ul: 0
+    composition: {}
+  plate.H11:
+    volume_ul: 0
+    composition: {}
+  plate.H12:
+    volume_ul: 0
+    composition: {}
+  waste:
+    volume_ul: 0
+    composition: {}

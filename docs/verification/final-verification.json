@@ -1,0 +1,16 @@
+{
+  "app_url": "http://127.0.0.1:8785/",
+  "health_http": 200,
+  "native_example_validation": true,
+  "real_paper_doi": "10.17504/protocols.io.8gghttw",
+  "real_model_workflow_seconds": 16.23,
+  "real_model_workflow_completed": true,
+  "native_validation_passed": true,
+  "review_requires_human_attention": true,
+  "library_entries": 16,
+  "local_library_documents": 10,
+  "cubos_service_reachable": false,
+  "hardware_executed": false,
+  "secret_scan": "passed",
+  "export_source_pdf_verified": true
+}

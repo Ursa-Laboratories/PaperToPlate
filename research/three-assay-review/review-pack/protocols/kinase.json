@@ -1,0 +1,259 @@
+{
+  "id": "kinase",
+  "short_title": "Nucleoside kinase activity",
+  "filename": "chemrxiv-2021-k0w7q.pdf",
+  "scope": "The standard nucleoside-kinase reaction followed by the Kinase-Glo Max residual-ATP readout, using the human deoxycytidine kinase branch as the concrete example. Enzyme production, HPLC validation and optimized conditions for other enzymes remain separate.",
+  "rationale": "A defined 150 µL enzyme reaction feeds an explicit 10 + 80 + 10 µL luminescence assay, with controls, incubation conditions and replicate counts.",
+  "primary_page": 11,
+  "image": "kinase-p11.png",
+  "summary": [
+    "150 µL enzyme reaction",
+    "100 µL luminescence well",
+    "19 h at 37 °C + heat stop",
+    "10 min dark; 1 s read"
+  ],
+  "materials": [
+    [
+      "NK reaction buffer",
+      "70 mM Tris, pH 7.6; 10 mM MgCl₂; 5 mM DTT.",
+      "11"
+    ],
+    [
+      "ATP and nucleoside",
+      "Final reaction concentrations 0.4 mM ATP and 0.33 mM nucleoside. General stocks are described as 100, 10 or 1 mM in deionized water, without assigning the exact stock to every reaction.",
+      "10–11"
+    ],
+    [
+      "Enzyme",
+      "Standard reaction contains 0.0002 U enzyme per 150 µL. Human deoxycytidine kinase (HsdCK/NK13) is an available branch; stock activity in U/µL is not given.",
+      "10–11"
+    ],
+    [
+      "Detection reagent",
+      "Kinase-Glo Max reagent (Promega), used at 10 µL per readout well. Reconstitution/preparation follows an external reagent method and is not specified in this PDF.",
+      "11"
+    ],
+    [
+      "Labware and reader",
+      "96-well PCR reaction plate; 96-well white detection plate; Synergy Mx multimode reader with 1-second luminescence integration and extended dynamic range.",
+      "11"
+    ]
+  ],
+  "steps": [
+    {
+      "id": "K01",
+      "title": "Prepare reaction mixtures",
+      "procedure": "Prepare 150 µL reactions in NK buffer containing final 0.4 mM ATP, 0.33 mM nucleoside and 0.0002 U enzyme. The source gives final composition, not exact stock-transfer volumes or order; do not manufacture those missing pipetting instructions.",
+      "source_pages": [
+        11
+      ],
+      "source_quote": "total volume of 150 µL consisting of 0.4 mM ATP, 0.33 mM nucleoside and 0.0002 U enzyme",
+      "values": {
+        "reaction_total_ul": 150,
+        "atp_mm": 0.4,
+        "nucleoside_mm": 0.33,
+        "enzyme_units": 0.0002,
+        "component_transfer_volumes_ul": null
+      },
+      "evidence_status": "reported"
+    },
+    {
+      "id": "K02",
+      "title": "Prepare matched reaction controls",
+      "procedure": "Prepare a negative control without enzyme, a substrate control without ATP, and a basal-activity control without nucleoside substrate. Incubate them under the same conditions as the reactions. The exact replacement volumes for omitted stocks are not stated.",
+      "source_pages": [
+        11
+      ],
+      "source_quote": "negative control without enzyme",
+      "values": {
+        "controls": [
+          "without enzyme",
+          "without ATP",
+          "without nucleoside substrate"
+        ]
+      },
+      "evidence_status": "reported"
+    },
+    {
+      "id": "K03",
+      "title": "Incubate the enzyme reaction",
+      "procedure": "Incubate at 37 °C for 19 hours. In the plate implementation, reactions are sealed with EASYseal film and arched auto-sealing lids preheated to 50 °C. Kinase reactions were performed in duplicate.",
+      "source_pages": [
+        11,
+        12
+      ],
+      "source_quote": "incubated at 37°C for 19 h",
+      "values": {
+        "temperature_c": 37,
+        "duration_seconds": 68400,
+        "reaction_replicates": 2
+      },
+      "evidence_status": "reported"
+    },
+    {
+      "id": "K04",
+      "title": "Stop the reaction by heating",
+      "procedure": "Heat to 75 °C for 10 minutes. The PCR-cycler implementation specifies lid heating at 85 °C. The paper does not give a cooling/equilibration step or temperature before adding the luminescence reagent; this remains an explicit handoff gap.",
+      "source_pages": [
+        11
+      ],
+      "source_quote": "75°C for 10 min with lid heat set to 85°C",
+      "values": {
+        "temperature_c": 75,
+        "duration_seconds": 600,
+        "lid_temperature_c": 85,
+        "subsequent_equilibration_c": null
+      },
+      "evidence_status": "reported"
+    },
+    {
+      "id": "K05",
+      "title": "Prepare standards for the ATP readout",
+      "procedure": "Prepare ATP standards in NK buffer spanning 0–500 µM. The exact standard points are not listed in the core procedure. Standards are assayed twice; samples are assayed three times. Keep this detection replication distinct from the duplicate enzyme reactions.",
+      "source_pages": [
+        11,
+        12
+      ],
+      "source_quote": "standards ranging from 0 to 500 µM of ATP",
+      "values": {
+        "standard_range_um": [
+          0,
+          500
+        ],
+        "standard_replicates": 2,
+        "sample_readout_replicates": 3,
+        "standard_points_um": null
+      },
+      "evidence_status": "reported"
+    },
+    {
+      "id": "K06",
+      "title": "Dilute the sample in the detection well",
+      "procedure": "Combine 10 µL stopped reaction sample or standard with 80 µL deionized water in a white 96-well assay plate. Figure 1C explicitly places water dilution before reagent addition for standards. Applying that same order to reaction samples is an interpretation to confirm; page 11 specifies their amounts but not the water/reagent addition order.",
+      "source_pages": [
+        5,
+        11
+      ],
+      "source_quote": "10 µL phosphate donor standard was mixed with 80 µL deionized water before adding 10 µL of Kinase-Glo reagent",
+      "values": {
+        "sample_or_standard_ul": 10,
+        "water_ul": 80,
+        "subtotal_ul": 90,
+        "sample_addition_order": "not explicitly reported"
+      },
+      "evidence_status": "partly_inferred_order"
+    },
+    {
+      "id": "K07",
+      "title": "Add the luminescence reagent",
+      "procedure": "Add 10 µL Kinase-Glo reagent to each detection well. The resulting final assay volume is 100 µL. Mixing parameters are not reported.",
+      "source_pages": [
+        11
+      ],
+      "source_quote": "10 µL sample/standard and 10 µL Kinase-Glo reagent",
+      "values": {
+        "reagent_ul": 10,
+        "well_total_ul": 100,
+        "mix_cycles": null
+      },
+      "evidence_status": "reported"
+    },
+    {
+      "id": "K08",
+      "title": "Incubate and read",
+      "procedure": "Incubate in the dark for 10 minutes, then measure luminescence for 1 second with extended dynamic range. The temperature of this 10-minute detection incubation is not stated.",
+      "source_pages": [
+        11
+      ],
+      "source_quote": "after 10 min incubation in the dark",
+      "values": {
+        "dark": true,
+        "duration_seconds": 600,
+        "integration_seconds": 1,
+        "extended_dynamic_range": true,
+        "temperature_c": null
+      },
+      "evidence_status": "reported"
+    },
+    {
+      "id": "K09",
+      "title": "Apply the reported control calculation",
+      "procedure": "As printed: consumed ATP (%) = 100 − 100 × (R + B + S)/(N + S). R is mean reaction luminescence, N is mean no-enzyme-control luminescence, S is substrate-control signal, and B is the difference between negative-control and basal-activity signals. Product formation (%) = consumed ATP (%) × 1.2, restricted to 0–100%. These are the paper’s equations, not calculations on experimental data.",
+      "source_pages": [
+        11
+      ],
+      "source_quote": "multiplying the consumed ATP with the factor 1.2",
+      "values": {
+        "reported_atp_formula": "100 - 100 * (R + B + S) / (N + S)",
+        "reported_product_factor": 1.2,
+        "product_bounds_percent": [
+          0,
+          100
+        ]
+      },
+      "evidence_status": "reported"
+    }
+  ],
+  "derived": [
+    [
+      "Detection volume",
+      "10 µL sample + 80 µL water + 10 µL reagent = 100 µL.",
+      "Arithmetic matches the explicit reported total."
+    ],
+    [
+      "Detection dilution",
+      "The sample/standard is 10% of the readout volume: a tenfold dilution.",
+      "Use the same handling for standards; do not apply dilution correction twice."
+    ],
+    [
+      "Reaction amounts",
+      "150 µL × 0.4 mM = 60 nmol ATP; 150 µL × 0.33 mM = 49.5 nmol nucleoside.",
+      "Derived amounts; exact stock transfer volumes still require stock concentrations/activity."
+    ]
+  ],
+  "issues": [
+    {
+      "title": "Reaction setup lacks component volumes",
+      "detail": "The final volume/concentrations are explicit, but per-stock transfer volumes, selected stock concentrations, enzyme stock activity and dispensing order are not. These fields remain null in JSON.",
+      "source_pages": [
+        10,
+        11
+      ],
+      "severity": "resolve before execution"
+    },
+    {
+      "title": "Cooling and readout temperature are absent",
+      "detail": "No post-75 °C cooling/equilibration procedure is stated, and the temperature of the 10-minute dark readout incubation is unspecified.",
+      "source_pages": [
+        11
+      ],
+      "severity": "resolve before execution"
+    },
+    {
+      "title": "Calibration points and reagent preparation",
+      "detail": "The 0–500 µM ATP range is reported, but exact standard points, dilution-transfer recipes and Kinase-Glo preparation are not supplied in the core method.",
+      "source_pages": [
+        11
+      ],
+      "severity": "resolve before execution"
+    },
+    {
+      "title": "Source analysis needs expert review",
+      "detail": "The ATP-consumption equation and B definition are transcribed exactly as reported. Control arithmetic and the approximate 1.2 substrate ratio should be reviewed before interpreting assay data. The paper recommends HPLC confirmation or an enzyme-dose repeat for low conversions.",
+      "source_pages": [
+        6,
+        11
+      ],
+      "severity": "resolve before execution"
+    }
+  ],
+  "paper_title": "Semi-automated high-throughput substrate screening assay for nucleoside kinases",
+  "doi": "10.26434/chemrxiv-2021-k0w7q",
+  "doi_url": "https://doi.org/10.26434/chemrxiv-2021-k0w7q",
+  "source_sha256": "6a2a607ea5b671b73e5e93afcbaae686458f6c5689dc219cd38e6fb25e40774e",
+  "source_page_count": 13,
+  "review_status": "Source extraction complete; unresolved details require review before execution.",
+  "hardware_validation": "Not performed",
+  "source_pdf": "sources/chemrxiv-2021-k0w7q.pdf",
+  "json_path": "protocols/kinase.json"
+}

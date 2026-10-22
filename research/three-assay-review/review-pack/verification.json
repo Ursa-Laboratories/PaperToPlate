@@ -1,0 +1,210 @@
+{
+  "source_count": 3,
+  "indexed_collection_count": 100,
+  "checks": [
+    {
+      "step": "P01",
+      "quote_found": true,
+      "source_pages": [
+        5
+      ]
+    },
+    {
+      "step": "P02",
+      "quote_found": true,
+      "source_pages": [
+        5
+      ]
+    },
+    {
+      "step": "P03",
+      "quote_found": true,
+      "source_pages": [
+        5
+      ]
+    },
+    {
+      "step": "P04",
+      "quote_found": true,
+      "source_pages": [
+        5
+      ]
+    },
+    {
+      "step": "P04b",
+      "quote_found": true,
+      "source_pages": [
+        5,
+        7
+      ]
+    },
+    {
+      "step": "P05",
+      "quote_found": true,
+      "source_pages": [
+        5
+      ]
+    },
+    {
+      "step": "P06",
+      "quote_found": true,
+      "source_pages": [
+        5,
+        6,
+        8
+      ]
+    },
+    {
+      "step": "P07",
+      "quote_found": true,
+      "source_pages": [
+        5
+      ]
+    },
+    {
+      "step": "P08",
+      "quote_found": true,
+      "source_pages": [
+        5
+      ]
+    },
+    {
+      "step": "P09",
+      "quote_found": true,
+      "source_pages": [
+        5
+      ]
+    },
+    {
+      "step": "P10",
+      "quote_found": true,
+      "source_pages": [
+        5
+      ]
+    },
+    {
+      "step": "P11",
+      "quote_found": true,
+      "source_pages": [
+        5
+      ]
+    },
+    {
+      "step": "C01",
+      "quote_found": true,
+      "source_pages": [
+        4
+      ]
+    },
+    {
+      "step": "C02",
+      "quote_found": true,
+      "source_pages": [
+        4
+      ]
+    },
+    {
+      "step": "C03",
+      "quote_found": true,
+      "source_pages": [
+        3,
+        4
+      ]
+    },
+    {
+      "step": "C04",
+      "quote_found": true,
+      "source_pages": [
+        4
+      ]
+    },
+    {
+      "step": "C05",
+      "quote_found": true,
+      "source_pages": [
+        4
+      ]
+    },
+    {
+      "step": "C06",
+      "quote_found": true,
+      "source_pages": [
+        4
+      ]
+    },
+    {
+      "step": "C07",
+      "quote_found": true,
+      "source_pages": [
+        6
+      ]
+    },
+    {
+      "step": "K01",
+      "quote_found": true,
+      "source_pages": [
+        11
+      ]
+    },
+    {
+      "step": "K02",
+      "quote_found": true,
+      "source_pages": [
+        11
+      ]
+    },
+    {
+      "step": "K03",
+      "quote_found": true,
+      "source_pages": [
+        11,
+        12
+      ]
+    },
+    {
+      "step": "K04",
+      "quote_found": true,
+      "source_pages": [
+        11
+      ]
+    },
+    {
+      "step": "K05",
+      "quote_found": true,
+      "source_pages": [
+        11,
+        12
+      ]
+    },
+    {
+      "step": "K06",
+      "quote_found": true,
+      "source_pages": [
+        5,
+        11
+      ]
+    },
+    {
+      "step": "K07",
+      "quote_found": true,
+      "source_pages": [
+        11
+      ]
+    },
+    {
+      "step": "K08",
+      "quote_found": true,
+      "source_pages": [
+        11
+      ]
+    },
+    {
+      "step": "K09",
+      "quote_found": true,
+      "source_pages": [
+        11
+      ]
+    }
+  ],
+  "source_hashes_verified": true
+}

@@ -1,0 +1,215 @@
+{
+  "id": "chloride",
+  "short_title": "Chloride transport in vesicles",
+  "filename": "chemrxiv-2024-kxf0x.pdf",
+  "scope": "The manual 96-well lucigenin chloride/nitrate antiport assay. Begins with prepared lucigenin-loaded POPC vesicles and transporter stocks. The later 384-well automated workflows are separate methods and are not merged into this extraction.",
+  "rationale": "A numbered assay sequence specifies loading, transporter addition, pipette mixing, a salt spike and a five-minute fluorescence endpoint.",
+  "primary_page": 4,
+  "image": "chloride-p4.png",
+  "summary": [
+    "Manual 96-well assay",
+    "303 µL conditional total",
+    "369 / 503 nm fluorescence",
+    "5 min after each salt spike"
+  ],
+  "materials": [
+    [
+      "Prepared POPC vesicles",
+      "Body text: 2 mM POPC; internal buffer 100 µM lucigenin, 200 mM NaNO₃ and 5 mM sodium phosphate, pH 7.2. Figure 1 instead labels internal lucigenin 1 mM. This discrepancy is unresolved.",
+      "4"
+    ],
+    [
+      "External buffer",
+      "200 mM NaNO₃ with 5 mM sodium phosphate, pH 7.2.",
+      "4"
+    ],
+    [
+      "Transporter stocks",
+      "A concentration series of transporter in DMSO, described as 100X stocks. The individual stock concentrations and dilution-transfer recipe are not specified in the core paragraph.",
+      "4"
+    ],
+    [
+      "NaCl spike",
+      "200 mM NaCl with 5 mM sodium phosphate, pH 7.2.",
+      "4"
+    ],
+    [
+      "Controls and reader",
+      "DMSO-only vesicles for 0% influx; an unspecified highly potent transporter for 100% influx. Fluorescence plate reader with autoinjector.",
+      "4"
+    ]
+  ],
+  "steps": [
+    {
+      "id": "C01",
+      "title": "Load the prepared vesicles",
+      "procedure": "Dispense vesicle suspension into the 96-well plate. The PDF literally prints “150 L per well”; the µ prefix is missing on the rendered page, not just in text extraction. A proposed interpretation is 150 µL, but this quantity remains unresolved in the structured record.",
+      "source_pages": [
+        4
+      ],
+      "source_quote": "150 L per well, 2 mM POPC",
+      "values": {
+        "printed_volume_value": 150,
+        "printed_volume_unit": "L",
+        "normalized_volume_ul": null,
+        "proposed_volume_ul": 150
+      },
+      "evidence_status": "unit_unresolved"
+    },
+    {
+      "id": "C02",
+      "title": "Add transporter and mix",
+      "procedure": "Add 3 µL of the appropriate 100X transporter stock in DMSO to each assay well. Mix using a multichannel pipette. Exact mixing volume, cycle count and speed are not stated.",
+      "source_pages": [
+        4
+      ],
+      "source_quote": "3 µL of 100X stock solution",
+      "values": {
+        "transporter_ul": 3,
+        "stock_multiplier_reported": 100,
+        "mix_cycles": null
+      },
+      "evidence_status": "reported"
+    },
+    {
+      "id": "C03",
+      "title": "Include reference conditions",
+      "procedure": "Include vesicles treated with DMSO only as the 0% chloride-influx reference and vesicles treated with a highly potent transporter as the 100% reference. Keep DMSO concentration consistent across wells, as described in the preceding assay discussion. The reference-transporter identity and dose must be resolved.",
+      "source_pages": [
+        3,
+        4
+      ],
+      "source_quote": "vesicles treated with DMSO only as a reference for 0% chloride influx",
+      "values": {
+        "zero_reference": "DMSO-only",
+        "full_reference_identity": null
+      },
+      "evidence_status": "reported"
+    },
+    {
+      "id": "C04",
+      "title": "Start chloride influx",
+      "procedure": "Use the plate-reader autoinjector to add 150 µL of the NaCl-spike solution to each well. Start each well’s endpoint timing from its own salt addition.",
+      "source_pages": [
+        4
+      ],
+      "source_quote": "150 µL per well, 200 mM NaCl",
+      "values": {
+        "spike_ul": 150,
+        "spike_nacl_mm": 200,
+        "spike_phosphate_mm": 5,
+        "spike_ph": 7.2
+      },
+      "evidence_status": "reported"
+    },
+    {
+      "id": "C05",
+      "title": "Read the five-minute endpoint",
+      "procedure": "Measure fluorescence five minutes after NaCl addition: excitation 369 nm, emission 503 nm. Assay temperature, reader gain and bandwidths are not stated in this paragraph.",
+      "source_pages": [
+        4
+      ],
+      "source_quote": "excitation = 369 nm, emission = 503 nm",
+      "values": {
+        "delay_seconds": 300,
+        "excitation_nm": 369,
+        "emission_nm": 503,
+        "temperature_c": null
+      },
+      "evidence_status": "reported"
+    },
+    {
+      "id": "C06",
+      "title": "Convert and normalize the signal",
+      "procedure": "Use the Stern–Volmer calibration to convert fluorescence to chloride concentration, then calibrate against the 0% and 100% influx references before fitting the final Hill plots. The paper points to supplementary Figure S28 and Equation S2 for these transformations.",
+      "source_pages": [
+        4
+      ],
+      "source_quote": "creation of a Stern-Volmer plot (Figure S28)",
+      "values": {
+        "calibration_source": "Supplementary Figure S28 and Equation S2",
+        "calibration_coefficients": null
+      },
+      "evidence_status": "reported"
+    },
+    {
+      "id": "C07",
+      "title": "Keep batch repeats distinct from well repeats",
+      "procedure": "The reported manual-method validation used three repeated Hill plots from three different vesicle batches. Do not convert that statement into an invented requirement for three identical wells per concentration.",
+      "source_pages": [
+        6
+      ],
+      "source_quote": "3 repeated Hill plots were performed in 3 different batches of vesicles",
+      "values": {
+        "reported_independent_vesicle_batches": 3,
+        "wells_per_concentration": null
+      },
+      "evidence_status": "reported"
+    }
+  ],
+  "derived": [
+    [
+      "Conditional final volume",
+      "If the missing unit in C01 is confirmed as µL: 150 + 3 + 150 = 303 µL.",
+      "Conditional arithmetic, not a reported 300 µL total."
+    ],
+    [
+      "Conditional DMSO fraction",
+      "3 / 303 × 100 = 0.990% v/v if the transporter stock is in neat DMSO and C01 is 150 µL.",
+      "Conditional calculation. Keep identical across the concentration series."
+    ]
+  ],
+  "issues": [
+    {
+      "title": "Printed loading-volume unit is incomplete",
+      "detail": "The visual PDF says “150 L”. The proposed 150 µL interpretation is plausible for a microplate but is explicitly not treated as a resolved source value.",
+      "source_pages": [
+        4
+      ],
+      "severity": "resolve before execution"
+    },
+    {
+      "title": "Lucigenin concentration conflicts",
+      "detail": "The procedure says 100 µM internal lucigenin; Figure 1 labels 1 mM. This tenfold difference must be reconciled from the supplementary method or authors.",
+      "source_pages": [
+        4
+      ],
+      "severity": "resolve before execution"
+    },
+    {
+      "title": "Upstream preparation and calibration are external",
+      "detail": "Vesicle manufacture, the transporter dilution series, reference transporter identity/dose, Stern–Volmer coefficients and Equation S2 are not fully specified in the selected main-PDF procedure. The separate SI is not in the 100-file ZIP.",
+      "source_pages": [
+        4
+      ],
+      "severity": "resolve before execution"
+    },
+    {
+      "title": "Plate capacity and unspecified parameters",
+      "detail": "The conditional total is 303 µL, not 300 µL. Plate working volume, mixing parameters, temperature, exact well mapping and wells per concentration require decisions; none are invented here.",
+      "source_pages": [
+        4,
+        6
+      ],
+      "severity": "resolve before execution"
+    },
+    {
+      "title": "Vesicle age affects the signal",
+      "detail": "The paper warns that leakage can reach 20% within two hours and later discusses use within 2–3 hours. A hard validity window should be reviewed for the chosen vesicle batch.",
+      "source_pages": [
+        4,
+        7
+      ],
+      "severity": "resolve before execution"
+    }
+  ],
+  "paper_title": "High-throughput and Automated Anion Transport Assays",
+  "doi": "10.26434/chemrxiv-2024-kxf0x",
+  "doi_url": "https://doi.org/10.26434/chemrxiv-2024-kxf0x",
+  "source_sha256": "e94e10f4d393d01cab68226f8fb4e2d3a9cb81c7848c89a87fcddc8c059827f9",
+  "source_page_count": 10,
+  "review_status": "Source extraction complete; unresolved details require review before execution.",
+  "hardware_validation": "Not performed",
+  "source_pdf": "sources/chemrxiv-2024-kxf0x.pdf",
+  "json_path": "protocols/chloride.json"
+}

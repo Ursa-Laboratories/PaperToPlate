@@ -1,0 +1,337 @@
+{
+  "id": "peroxide",
+  "short_title": "Peroxide mixture quantification",
+  "filename": "chemrxiv.15000337_v1.pdf",
+  "scope": "The three iodide-based microplate assays for PMS, hydrogen peroxide and PDS. Begins with prepared samples and standardized peroxide stocks; electrolysis and iodometric stock standardization are outside this extracted assay module.",
+  "rationale": "Explicit sample/reagent transfers, matched matrix blanks, replicate requirements, temperature and time-resolved readings are all in the same Methods page.",
+  "primary_page": 5,
+  "image": "peroxide-p5.png",
+  "summary": [
+    "96-well polystyrene plate",
+    "250 µL per well",
+    "350 nm at 25 °C",
+    "0–10 s / 3 min / 8 min"
+  ],
+  "materials": [
+    [
+      "Sample and matching matrix",
+      "Prepared peroxide sample; ultrapure water or the same electrolyte as the sample for blanks.",
+      "5"
+    ],
+    [
+      "KI stock",
+      "Reported as 1.2 M: 19.9 g KI dissolved in 100 mL ultrapure water. The text describes solvent volume, not an explicit final-volume make-up.",
+      "5"
+    ],
+    [
+      "Phosphate stock",
+      "pH 4.0. The text labels it 0.1 M but later uses 0.5 M and gives 68 g KH₂PO₄ in 1 L water. Concentration is unresolved; retain both reported labels.",
+      "5"
+    ],
+    [
+      "Molybdate stock",
+      "Reported as 35 mM: 0.124 g (NH₄)₆Mo₇O₂₄·4H₂O dissolved in 20 mL ultrapure water. Confirm whether the molarity is expressed per Mo equivalent.",
+      "5"
+    ],
+    [
+      "Bicarbonate stock",
+      "2 M KHCO₃. Its stock-preparation quantities are not given here.",
+      "5"
+    ],
+    [
+      "Readout",
+      "Agilent PowerWave HT microplate reader; polystyrene 96-well plate; absorbance at 350 nm and 25 °C.",
+      "5"
+    ]
+  ],
+  "steps": [
+    {
+      "id": "P01",
+      "title": "Prepare indicator mix 1 (KI)",
+      "procedure": "Combine 14 mL phosphate stock (specified here as 0.5 M, pH 4.0) with 1 mL of 1.2 M KI. The authors report 80 mM KI in mix 1. Resolve the conflicting phosphate-stock labels before preparation.",
+      "source_pages": [
+        5
+      ],
+      "source_quote": "14 mL phosphate buffer stock (0.5 M, pH 4.0) with 1 mL KI stock (1.2 M)",
+      "values": {
+        "transfers_ul": [
+          14000,
+          1000
+        ]
+      },
+      "evidence_status": "reported_with_conflict"
+    },
+    {
+      "id": "P02",
+      "title": "Prepare indicator mix 2 (KI/Mo)",
+      "procedure": "Combine 13.83 mL phosphate stock (specified here as 0.5 M, pH 4.0), 667 µL of 1.2 M KI and 500 µL of the reported 35 mM molybdate stock. Reported mix concentrations: 53 mM KI and 1.2 mM molybdate.",
+      "source_pages": [
+        5
+      ],
+      "source_quote": "667 µL KI stock (1.2 M) and 500 µL molybdate stock (35 mM)",
+      "values": {
+        "transfers_ul": [
+          13830,
+          667,
+          500
+        ]
+      },
+      "evidence_status": "reported_with_conflict"
+    },
+    {
+      "id": "P03",
+      "title": "Prepare indicator mix 3 (KI/KHCO₃)",
+      "procedure": "Combine 12.5 mL of 1.2 M KI with 7.5 mL of 2 M KHCO₃. The authors report 0.75 M each of KI and KHCO₃ in mix 3.",
+      "source_pages": [
+        5
+      ],
+      "source_quote": "12.5 mL KI stock (1.2 M) and 7.5 mL KHCO3 (2 M)",
+      "values": {
+        "transfers_ul": [
+          12500,
+          7500
+        ]
+      },
+      "evidence_status": "reported"
+    },
+    {
+      "id": "P04",
+      "title": "Check indicator-stock background",
+      "procedure": "Keep stocks refrigerated in the dark. The paper describes storage for several weeks and regular fresh preparation; it discarded and remade indicator stocks when blank absorbance at 350 nm exceeded 0.15. No precise shelf life or refrigerator temperature is given.",
+      "source_pages": [
+        5
+      ],
+      "source_quote": "absorbance of the blank at 350 nm was above 0.15",
+      "values": {
+        "blank_absorbance_threshold": 0.15
+      },
+      "evidence_status": "reported"
+    },
+    {
+      "id": "P04b",
+      "title": "Establish each branch’s calibration",
+      "procedure": "Use standardized PMS for KI calibration; separate PMS and H₂O₂ standards for the combined KI/Mo calibration; and separate PMS, H₂O₂ and PDS standards for total-peroxide calibration. Reported quantification ranges are 7–250 µM, 4–250 µM and 17–500 µM respectively. Individual calibration points and dilution-transfer recipes are not specified here. Verify calibration in the actual plate geometry as the authors require.",
+      "source_pages": [
+        5,
+        7
+      ],
+      "source_quote": "quantification range of 7 – 250 µM",
+      "values": {
+        "ki_range_um": [
+          7,
+          250
+        ],
+        "ki_mo_range_um": [
+          4,
+          250
+        ],
+        "ki_khco3_range_um": [
+          17,
+          500
+        ],
+        "standard_points_um": null
+      },
+      "evidence_status": "reported"
+    },
+    {
+      "id": "P05",
+      "title": "Load the PMS assay and matrix blank",
+      "procedure": "Add 100 µL sample to each assay well, with at least two wells for the same sample. In a separate blank well, add 100 µL water or the matching electrolyte. These are separate wells, not additions to one well.",
+      "source_pages": [
+        5
+      ],
+      "source_quote": "100 µL of a sample containing various peroxides were placed in a well",
+      "values": {
+        "sample_ul": 100,
+        "matrix_blank_ul": 100,
+        "minimum_sample_wells": 2
+      },
+      "evidence_status": "reported"
+    },
+    {
+      "id": "P06",
+      "title": "Start and read the PMS assay",
+      "procedure": "Add 150 µL mix 1 to each sample and blank well. Measure absorbance at 350 nm, 25 °C immediately after addition. Results specify a 0–10 second window; the authors describe approximately 3–5 seconds between addition and their first measurement. Subtract the matrix-blank reading and use the KI-assay calibration.",
+      "source_pages": [
+        5,
+        6,
+        8
+      ],
+      "source_quote": "150 µL of mix 1",
+      "values": {
+        "indicator_ul": 150,
+        "well_total_ul": 250,
+        "wavelength_nm": 350,
+        "temperature_c": 25,
+        "measurement_window_seconds": [
+          0,
+          10
+        ],
+        "reported_first_measurement_delay_seconds": [
+          3,
+          5
+        ]
+      },
+      "evidence_status": "reported"
+    },
+    {
+      "id": "P07",
+      "title": "Load and start the combined PMS + H₂O₂ assay",
+      "procedure": "In fresh wells, add 100 µL sample or matching matrix blank, then 150 µL mix 2. Include replicate measurements as described for the PMS assay. This branch measures the combined PMS and H₂O₂ response.",
+      "source_pages": [
+        5
+      ],
+      "source_quote": "150 µL of mix 2 were added to all the prepared wells",
+      "values": {
+        "sample_ul": 100,
+        "indicator_ul": 150,
+        "well_total_ul": 250
+      },
+      "evidence_status": "reported"
+    },
+    {
+      "id": "P08",
+      "title": "Read the combined PMS + H₂O₂ assay",
+      "procedure": "Begin reading at 350 nm immediately after mix 2 addition. Record for 3 minutes at 10-second intervals at 25 °C. Use the baseline-corrected mean between 2 and 3 minutes with the KI/Mo calibration.",
+      "source_pages": [
+        5
+      ],
+      "source_quote": "for 3 minutes in 10 s intervals at 25 °C",
+      "values": {
+        "duration_seconds": 180,
+        "interval_seconds": 10,
+        "mean_window_seconds": [
+          120,
+          180
+        ],
+        "wavelength_nm": 350,
+        "temperature_c": 25
+      },
+      "evidence_status": "reported"
+    },
+    {
+      "id": "P09",
+      "title": "Load and start the total-peroxide assay",
+      "procedure": "In another set of wells, mix 50 µL sample with 200 µL mix 3. For the corresponding background, combine 50 µL matching matrix with 200 µL mix 3. Replicate determination is recommended.",
+      "source_pages": [
+        5
+      ],
+      "source_quote": "50 µL of sample were mixed with 200 µL of mix 3",
+      "values": {
+        "sample_ul": 50,
+        "indicator_ul": 200,
+        "well_total_ul": 250
+      },
+      "evidence_status": "reported"
+    },
+    {
+      "id": "P10",
+      "title": "Read the total-peroxide assay",
+      "procedure": "At 25 °C, measure absorbance at 350 nm for 8 minutes at 10-second intervals, starting immediately after indicator addition. Baseline-correct and use the mean between 5 and 8 minutes with the total-peroxide calibration.",
+      "source_pages": [
+        5
+      ],
+      "source_quote": "mean absorbance between 5 and 8 minutes",
+      "values": {
+        "duration_seconds": 480,
+        "interval_seconds": 10,
+        "mean_window_seconds": [
+          300,
+          480
+        ],
+        "wavelength_nm": 350,
+        "temperature_c": 25
+      },
+      "evidence_status": "reported"
+    },
+    {
+      "id": "P11",
+      "title": "Calculate the three analyte concentrations",
+      "procedure": "PMS comes from the KI branch. H₂O₂ = concentration from KI/Mo minus PMS from KI. PDS = total concentration from KI/KHCO₃ minus the combined concentration from KI/Mo. Apply each branch’s calibration to concentration before subtraction; raw absorbances are not interchangeable.",
+      "source_pages": [
+        5
+      ],
+      "source_quote": "[H2O2] = [PMS + H2O2]KI/Mo − [PMS]KI",
+      "values": {
+        "formulas": [
+          "H2O2 = C_KI_Mo - C_KI",
+          "PDS = C_KI_KHCO3 - C_KI_Mo"
+        ]
+      },
+      "evidence_status": "reported"
+    }
+  ],
+  "derived": [
+    [
+      "Final well volumes",
+      "100 + 150 = 250 µL for KI and KI/Mo; 50 + 200 = 250 µL for KI/KHCO₃.",
+      "Arithmetic from reported transfers."
+    ],
+    [
+      "Sample dilution in the readout",
+      "2.5-fold for the first two branches and 5-fold for the third.",
+      "Arithmetic; verify the calibration concentration basis before comparing or subtracting concentrations."
+    ],
+    [
+      "Indicator dilution in the wells",
+      "The written mix recipes and additions imply 48 mM KI in branch 1, approximately 32 mM KI / 0.72 mM molybdate in branch 2, and 0.60 M KI / KHCO₃ in branch 3.",
+      "Arithmetic from stock labels; the Results use 80 mM, 53 mM / 1.2 mM and 0.75 M labels. Resolve stock-versus-final concentration conventions before using the method."
+    ]
+  ],
+  "issues": [
+    {
+      "title": "Conflicting phosphate-stock concentration",
+      "detail": "The stock paragraph says 0.1 M, while both mix recipes specify 0.5 M. The 68 g/L recipe is also consistent with approximately 0.5 M KH₂PO₄. The extraction preserves this conflict instead of silently choosing a value.",
+      "source_pages": [
+        5
+      ],
+      "severity": "resolve before execution"
+    },
+    {
+      "title": "Stock-versus-final concentration labels",
+      "detail": "The recipe adds indicator stock to sample, diluting it. Results label conditions with the same concentrations as those indicator stocks. Clarify whether these are stock or final-well labels; do not change either recipe silently.",
+      "source_pages": [
+        5,
+        6,
+        8
+      ],
+      "severity": "resolve before execution"
+    },
+    {
+      "title": "Fast timing and unspecified mixing",
+      "detail": "PMS is measured within 0–10 seconds; the reported initial read was after about 3–5 seconds. Mixing method, speed and duration are absent. Dispensing/read latency must preserve the stated kinetic window.",
+      "source_pages": [
+        5,
+        6,
+        8
+      ],
+      "severity": "resolve before execution"
+    },
+    {
+      "title": "Calibration and stock verification need supporting detail",
+      "detail": "The paper refers to SI for titration and Table S1. Those separate supplements are not included with this selected main-article PDF. Exact calibration preparation and dilution accounting need review. The authors explicitly say calibration depends on the container/path length.",
+      "source_pages": [
+        5,
+        6
+      ],
+      "severity": "resolve before execution"
+    },
+    {
+      "title": "Molybdate concentration basis",
+      "detail": "The salt contains seven Mo atoms. Preserve the stated mass, solvent volume and “35 mM” label; confirm the intended molarity basis rather than assuming salt molarity.",
+      "source_pages": [
+        5
+      ],
+      "severity": "resolve before execution"
+    }
+  ],
+  "paper_title": "Rapid and Facile Spectrophotometric Method for the Selective Determination of Peroxymonosulfate, Peroxydisulfate and Hydrogen Peroxide in Ternary Mixtures",
+  "doi": "10.26434/chemrxiv.15000337/v1",
+  "doi_url": "https://doi.org/10.26434/chemrxiv.15000337/v1",
+  "source_sha256": "5e1fe338c46e59ce70be779efd42f40ec41087fcb986558b47e6427c1c3389bd",
+  "source_page_count": 13,
+  "review_status": "Source extraction complete; unresolved details require review before execution.",
+  "hardware_validation": "Not performed",
+  "source_pdf": "sources/chemrxiv.15000337_v1.pdf",
+  "json_path": "protocols/peroxide.json"
+}

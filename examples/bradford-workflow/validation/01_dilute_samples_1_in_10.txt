@@ -1,0 +1,13 @@
+------------------------------------------------------------
+Protocol Setup Validation
+------------------------------------------------------------
+
+[1/4] Loading gantry config...
+  ERROR: ValidationError: 1 validation error for GantryYamlSchema
+cnc.default_feed_rate_mm_min
+  Extra inputs are not permitted [type=extra_forbidden, input_value=2250.0, input_type=float]
+    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden
+
+------------------------------------------------------------
+RESULT: ERROR - could not load gantry config
+------------------------------------------------------------
