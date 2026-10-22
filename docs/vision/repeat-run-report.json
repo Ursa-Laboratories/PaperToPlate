@@ -1,0 +1,114 @@
+{
+  "unique_observations": 154,
+  "volume_calibrated": false,
+  "visual_review": "Original and saved live overlay reviewed at 55,58.8,60,64 seconds. Pink liquid visibly present and liquid boxes aligned at58.8 and60 seconds.",
+  "evaluation_scope": "New operator run; no training or threshold changes on this recording. Sparse qualitative check, not exhaustive labeled accuracy.",
+  "model_components": {
+    "local-tip.pt": "f0f08287c466042c829110983154fa769684045cb9ea160c06ee4d07afdeb220",
+    "local-liquid.pt": "4458b43576918b41c47c3470ded2ad1e73a5a55717a7a889b23aaf403d211964"
+  },
+  "raw_video_sha256": "da61dc2b29ba8cc03e493fe5f10df20aec89c26b5b4c0b4d170f1815f37a1306",
+  "raw_duration_seconds": 78.2,
+  "overlay_duration_seconds": 78.4,
+  "recording_id": "operator-repeat-20261022-161105",
+  "liquid_positive_observation_count": 6,
+  "liquid_positive_observations": [
+    {
+      "approximate_video_offset_seconds": 58.409380197525024,
+      "liquid_predictions": [
+        {
+          "label": "liquid",
+          "confidence": 0.9278743863105774,
+          "box": [
+            608.9408226013184,
+            461.62158966064453,
+            628.052303314209,
+            543.4403228759766
+          ]
+        }
+      ]
+    },
+    {
+      "approximate_video_offset_seconds": 58.917357206344604,
+      "liquid_predictions": [
+        {
+          "label": "liquid",
+          "confidence": 0.908407986164093,
+          "box": [
+            598.5578918457031,
+            462.12745666503906,
+            617.5679512023926,
+            542.7608032226562
+          ]
+        }
+      ]
+    },
+    {
+      "approximate_video_offset_seconds": 59.42193627357483,
+      "liquid_predictions": [
+        {
+          "label": "liquid",
+          "confidence": 0.8538382053375244,
+          "box": [
+            590.5583114624023,
+            461.9058837890625,
+            608.5608024597168,
+            539.6211700439453
+          ]
+        }
+      ]
+    },
+    {
+      "approximate_video_offset_seconds": 59.92674899101257,
+      "liquid_predictions": [
+        {
+          "label": "liquid",
+          "confidence": 0.8446457982063293,
+          "box": [
+            581.1104507446289,
+            463.1346969604492,
+            599.6367530822754,
+            537.3887786865234
+          ]
+        }
+      ]
+    },
+    {
+      "approximate_video_offset_seconds": 60.431337118148804,
+      "liquid_predictions": [
+        {
+          "label": "liquid",
+          "confidence": 0.8124437928199768,
+          "box": [
+            576.3403129577637,
+            462.2054214477539,
+            593.86181640625,
+            543.8695983886719
+          ]
+        }
+      ]
+    },
+    {
+      "approximate_video_offset_seconds": 60.93870997428894,
+      "liquid_predictions": [
+        {
+          "label": "liquid",
+          "confidence": 0.7236570715904236,
+          "box": [
+            577.0329132080078,
+            471.2373504638672,
+            595.282039642334,
+            554.954833984375
+          ]
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Six positive samples are model observations, not six independent events.",
+    "Sparse visual review does not establish precision, recall or absence of false alarms.",
+    "No training or threshold changes used this recording.",
+    "Camera and overlay timing use approximate local receipt timestamps.",
+    "No volume calibration or microlitre measurement."
+  ]
+}

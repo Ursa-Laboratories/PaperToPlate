@@ -87,3 +87,27 @@ geometry calibration; commanded protocol volumes are not measurement labels.
 Validation: 28 focused vision tests passed. The local worker was restarted and
 verified live with the adapted checkpoint. This verifies deployment, not a second
 physical liquid-transfer experiment.
+
+## Subsequent operator run: October 22, 16:11
+
+A new operator-run protocol was recorded after deployment, using the same frozen
+model pair. No retraining or threshold changes used this second recording. This
+adds new-run evidence beyond the within-recording evaluation above.
+
+The saved raw video is 78.2 seconds at 15 fps; the live overlay is 78.4 seconds at
+5 fps. The trace contains 154 distinct sampled observations, including six with
+liquid detections around 58.41–60.94 seconds. Their liquid confidence scores range
+from 0.724 to 0.928. These are correlated model observations, not six independent
+liquid events or a calibrated probability of success.
+
+Visual review of original and overlay frames at 55, 58.8, 60 and 64 seconds confirms
+pink liquid and aligned detection boxes at 58.8 and 60 seconds. This is a sparse
+qualitative check, not an exhaustive labeled accuracy test. It does not establish
+volume, precision, recall or absence of false alarms.
+
+The [repeat-run report](repeat-run-report.json) preserves the checkpoint and raw
+video hashes, positive predictions and limitations. The original, overlay,
+24-second half-speed highlight and full trace remain local under
+`data/vision/experiments/operator-repeat-20261022-161105/`. Recording was finalized
+when the operator reported completion; no hardware commands were issued by the
+recording tools.
