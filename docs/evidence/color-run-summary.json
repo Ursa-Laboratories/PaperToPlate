@@ -1,0 +1,34 @@
+{
+  "recorded_on": "2026-10-22",
+  "experiment": "RYB color-mixture screen",
+  "source_paper": {
+    "title": "Exploring Benchmarks for Self-Driving Labs using Color Matching",
+    "url": "https://arxiv.org/abs/2310.00510"
+  },
+  "adaptation": "CMYK literature workflow adapted to a first-round RYB screen; local recipes, not the source optimizer.",
+  "app_run_id": "8acbc9beb35c47bc8d2c9e08575f5b64",
+  "station_run_id": "paper-8acbc9beb35c47bc8d2c9e08575f5b64-hardware-a4997235124a",
+  "controller_state": "succeeded",
+  "commands_completed": 94,
+  "wells_mixed_reported": 10,
+  "duration_seconds": 1207.7200372219086,
+  "planned_well_volume_ul": 120,
+  "evidence_retained": [
+    "original camera recording",
+    "controller events",
+    "protocol and configuration hashes",
+    "final plate image"
+  ],
+  "independently_measured": {
+    "delivered_volume": false,
+    "color_accuracy": false,
+    "detector_accuracy": false
+  },
+  "preview": {
+    "path": "../assets/color-run.webp",
+    "duration_seconds": 15,
+    "source_recording_duration_seconds": 1211.6,
+    "time_compressed": true
+  },
+  "interpretation": "Controller-reported completion; delivered volumes, color accuracy and detector accuracy are not independently measured."
+}

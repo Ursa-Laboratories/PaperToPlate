@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="590" viewBox="0 0 1600 590" role="img" aria-labelledby="title desc">
+<title id="title">Paper to Plate — from a research question to a real experiment</title>
+<desc id="desc">Ursa Labs. Valency Bond discovers literature; Paper to Plate develops an experiment; CubOS executes and records it. Conceptual workflow illustration.</desc>
+<rect width="1600" height="590" rx="24" fill="#F6F4ED"/>
+<path d="M0 558H1600" stroke="#233C78" stroke-width="64"/>
+<g font-family="Arial,Helvetica,sans-serif" fill="#233C78">
+<text x="74" y="79" font-size="20" letter-spacing="5">URSA LABS / PAPER TO PLATE</text>
+<text x="68" y="205" font-size="92" font-weight="600" letter-spacing="-5">A research question.</text>
+<text x="68" y="307" font-size="92" font-weight="600" letter-spacing="-5">A real experiment.</text>
+<text x="74" y="369" font-size="27" fill="#52617A">Literature-guided agents for the physical lab.</text>
+<text x="74" y="452" font-size="18" letter-spacing="2">DISCOVER WITH VALENCY BOND</text>
+<text x="74" y="482" font-size="18" letter-spacing="2">GENERATE WITH AI · EXECUTE THROUGH CUBOS</text>
+</g>
+<g transform="translate(1020 65)">
+<rect x="0" y="0" width="335" height="195" rx="14" fill="white" stroke="#D1DBEA" stroke-width="2"/>
+<rect x="22" y="23" width="119" height="26" rx="5" fill="#D7E1F2"/>
+<text x="35" y="42" font-family="Arial,sans-serif" font-size="14" fill="#233C78" letter-spacing="1">SOURCE PAPER</text>
+<path d="M24 77H290M24 96H265M24 115H286M24 145H186M24 165H235" stroke="#B6C5DB" stroke-width="8" stroke-linecap="round"/>
+<path d="M168 206V237H235V270" fill="none" stroke="#233C78" stroke-width="3"/>
+<path d="m227 261 8 9 8-9" fill="none" stroke="#233C78" stroke-width="3"/>
+<rect x="-34" y="284" width="480" height="164" rx="16" fill="#233C78"/>
+<circle cx="0" cy="316" r="10" fill="#C95B60"/><circle cx="36" cy="316" r="10" fill="#DBBC43"/><circle cx="72" cy="316" r="10" fill="#5475BB"/><circle cx="108" cy="316" r="10" fill="#C95B60"/><circle cx="144" cy="316" r="10" fill="#DBBC43"/><circle cx="180" cy="316" r="10" fill="#5475BB"/><circle cx="216" cy="316" r="10" fill="#F6F4ED"/><circle cx="252" cy="316" r="10" fill="#C95B60"/><circle cx="288" cy="316" r="10" fill="#DBBC43"/><circle cx="324" cy="316" r="10" fill="#5475BB"/><circle cx="360" cy="316" r="10" fill="#D7E1F2"/><circle cx="396" cy="316" r="10" fill="#D7E1F2"/><circle cx="0" cy="349" r="10" fill="#D7E1F2"/><circle cx="36" cy="349" r="10" fill="#D7E1F2"/><circle cx="72" cy="349" r="10" fill="#D7E1F2"/><circle cx="108" cy="349" r="10" fill="#D7E1F2"/><circle cx="144" cy="349" r="10" fill="#D7E1F2"/><circle cx="180" cy="349" r="10" fill="#D7E1F2"/><circle cx="216" cy="349" r="10" fill="#D7E1F2"/><circle cx="252" cy="349" r="10" fill="#D7E1F2"/><circle cx="288" cy="349" r="10" fill="#D7E1F2"/><circle cx="324" cy="349" r="10" fill="#D7E1F2"/><circle cx="360" cy="349" r="10" fill="#D7E1F2"/><circle cx="396" cy="349" r="10" fill="#D7E1F2"/><circle cx="0" cy="382" r="10" fill="#D7E1F2"/><circle cx="36" cy="382" r="10" fill="#D7E1F2"/><circle cx="72" cy="382" r="10" fill="#D7E1F2"/><circle cx="108" cy="382" r="10" fill="#D7E1F2"/><circle cx="144" cy="382" r="10" fill="#D7E1F2"/><circle cx="180" cy="382" r="10" fill="#D7E1F2"/><circle cx="216" cy="382" r="10" fill="#D7E1F2"/><circle cx="252" cy="382" r="10" fill="#D7E1F2"/><circle cx="288" cy="382" r="10" fill="#D7E1F2"/><circle cx="324" cy="382" r="10" fill="#D7E1F2"/><circle cx="360" cy="382" r="10" fill="#D7E1F2"/><circle cx="396" cy="382" r="10" fill="#D7E1F2"/><circle cx="0" cy="415" r="10" fill="#D7E1F2"/><circle cx="36" cy="415" r="10" fill="#D7E1F2"/><circle cx="72" cy="415" r="10" fill="#D7E1F2"/><circle cx="108" cy="415" r="10" fill="#D7E1F2"/><circle cx="144" cy="415" r="10" fill="#D7E1F2"/><circle cx="180" cy="415" r="10" fill="#D7E1F2"/><circle cx="216" cy="415" r="10" fill="#D7E1F2"/><circle cx="252" cy="415" r="10" fill="#D7E1F2"/><circle cx="288" cy="415" r="10" fill="#D7E1F2"/><circle cx="324" cy="415" r="10" fill="#D7E1F2"/><circle cx="360" cy="415" r="10" fill="#D7E1F2"/><circle cx="396" cy="415" r="10" fill="#D7E1F2"/></g><g font-family="Arial,Helvetica,sans-serif" font-size="18" fill="white" letter-spacing="2"><text x="74" y="563">QUESTION</text><text x="330" y="563">LITERATURE</text><text x="645" y="563">PROTOCOL</text><text x="974" y="563">PHYSICAL RUN</text><text x="1324" y="563">EVIDENCE</text></g></svg>

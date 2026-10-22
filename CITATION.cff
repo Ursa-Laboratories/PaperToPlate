@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use Paper to Plate in research, please cite the software and the original methods behind your experiment."
+type: software
+title: "Paper to Plate: Literature-Guided Agents for Physical Experiments"
+authors:
+  - name: "Ursa Labs"
+repository-code: "https://github.com/Ursa-Laboratories/PaperToPlate"
+url: "https://github.com/Ursa-Laboratories/PaperToPlate"
+abstract: >-
+  A research prototype connecting Valency Bond literature retrieval,
+  AI-assisted experiment design, deterministic liquid-handling compilation,
+  CubOS execution, and recorded laboratory evidence.
+keywords:
+  - laboratory automation
+  - scientific agents
+  - literature discovery
+  - liquid handling
+  - Valency Bond
+  - CubOS

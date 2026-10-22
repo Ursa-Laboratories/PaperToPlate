@@ -1,0 +1,14 @@
+{
+  "color_run_source_sha256": "8db1f19d9391e791b197549f53685f5c3bbd3a563fd7ac9e2df17c446e0d85d3",
+  "color_run_preview_sha256": "9b92c51a181fb99a6c39f6126ccf2c940771a09928464ae0475e78625836d7c3",
+  "source_recording_id": "22f655a9862e4561825ab998e1084148",
+  "source_width": 1280,
+  "source_height": 720,
+  "source_duration_seconds": 1211.6,
+  "preview_width": 800,
+  "preview_height": 450,
+  "preview_duration_seconds": 15,
+  "preview_fps": 6,
+  "preview_time_compressed": true,
+  "content": "Actual recorded workcell footage, no synthetic frames or predicted measurements inserted."
+}
