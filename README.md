@@ -135,12 +135,47 @@ or included in export bundles.
 
 ## Model and files
 
-The app uses the user's authorized hosted Ollama configuration, copied from
-Loci into a private `.env`. The default is the existing `gpt-oss:120b` model.
-Credentials stay server-side. Usage and limits depend on that account; the app
-does not purchase capacity. Invalid model JSON receives one bounded format
-correction, then becomes an explicit error. Private diagnostic responses are
-kept under the ignored data directory for troubleshooting.
+The backend uses Ollama Cloud with `gpt-oss:120b`. The existing local `.env`
+already contains the configured Ollama key. For a fresh checkout, copy
+`.env.example` to `.env`, then fill in:
+
+```dotenv
+OLLAMA_API_KEY=your_ollama_key
+OLLAMA_URL=https://ollama.com
+OLLAMA_MODEL=gpt-oss:120b
+```
+
+Restart `./start.sh` after changing `.env`. No OpenAI key or local model download
+is needed. The UI shows whether configuration is present; a successful model
+request establishes actual access. Account usage limits still apply, and rate
+limit failures are displayed without automatically buying capacity or retrying
+indefinitely. Keys stay server-side and `.env` is ignored by Git.
+
+For an existing local Ollama server, set `OLLAMA_URL=http://127.0.0.1:11434`
+and select a model installed there. A local endpoint does not require a cloud
+key. Invalid model JSON receives one bounded format correction, then an explicit
+error. Private diagnostic responses stay under the ignored data directory.
+
+### Backend-to-frontend contract
+
+1. `POST /api/papers` accepts multipart field `file` (PDF, TXT, or Markdown,
+   maximum 25 MB). It stores the source and returns its `id`, page text, hash,
+   and metadata. Image-only PDFs need OCR before upload.
+2. `POST /api/runs` accepts JSON `paper_id`, `setup_id` (default `picus120`),
+   `objective`, and `review_enabled` (default `true`). It returns HTTP 202 with
+   the run `id`. Missing model configuration returns HTTP 503 before queuing.
+3. `GET /api/runs/{id}` returns saved progress and results. The frontend polls
+   while `status` is `queued` or `running`, then displays the extraction,
+   protocol, source citations, review, validation, and preparation sheet.
+   Terminal states include `ready`, `needs_attention`, `failed`, `cancelled`,
+   and `interrupted`. `ready` means ready for operator review, not physical proof.
+4. `POST /api/runs/{id}/cancel` stops generation. Completed stage artifacts
+   remain available. Restarted jobs become `interrupted`; no automatic replay.
+
+The backend runs extraction → plan generation → deterministic YAML compilation
+→ separate AI review → offline CubOS validation, with one bounded plan repair.
+The browser never calls Ollama directly. Drafts remain inspectable if the CubOS
+validator is unavailable. No generation endpoint operates hardware. The question-led design flow below adds Valency retrieval before protocol compilation.
 
 `data/` stores paper uploads, model runs, reviews and video evidence. These are
 research artifacts, not a cache of live CubOS inventory. Setup snapshots are
@@ -187,3 +222,61 @@ Start configured services with `./demo.sh`; see [setup and operation](docs/visio
 and [training/data requirements](docs/training.md). Model files are local
 artifacts and are not included in this repository. Source-test results are not
 claims of accuracy on the MX Brio or proof of liquid volume.
+# Preparing stocks and running the protocol
+
+Open `http://127.0.0.1:8785/?run=bradford-load-and-run` for the complete
+Bradford example: the human prepares seven source liquids and leaves three
+tubes empty; CubOS makes the 1:10 sample dilutions and assay plate. Human
+incubation and the 590/450 nm reader step remain explicit after-run tasks.
+
+The **Prepare & Run** view lists each source's concentration, recipe, load,
+consumption, remaining volume and position. It compares loads and peak well
+volumes with the configured deck limits. The nominal vial setting defaults
+to the requested 5 mL; a smaller configured working limit still wins. Existing
+4 mL deck geometry is not silently enlarged. Suggested loading reserves are
+planning allowances, not measured dead volumes.
+
+Generated model plans include structured stock-preparation records. Native
+transfers are split into 5–120 uL strokes in 0.1 uL increments without changing
+the requested total. Smaller quantities require a reviewed dilution. Missing
+stock instructions, overflow, interleaved human actions and incomplete loading
+prevent physical handoff. Editing stocks recalculates the proposed seed and
+clears review, validation and loading confirmation. The loading acknowledgement
+is specific to the complete protocol/setup/recipe revision.
+
+After checking the loaded vials and human steps, confirm loading and use
+**Run in CubOS**. Choose mock or physical execution; physical execution retains
+scientific review, native validation and operator setup checks. CubOS owns all
+motion and run control. `CUBOS_API_URL` must point to the operator's reachable
+station. No physical run is performed by the app's development tests.
+
+Focused verification: `python -m pytest tests/test_preparation.py tests/test_workflow.py -q`
+(45 passed), plus `npm --prefix frontend run build`. Handoff tests mock the
+network submission. A real Ollama synthetic-water generation smoke check and
+native offline validation passed; neither establishes physical assay success.
+
+## Design an experiment with Valency Bond
+
+Choose **New experiment → Start from a question**. **Connect Bond** signs this
+app into Valency with OAuth PKCE; the access/refresh tokens stay in the ignored
+`data/private/bond.json` file with owner-only permissions. **Research & design**
+retrieves papers through Bond and uses the configured Ollama model to produce
+an evidence brief. Quotations are checked against the retrieved abstracts.
+
+The first executable design family is a red/yellow/blue mixture screen. The
+app calculates exact recipes, checks mapped sources, capacities and available
+tips, then compiles a draft through the existing CubOS compiler and offline
+validator. Other assay goals produce a research brief and require full-method
+review through the paper-upload flow. None of these actions runs hardware.
+
+**Open dye example** works without a new literature request using a clearly
+labeled recorded Bond search. Click any well to inspect its recipe and origin.
+Upload an actual camera image, select well centers and rank measured RGB values
+against a target from the same image. Camera values are uncalibrated; no
+absorbance, predicted liquid color or successful experiment is invented.
+
+See [the demo procedure and video outline](docs/bond-color-demo.md). New routes
+are `/api/bond/status`, `/api/bond/connect`, `/api/bond/callback`, `/api/designs`,
+`/api/designs/{id}`, `/api/designs/{id}/protocol`, `/api/designs/{id}/images`,
+and `/api/designs/{id}/measurements`. The experiment record preserves the Bond
+query/request ID, retrieved papers, design settings, well recipes and measurements.

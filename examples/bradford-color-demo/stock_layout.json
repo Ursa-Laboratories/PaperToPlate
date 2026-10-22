@@ -1,0 +1,52 @@
+[
+  {
+    "position": "10_vial_holder.A1",
+    "color": "red",
+    "use": "active source"
+  },
+  {
+    "position": "10_vial_holder.A2",
+    "color": "yellow",
+    "use": "active source"
+  },
+  {
+    "position": "10_vial_holder.A3",
+    "color": "blue",
+    "use": "active source"
+  },
+  {
+    "position": "10_vial_holder.A4",
+    "color": "water",
+    "use": "active source"
+  },
+  {
+    "position": "10_vial_holder.A5",
+    "color": "empty",
+    "use": "dilution destination"
+  },
+  {
+    "position": "10_vial_holder.B1",
+    "color": "red",
+    "use": "unused backup; contents not consumed"
+  },
+  {
+    "position": "10_vial_holder.B2",
+    "color": "yellow",
+    "use": "unused backup; contents not consumed"
+  },
+  {
+    "position": "10_vial_holder.B3",
+    "color": "blue",
+    "use": "unused backup; contents not consumed"
+  },
+  {
+    "position": "10_vial_holder.B4",
+    "color": "water",
+    "use": "active source"
+  },
+  {
+    "position": "10_vial_holder.B5",
+    "color": "empty",
+    "use": "unused empty vial"
+  }
+]

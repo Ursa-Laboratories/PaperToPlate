@@ -1,0 +1,234 @@
+{
+  "query": "autonomous laboratory color matching red yellow blue dye mixtures camera RGB target color optimization liquid handling",
+  "result": {
+    "query": "autonomous laboratory color matching red yellow blue dye mixtures camera RGB target color optimization liquid handling",
+    "query_type": "semantic",
+    "confidence": "high_confidence_match",
+    "top_similarity": 0.8546,
+    "spread": 0.0437,
+    "count": 6,
+    "warnings": [],
+    "hints": [],
+    "papers": [
+      {
+        "id": "2310.00510v1",
+        "base_id": "2310.00510",
+        "title": "Exploring Benchmarks for Self-Driving Labs using Color Matching",
+        "abstract": "Self Driving Labs (SDLs) that combine automation of experimental procedures with autonomous decision making are gaining popularity as a means of increasing the throughput of scientific workflows. The task of identifying quantities of supplied colored pigments that match a target color, the color matching problem, provides a simple and flexible SDL test case, as it requires experiment proposal, sample creation, and sample analysis, three common components in autonomous discovery applications. We present a robotic solution to the color matching problem that allows for fully autonomous execution of a color matching protocol. Our solution leverages the WEI science factory platform to enable portability across different robotic hardware, the use of alternative optimization methods for continuous refinement, and automated publication of results for experiment tracking and post-hoc analysis.",
+        "categories": [
+          "cs.RO"
+        ],
+        "datestamp": "2023-10-03",
+        "doi": "",
+        "authors": [
+          "Tobias Ginsburg",
+          "Kyle Hippe",
+          "Ryan Lewis"
+        ],
+        "source": "arxiv",
+        "semantic_score": 0.8545512579748038,
+        "bm25_score": null,
+        "title_trgm_score": null,
+        "abstract_trgm_score": null,
+        "final_score": 0.8545512579748038,
+        "dates": {
+          "first_available": {
+            "value": "2023-09-30",
+            "precision": "day",
+            "basis": "preprint_posted"
+          }
+        },
+        "first_submitted": "2023-09-30",
+        "relevance_score": 0.8546,
+        "match_quality": "high",
+        "citation_count": null,
+        "total_authors": 9,
+        "authors_truncated": true,
+        "url": "https://arxiv.org/abs/2310.00510"
+      },
+      {
+        "id": "2607.20662v2",
+        "base_id": "2607.20662",
+        "title": "Scalable Low-Cost Laboratory Automation: A Digital Twin-Integrated Robotic Platform for Autonomous Liquid Handling (RAINBOT)",
+        "abstract": "Laboratory automation accelerates discovery, yet its adoption is constrained by the high cost, proprietary design, and limited remote supervisability of commercial liquid-handling systems. This work presents RAINBOT\\textsuperscript{TM}, a low-cost, openly reproducible liquid-handling robot built by converting a consumer-grade Cartesian 3D printer (Elegoo Neptune 4 Max). The printer extruder is replaced by a precision single-channel pipette actuated through the printer's own G-code-driven X--Y--Z gantry, with plunger and tip-eject motions effected by two compact linear actuators under Python control. To make experiments transparent and remotely supervisable, a browser-based digital twin is implemented to synchronise bidirectionally with the physical platform, mirroring kinematics and pipetting states in real time and exposing remote monitoring, intervention, and an emergency stop from any web browser. As a proof of concept, RAINBOT\\textsuperscript{TM} performed sequential exchanges of differently coloured aqueous solutions while an integrated colour sensor quantified the resulting mixtures; measured red, yellow, and blue (RYB) responses agreed with expected mixing behaviour to within a mean absolute error of two percentage points, validating correct execution and real-time tracking. Closing the loop, the platform is coupled to the CEID\\textsuperscript{TM} (Cooperative Explorer for Inverse Design) framework, which recasts experimentation from iterative manual guessing into a goal-directed inverse-design search while keeping a human in the loop. The complete hardware costs under US\\$1300, which is roughly an order of magnitude below entry-level commercial handlers, thereby establishing an accessible physical--virtual framework for self-driving laboratory automation.",
+        "categories": [
+          "cs.RO",
+          "cond-mat.mtrl-sci"
+        ],
+        "datestamp": "2026-07-28",
+        "doi": "",
+        "authors": [
+          "Mohamed Rami Ayeche",
+          "Souhil Sid",
+          "Ahyen Mostofa"
+        ],
+        "source": "arxiv",
+        "semantic_score": 0.8083017380223355,
+        "bm25_score": null,
+        "title_trgm_score": null,
+        "abstract_trgm_score": null,
+        "final_score": 0.8083017380223355,
+        "dates": {
+          "first_available": {
+            "value": "2026-07-22",
+            "precision": "day",
+            "basis": "preprint_posted"
+          }
+        },
+        "first_submitted": "2026-07-22",
+        "relevance_score": 0.8083,
+        "match_quality": "good",
+        "citation_count": null,
+        "total_authors": 6,
+        "authors_truncated": true,
+        "url": "https://arxiv.org/abs/2607.20662"
+      },
+      {
+        "id": "37267112",
+        "base_id": "37267112",
+        "title": "Building a \"Hello World\" for self-driving labs: The Closed-loop Spectroscopy Lab Light-mixing demo.",
+        "abstract": "Learn how to build a Closed-loop Spectroscopy Lab: Light-mixing demo (CLSLab:Light) to perform color matching via RGB LEDs and a light sensor for under 100 USD and less than an hour of setup. Our tutorial covers ordering parts, verifying prerequisites, software setup, sensor mounting, testing, and an optimization algorithm comparison tutorial. We use secure IoT-style communication via MQTT, MicroPython firmware on a pre-soldered Pico W microcontroller, and the self-driving-lab-demo Python package. A video tutorial is available at https://youtu.be/D54yfxRSY6s. For complete details on the use and execution of this protocol, please refer to Baird et al.1.",
+        "categories": [
+          "Chemistry",
+          "Computer sciences",
+          "High Throughput Screening",
+          "Material sciences"
+        ],
+        "datestamp": "2026-03-27",
+        "doi": "10.1016/j.xpro.2023.102329",
+        "authors": [
+          "Baird, Sterling G",
+          "Sparks, Taylor D"
+        ],
+        "source": "pubmed",
+        "semantic_score": 0.8061035821841667,
+        "bm25_score": null,
+        "title_trgm_score": null,
+        "abstract_trgm_score": null,
+        "final_score": 0.8061035821841667,
+        "dates": {
+          "first_available": {
+            "value": "2023-05-31",
+            "precision": "day",
+            "basis": "electronic_publication"
+          }
+        },
+        "relevance_score": 0.8061,
+        "match_quality": "good",
+        "citation_count": null,
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37267112/"
+      },
+      {
+        "id": "10.26434/chemrxiv-2023-xgx5h",
+        "base_id": "10.26434/chemrxiv-2023-xgx5h",
+        "title": "Build instructions for Closed-loop Spectroscopy Lab: Light-mixing Demo",
+        "abstract": "Closed-loop Spectroscopy Lab: Light-mixing Demo (CLSLab:Light) is a teaching and prototyping platform for autonomous scientific discovery. It consists of a set of LEDs and a light sensor while encapsulating key principles for \"self-driving\" (i.e., autonomous) research laboratories, including sending commands, receiving sensor data, physics-based simulation, and advanced optimization. CLSLab:Light is a \"Hello, World!\" introduction to these topics, accessible by students, educators, hobbyists, and researchers for less than 100 USD, a small footprint, and under an hour of setup time.",
+        "categories": [],
+        "datestamp": "2023-01-08",
+        "doi": "10.26434/chemrxiv-2023-xgx5h",
+        "authors": [
+          "Sterling G. Baird",
+          "Taylor D. Sparks"
+        ],
+        "source": "chemrxiv",
+        "semantic_score": 0.7936422720658834,
+        "bm25_score": null,
+        "title_trgm_score": null,
+        "abstract_trgm_score": null,
+        "final_score": 0.7936422720658834,
+        "dates": {
+          "first_available": {
+            "value": "2023-01-08",
+            "precision": "day",
+            "basis": "preprint_posted"
+          }
+        },
+        "first_submitted": "2023-01-08",
+        "relevance_score": 0.7936,
+        "match_quality": "good",
+        "citation_count": null,
+        "url": "https://doi.org/10.26434/chemrxiv-2023-xgx5h"
+      },
+      {
+        "id": "40095952",
+        "base_id": "40095952",
+        "title": "Robotic-based Experimental Procedure for Colorimetric Gas Sensing Development.",
+        "abstract": "This paper presents a robot-based experimental program aimed at developing an efficient and fast colorimetric gas sensor. The program employs an automated Design-Build-Test-learning (DBTL) approach, which optimizes the search process iteratively while optimizing multiple recipes for different concentration intervals of the gas. In each iteration, the algorithm generates a batch of recipe suggestions based on various acquisition functions, and with the increase in the number of iterations, the values of weighted objective function for each concentration interval significantly improve. The DBTL method begins with parameter initialization, setting up the hardware and software environment. Baseline tests establish performance standards. Subsequently, the DBTL method designs the following round of optimization based on the proportion of recipes in each round and tests performance iteratively. Performance evaluation compares baseline data to assess the effectiveness of the DBTL method. If the performance improvement does not meet expectations, the method will be performed iteratively; if the objectives are achieved, the experiment concludes. The entire process maximizes system performance through the DBTL iterative optimization process. Compared to the traditional manual developing process, the DBTL method adopted by this experimental process uses multi-objective optimization and various machine learning algorithms. After defining the upper and lower limits of component volume, the DBTL method dynamically optimizes iterative experiments to obtain the optimal ratio with the best performance. This method greatly improves efficiency, reduces costs, and performs more efficiently within the multi-formulation variable space when finding the optimal recipe.",
+        "categories": [
+          "Colorimetry",
+          "Robotics",
+          "Gases"
+        ],
+        "datestamp": "2025-05-13",
+        "doi": "10.3791/67940",
+        "authors": [
+          "Li, Zechen",
+          "Xu, Siyuan",
+          "Cui, Mengyang"
+        ],
+        "source": "pubmed",
+        "semantic_score": 0.791687261305773,
+        "bm25_score": null,
+        "title_trgm_score": null,
+        "abstract_trgm_score": null,
+        "final_score": 0.791687261305773,
+        "dates": {
+          "first_available": {
+            "value": "2025-02-28",
+            "precision": "day",
+            "basis": "electronic_publication"
+          }
+        },
+        "relevance_score": 0.7917,
+        "match_quality": "good",
+        "citation_count": null,
+        "total_authors": 6,
+        "authors_truncated": true,
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40095952/"
+      },
+      {
+        "id": "10.26434/chemrxiv-2025-6ws9m",
+        "base_id": "10.26434/chemrxiv-2025-6ws9m",
+        "title": "A User's Guide to Your First Self-Driving Liquid Handling Lab",
+        "abstract": "Experimentation is inherently difficult because most methods require substantial refinement, calibration, and validation before high-quality, reliable data can be collected. In most cases, experimental outcomes are impacted by multiple variables, thus requiring their simultaneous optimization for single and multi-objective targets. Traditional experimental approaches rely on trial-and-error methods guided by rational decision making, but these become increasingly inefficient and ineffective as complex interactions between inputs limit our ability to capture underlying trends using conventional statistical approaches. Machine learning and active learning (ML/AL) combined with automation represents an approach that can bolster future laboratory productivity. However, a steep initial learning curve and high costs of instrumentation pose substantial barriers to adoption. To democratize access, we herein comprehensively cover both the computational skills and hardware implementation necessary for self-driven experimental workflows. The accompanying open-source, low-cost liquid handling platforms offer practical templates for researchers adopting self-driving lab (SDL) methodologies. Complete tutorials and build guides are provided at https://gormleylab.github.io/SDLGuide.",
+        "categories": [],
+        "datestamp": "2025-10-23",
+        "doi": "10.26434/chemrxiv-2025-6ws9m",
+        "authors": [
+          "Apostolos Maroulis",
+          "Dylan Waynor",
+          "Quinn Gallagher"
+        ],
+        "source": "chemrxiv",
+        "semantic_score": 0.7916046524164867,
+        "bm25_score": null,
+        "title_trgm_score": null,
+        "abstract_trgm_score": null,
+        "final_score": 0.7916046524164867,
+        "dates": {
+          "first_available": {
+            "value": "2025-10-23",
+            "precision": "day",
+            "basis": "preprint_posted"
+          }
+        },
+        "first_submitted": "2025-10-23",
+        "relevance_score": 0.7916,
+        "match_quality": "good",
+        "citation_count": null,
+        "total_authors": 8,
+        "authors_truncated": true,
+        "url": "https://doi.org/10.26434/chemrxiv-2025-6ws9m"
+      }
+    ],
+    "_meta": {
+      "request_id": "12342d8431ca4081a5ba1f85f02646bd",
+      "tool": "semantic_search_papers",
+      "duration_ms": 674,
+      "server_version": "0.4.1",
+      "db_duration_ms": 674
+    }
+  },
+  "retrieved_at": "2026-10-22T19:01:19.087Z",
+  "mode": "recorded_demo"
+}

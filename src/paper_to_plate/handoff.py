@@ -7,6 +7,7 @@ from .compiler import digest
 from .config import CUBOS_URL
 from .models import HandoffInput
 from .review import human_clearance
+from .preparation import build as build_preparation
 
 
 def submission(run: dict, request: HandoffInput) -> dict:
@@ -29,6 +30,9 @@ def submission(run: dict, request: HandoffInput) -> dict:
             raise ValueError("The reviewer requested changes; resolve them before physical handoff.")
         if run.get("plan", {}).get("unresolved") and not cleared:
             raise ValueError("The generated plan still has unresolved scientific questions.")
+        loading = build_preparation(run)
+        if not loading["confirmed"] or request.preparation_hash != loading["fingerprint"]:
+            raise ValueError("Confirm every stock on the current preparation sheet before a physical Run.")
     setup = run["setup_snapshot"]
     payload = {"run_id": f"paper-{run['id'][:32]}-{'mock' if request.mock_mode else 'hardware'}-{current_hash[:12]}", "gantry_config": setup["gantry_yaml"], "deck_config": setup["deck_yaml"], "protocol_yaml": run["protocol_yaml"], "mock_mode": request.mock_mode, "metadata": {"source": "ursa-paper-to-plate", "benchmark_run_id": run["id"], "protocol_hash": current_hash}}
     if setup.get("fluids_yaml"):

@@ -15,15 +15,18 @@ from paper_to_plate.app import app
 from paper_to_plate.compiler import compile_plan, digest
 from paper_to_plate.models import HandoffInput
 from paper_to_plate.validation import score, validate
+from paper_to_plate.preparation import fingerprint as preparation_fingerprint
 
 
 def plan(volume=100):
-    return {"title": "Water transfer", "summary": "A controlled test", "operations": [{"action": "transfer", "source": "10_vial_holder.B5", "destinations": ["plate.A1"], "volume_ul": volume, "purpose": "Transfer water", "citations": [{"page": 1, "quote": "Add water"}]}], "manual_steps": [], "assumptions": [], "unresolved": []}
+    return {"title": "Water transfer", "summary": "A controlled test", "operations": [{"action": "transfer", "source": "10_vial_holder.B5", "destinations": ["plate.A1"], "volume_ul": volume, "purpose": "Transfer water", "citations": [{"page": 1, "quote": "Add water"}]}], "manual_steps": [], "assumptions": [], "unresolved": [], "stock_preparations": [{"position":"10_vial_holder.B5", "material":"Water", "concentration":"Pure water", "preparation":"Load 3 mL deionized water.", "load_volume_ul":3000}]}
 
 
 def ready_run(setup):
     compiled = compile_plan(plan(), setup)
-    return {"id": "test", "setup_snapshot": setup, **compiled, "validation": {"passed": True}, "validation_hash": compiled["protocol_hash"], "review": {"findings": []}, "review_hash": compiled["protocol_hash"], "plan": plan()}
+    value = {"id": "test", "setup_snapshot": setup, **compiled, "validation": {"passed": True}, "validation_hash": compiled["protocol_hash"], "review": {"findings": []}, "review_hash": compiled["protocol_hash"], "plan": plan()}
+    value["loading_confirmation"]={"fingerprint":preparation_fingerprint(value), "loaded_positions":["10_vial_holder.B5"], "human_steps_confirmed":True}
+    return value
 
 
 def test_split_transfer_has_fresh_tip_per_stroke_and_preserves_volume(setup):
@@ -67,7 +70,7 @@ def test_physical_handoff_requires_current_review_validation_and_operator(setup)
     request = HandoffInput(mock_mode=False, expected_hash=run["protocol_hash"])
     with pytest.raises(ValueError, match="operator"):
         handoff.submission(run, request)
-    request = request.model_copy(update={"operator_confirmed": True, "manual_steps_confirmed": True, "setup_confirmed": True})
+    request = request.model_copy(update={"operator_confirmed": True, "manual_steps_confirmed": True, "setup_confirmed": True, "preparation_hash":preparation_fingerprint(run)})
     payload = handoff.submission(run, request)
     assert payload["mock_mode"] is False
     assert payload["state"]["initial_state"]["fluids"]["10_vial_holder.B5"]["volume_ul"] == 3000
@@ -262,7 +265,7 @@ def test_human_adjudication_is_specific_to_review_and_never_overrides_native_fai
     r['plan']['unresolved']=['Stock identity']
     r['adjudication']={'approved':True,'reviewer':'Test reviewer','notes':'An isolated test records a substantive independent explanation.','protocol_hash':r['protocol_hash'],'review_fingerprint':fingerprint(r['review']),'finding_responses':{'0':'The fixture has the verified expected final volume.'},'question_responses':{'0':'The fixture source is explicitly deionized water.'}}
     assert human_clearance(r)
-    request=HandoffInput(mock_mode=False,expected_hash=r['protocol_hash'],operator_confirmed=True,manual_steps_confirmed=True,setup_confirmed=True)
+    request=HandoffInput(mock_mode=False,expected_hash=r['protocol_hash'],operator_confirmed=True,manual_steps_confirmed=True,setup_confirmed=True,preparation_hash=preparation_fingerprint(r))
     assert handoff.submission(r,request)['mock_mode'] is False
     r['validation']['passed']=False
     with pytest.raises(ValueError,match='validation'):handoff.submission(r,request)

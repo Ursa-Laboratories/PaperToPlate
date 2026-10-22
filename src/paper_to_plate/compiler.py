@@ -10,6 +10,15 @@ def digest(text: str) -> str:
     return hashlib.sha256(text.encode()).hexdigest()
 
 
+def split_strokes(volume_ul: float) -> list[float]:
+    units = round(volume_ul * 10)
+    if not math.isclose(volume_ul * 10, units, abs_tol=1e-7) or units < 50:
+        raise ValueError("Picus 120 transfers require at least 5 uL and 0.1 uL increments; prepare a reviewed dilution for smaller amounts.")
+    count = math.ceil(units / 1200)
+    whole, remainder = divmod(units, count)
+    return [(whole + (1 if i < remainder else 0)) / 10 for i in range(count)]
+
+
 def compile_plan(raw: dict, setup: dict) -> dict:
     plan = Plan.model_validate(raw)
     if not plan.operations:
@@ -43,17 +52,19 @@ def compile_plan(raw: dict, setup: dict) -> dict:
         tip_index += 1
 
     for index, operation in enumerate(plan.operations):
+        for mixing in ([operation.volume_ul] if operation.action == "mix" else ([operation.mix_after_ul] if operation.mix_after_ul else [])):
+            if mixing < 5 or mixing > 120 or not math.isclose(mixing * 10, round(mixing * 10), abs_tol=1e-7):
+                raise ValueError("Mixing must stay within 5–120 uL in 0.1 uL increments.")
         for target in operation.destinations:
             if operation.action == "transfer":
                 if not operation.source:
                     raise ValueError("Transfer source is missing.")
-                # Capacity-bounded, evenly split strokes avoid a tiny final remainder.
-                count = math.ceil(operation.volume_ul / 100)
-                volume = operation.volume_ul / count
-                for stroke in range(count):
+                # Integer 0.1-uL units preserve totals without an undersized remainder.
+                strokes = split_strokes(operation.volume_ul)
+                for stroke, volume in enumerate(strokes):
                     new_tip(index)
                     add("transfer", {"source": operation.source, "destination": target, "volume_ul": volume, "speed": 50.0, "source_height": operation.source_height, "destination_height": operation.destination_height}, index, operation.purpose)
-                    if operation.mix_after_ul and stroke == count - 1:
+                    if operation.mix_after_ul and stroke == len(strokes) - 1:
                         add("mix", {"position": target, "volume_ul": operation.mix_after_ul, "cycles": operation.mix_after_cycles, "speed": 50.0, "height": operation.destination_height}, index, "Mix the destination")
                     add("drop_tip", {"position": waste}, index, "Discard the used tip")
             else:

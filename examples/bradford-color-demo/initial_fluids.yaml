@@ -1,0 +1,102 @@
+fluids:
+  10_vial_holder.A1:
+    volume_ul: 1500
+    composition:
+      "Red water \xB7 standard surrogate": 1500
+  10_vial_holder.A2:
+    volume_ul: 1500
+    composition:
+      "Yellow water \xB7 sample surrogate": 1500
+  10_vial_holder.A3:
+    volume_ul: 3000
+    composition:
+      "Blue water \xB7 working-reagent surrogate": 3000
+  10_vial_holder.A4:
+    volume_ul: 1500
+    composition:
+      "Water \xB7 sample dilution": 1500
+  10_vial_holder.B4:
+    volume_ul: 3000
+    composition:
+      "Water \xB7 plate preparation": 3000
+  10_vial_holder.A5:
+    volume_ul: 0
+    composition: {}
+  10_vial_holder.B5:
+    volume_ul: 0
+    composition: {}
+  waste:
+    volume_ul: 0
+    composition: {}
+  plate.A1:
+    volume_ul: 0
+    composition: {}
+  plate.A2:
+    volume_ul: 0
+    composition: {}
+  plate.A3:
+    volume_ul: 0
+    composition: {}
+  plate.A4:
+    volume_ul: 0
+    composition: {}
+  plate.A5:
+    volume_ul: 0
+    composition: {}
+  plate.A6:
+    volume_ul: 0
+    composition: {}
+  plate.A7:
+    volume_ul: 0
+    composition: {}
+  plate.A8:
+    volume_ul: 0
+    composition: {}
+  plate.B1:
+    volume_ul: 0
+    composition: {}
+  plate.B2:
+    volume_ul: 0
+    composition: {}
+  plate.B3:
+    volume_ul: 0
+    composition: {}
+  plate.B4:
+    volume_ul: 0
+    composition: {}
+  plate.B5:
+    volume_ul: 0
+    composition: {}
+  plate.B6:
+    volume_ul: 0
+    composition: {}
+  plate.B7:
+    volume_ul: 0
+    composition: {}
+  plate.B8:
+    volume_ul: 0
+    composition: {}
+  plate.C1:
+    volume_ul: 0
+    composition: {}
+  plate.C2:
+    volume_ul: 0
+    composition: {}
+  plate.C3:
+    volume_ul: 0
+    composition: {}
+  plate.C4:
+    volume_ul: 0
+    composition: {}
+  plate.C5:
+    volume_ul: 0
+    composition: {}
+  plate.C6:
+    volume_ul: 0
+    composition: {}
+  plate.C7:
+    volume_ul: 0
+    composition: {}
+  plate.C8:
+    volume_ul: 0
+    composition: {}

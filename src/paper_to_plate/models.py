@@ -48,6 +48,15 @@ class ManualStep(StrictModel):
     reason: str
 
 
+class StockPreparation(StrictModel):
+    position: str = Field(min_length=1, max_length=200)
+    material: str = Field(min_length=1, max_length=200)
+    concentration: str = Field(default="", max_length=300, description="Concentration of the liquid the HUMAN loads, with units; not the final assay concentration. Unknown samples may explicitly have unknown concentration.")
+    preparation: str = Field(default="", max_length=2500, description="Human recipe or ready-to-use instruction. Preserve unknowns; do not assume an unavailable parent-stock concentration.")
+    load_volume_ul: float | None = Field(default=None, gt=0, le=100000, allow_inf_nan=False, description="Optional proposed initial load. Omit to calculate demand plus a preparation reserve. Must fit actual configured capacity.")
+    citations: list[Citation] = Field(default_factory=list)
+
+
 class Plan(StrictModel):
     title: str
     summary: str
@@ -55,6 +64,7 @@ class Plan(StrictModel):
     manual_steps: list[ManualStep] = Field(default_factory=list)
     assumptions: list[str] = Field(default_factory=list)
     unresolved: list[str] = Field(default_factory=list)
+    stock_preparations: list[StockPreparation] = Field(default_factory=list, max_length=100)
 
 
 class Finding(StrictModel):
@@ -79,6 +89,7 @@ class SetupInput(StrictModel):
     fluids_yaml: str = Field(default="", max_length=300000)
     materials: str = Field(default="", max_length=10000)
     first_tip: str = Field(default="A1", pattern=r"^[A-H](?:[1-9]|1[0-2])$")
+    nominal_vial_capacity_ul: float = Field(default=5000, gt=0, le=100000, allow_inf_nan=False)
 
 
 class RunInput(StrictModel):
@@ -105,6 +116,18 @@ class HandoffInput(StrictModel):
     operator_confirmed: bool = False
     manual_steps_confirmed: bool = False
     setup_confirmed: bool = False
+    preparation_hash: str | None = None
+
+
+class PreparationEdit(StrictModel):
+    expected_hash: str
+    stocks: list[StockPreparation] = Field(max_length=100)
+
+
+class LoadingConfirmation(StrictModel):
+    expected_preparation_hash: str
+    loaded_positions: list[str] = Field(max_length=100)
+    human_steps_confirmed: bool = False
 
 
 class RubricInput(StrictModel):

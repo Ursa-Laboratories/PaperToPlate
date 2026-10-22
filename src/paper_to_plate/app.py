@@ -18,15 +18,17 @@ from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 from pypdf import PdfReader, PdfWriter
 
-from . import handoff, pipeline, store
+from . import handoff, pipeline, store, preparation
 from .analysis import analyze_bradford
 from .compiler import describe_yaml, digest
 from .config import CUBOS_PYTHON, CUBOS_URL, DATA, MODEL, PORT, ROOT
-from .models import AdjudicationInput, EvidenceInput, HandoffInput, ProtocolEdit, RubricInput, RunInput, SetupInput
+from .models import AdjudicationInput, EvidenceInput, HandoffInput, ProtocolEdit, RubricInput, RunInput, SetupInput, PreparationEdit, LoadingConfirmation
 from .review import fingerprint, human_clearance
 from .seed import seed
 from .validation import score, validate
 from .vision_proxy import router as vision_router
+from .bond import router as bond_router
+from .design_api import router as design_router
 
 
 def read(kind, key):
@@ -34,6 +36,10 @@ def read(kind, key):
         return store.get(kind, key)
     except (KeyError, ValueError):
         raise HTTPException(404, "Artifact not found")
+
+
+def present_run(value):
+    return {**value, "preparation": preparation.build(value)}
 
 
 @asynccontextmanager
@@ -51,6 +57,8 @@ async def lifespan(app):
 
 app = FastAPI(title="Ursa Paper to Plate", lifespan=lifespan)
 app.include_router(vision_router)
+app.include_router(bond_router)
+app.include_router(design_router)
 HANDOFF_LOCKS: dict[str, asyncio.Lock] = {}
 
 
@@ -70,7 +78,8 @@ async def local_boundary(request: Request, call_next):
 
 @app.get("/api/status")
 def status():
-    return {"provider": "Ollama", "model": MODEL, "provider_configured": bool(os.getenv("OLLAMA_API_KEY")), "validator_available": bool(CUBOS_PYTHON and Path(CUBOS_PYTHON).is_file()), "cubos_url": CUBOS_URL, "active_runs": len(pipeline.ACTIVE), "morning_doc_url": os.getenv("PAPER_TO_PLATE_MORNING_DOC_URL", "")}
+    problem = pipeline.llm.configuration_error()
+    return {"provider": "Ollama", "model": MODEL, "provider_configured": problem is None, "configuration_error": problem, "validator_available": bool(CUBOS_PYTHON and Path(CUBOS_PYTHON).is_file()), "cubos_url": CUBOS_URL, "active_runs": len(pipeline.ACTIVE), "morning_doc_url": os.getenv("PAPER_TO_PLATE_MORNING_DOC_URL", "")}
 
 
 @app.get("/api/papers")
@@ -206,11 +215,53 @@ def runs():
 
 @app.get("/api/runs/{run_id}")
 def run(run_id: str):
-    return read("runs", run_id)
+    return present_run(read("runs", run_id))
+
+
+@app.put("/api/runs/{run_id}/preparation")
+def edit_preparation(run_id: str, body: PreparationEdit):
+    value = read("runs", run_id)
+    if run_id in pipeline.ACTIVE or value.get("handoffs"):
+        raise HTTPException(409, "Copy a submitted experiment, or wait for generation to finish, before changing stocks.")
+    if body.expected_hash != preparation.fingerprint(value):
+        raise HTTPException(409, "The preparation changed. Reload its current version.")
+    try:
+        stocks = [s.model_dump() for s in body.stocks]
+        setup = preparation.apply_stock_preparations(stocks, value["setup_snapshot"], value["protocol_yaml"])
+    except (ValueError, KeyError, yaml.YAMLError) as exc:
+        raise HTTPException(400, str(exc)) from exc
+    value.setdefault("plan", {})["stock_preparations"] = stocks
+    value.update(setup_snapshot=setup, loading_confirmation=None, validation=None,
+                 validation_hash=None, review=None, review_hash=None, score=None,
+                 status="needs_attention", edited_at=time.time())
+    if value.get("adjudication"):
+        value.setdefault("adjudication_history", []).append(value["adjudication"])
+        value["adjudication"] = None
+    return present_run(store.save("runs", value))
+
+
+@app.post("/api/runs/{run_id}/preparation/confirm")
+def confirm_loading(run_id: str, body: LoadingConfirmation):
+    value = read("runs", run_id)
+    if run_id in pipeline.ACTIVE or value.get("handoffs"):
+        raise HTTPException(409, "Loading cannot be confirmed during generation or after a submission attempt.")
+    sheet = preparation.build(value)
+    if body.expected_preparation_hash != sheet["fingerprint"]:
+        raise HTTPException(409, "The stocks or protocol changed; review the current loading sheet.")
+    if not sheet["can_confirm"]:
+        raise HTTPException(409, "; ".join(sheet["issues"]))
+    if set(body.loaded_positions) != {s["position"] for s in sheet["stocks"]} or not body.human_steps_confirmed:
+        raise HTTPException(400, "Confirm every listed stock and the human preparation steps.")
+    value["loading_confirmation"] = {"fingerprint": sheet["fingerprint"],
+        "loaded_positions": body.loaded_positions, "human_steps_confirmed": True, "at": time.time()}
+    return present_run(store.save("runs", value))
 
 
 @app.post("/api/runs", status_code=202)
 async def new_run(body: RunInput):
+    problem = pipeline.llm.configuration_error()
+    if problem:
+        raise HTTPException(503, problem)
     if len(pipeline.ACTIVE) >= 4:
         raise HTTPException(429, "Four model runs are already queued.")
     source, setup = read("papers", body.paper_id), read("setups", body.setup_id)
@@ -241,14 +292,16 @@ def edit_protocol(run_id: str, body: ProtocolEdit):
         steps = describe_yaml(body.protocol_yaml)
     except (ValueError, yaml.YAMLError) as exc:
         raise HTTPException(400, str(exc)) from exc
-    value.update(protocol_yaml=body.protocol_yaml, protocol_hash=digest(body.protocol_yaml), steps=steps, validation=None, validation_hash=None, review=None, review_hash=None, score=None, status="needs_attention", edited_at=time.time())
+    value.update(protocol_yaml=body.protocol_yaml, protocol_hash=digest(body.protocol_yaml), steps=steps, validation=None, validation_hash=None, review=None, review_hash=None, loading_confirmation=None, score=None, status="needs_attention", edited_at=time.time())
+    value.pop("execution_summary", None)
+    value["protocol_edited"] = True
     if value.get("adjudication"):
         value.setdefault("adjudication_history", []).append(value["adjudication"])
         value["adjudication"] = None
     if value.get("evidence", {}).get("markers"):
         value.setdefault("evidence_history", []).append(value["evidence"])
         value["evidence"] = {**value["evidence"], "markers": [], "notes": value["evidence"].get("notes", "") + " Protocol edited: previous step markers require realignment."}
-    return store.save("runs", value)
+    return present_run(store.save("runs", value))
 
 
 @app.post("/api/runs/{run_id}/copy", status_code=201)
@@ -257,7 +310,7 @@ def copy_run(run_id: str):
     source = read("runs", run_id)
     if run_id in pipeline.ACTIVE:
         raise HTTPException(409, "Wait for the model workflow to finish before copying.")
-    fields = {key: copy.deepcopy(source[key]) for key in ("title", "paper_id", "objective", "setup_id", "setup_snapshot", "protocol_yaml", "protocol_hash", "steps", "plan", "manual_steps", "manual_interleaving", "extraction") if key in source}
+    fields = {key: copy.deepcopy(source[key]) for key in ("title", "paper_id", "objective", "setup_id", "setup_snapshot", "protocol_yaml", "protocol_hash", "steps", "plan", "manual_steps", "manual_interleaving", "extraction", "demonstration", "execution_summary") if key in source}
     fields["title"] = fields["title"] + " · copy"
     return store.create("runs", **fields, copied_from=run_id, status="needs_attention", stage="source", review=None, validation=None, score=None, events=[], usage=[], evidence={"offset_seconds": 0, "markers": []}, rubric=copy.deepcopy(source.get("rubric", {"approved": False, "reviewer": "", "criteria": []})))
 
@@ -270,9 +323,10 @@ async def validate_run(run_id: str):
     if not value.get("protocol_yaml"):
         raise HTTPException(400, "Generate or import a protocol first.")
     protocol_hash = digest(value["protocol_yaml"])
+    setup_version = preparation.fingerprint(value)
     result = await validate(value["setup_snapshot"], value["protocol_yaml"])
     current = read("runs", run_id)
-    if digest(current.get("protocol_yaml", "")) != protocol_hash:
+    if digest(current.get("protocol_yaml", "")) != protocol_hash or preparation.fingerprint(current) != setup_version:
         raise HTTPException(409, "The protocol changed while validation was running.")
     current.update(validation=result, validation_hash=protocol_hash)
     try:
@@ -280,7 +334,7 @@ async def validate_run(run_id: str):
     except (ValueError, KeyError, TypeError):
         current["score"] = {"physical_outcome": "Not measured", "note": "Resolve protocol validation errors before scoring."}
     current["status"] = pipeline.readiness(current)
-    return store.save("runs", current)
+    return present_run(store.save("runs", current))
 
 
 @app.post("/api/runs/{run_id}/review")
@@ -291,12 +345,13 @@ async def review(run_id: str):
     if not value.get("protocol_yaml"):
         raise HTTPException(400, "Generate a protocol first.")
     version = digest(value["protocol_yaml"])
+    setup_version = preparation.fingerprint(value)
     try:
         result, usage = await pipeline.review_run(read("papers", value["paper_id"]), value["setup_snapshot"], value)
     except Exception as exc:
         raise HTTPException(502, str(exc) if isinstance(exc, pipeline.llm.ModelError) else "The model review did not complete.") from exc
     current = read("runs", run_id)
-    if digest(current.get("protocol_yaml", "")) != version:
+    if digest(current.get("protocol_yaml", "")) != version or preparation.fingerprint(current) != setup_version:
         raise HTTPException(409, "The protocol changed during review.")
     current.update(review=result, review_hash=version)
     if current.get("adjudication"):
@@ -305,7 +360,7 @@ async def review(run_id: str):
     current.setdefault("usage", []).append({"stage": "review", **usage})
     current["status"] = pipeline.readiness(current)
     current["error"] = None
-    return store.save("runs", current)
+    return present_run(store.save("runs", current))
 
 
 @app.post("/api/runs/{run_id}/adjudication")
@@ -321,7 +376,7 @@ def adjudicate(run_id: str, body: AdjudicationInput):
         raise HTTPException(400, "Provide a substantive response to every critical finding and unresolved plan question before approving.")
     value["status"] = pipeline.readiness(value)
     value["error"] = None
-    return store.save("runs", value)
+    return present_run(store.save("runs", value))
 
 
 @app.put("/api/runs/{run_id}/rubric")
@@ -331,7 +386,7 @@ def rubric(run_id: str, body: RubricInput):
         raise HTTPException(400, "Name the independent reviewer before approving a rubric.")
     value["rubric"] = body.model_dump()
     value["score"] = score(value, value["setup_snapshot"], read("papers", value["paper_id"]))
-    return store.save("runs", value)
+    return present_run(store.save("runs", value))
 
 
 @app.put("/api/runs/{run_id}/evidence")
@@ -346,7 +401,7 @@ def evidence(run_id: str, body: EvidenceInput):
         if not isinstance(seconds, (int, float)) or not __import__("math").isfinite(seconds) or seconds < 0:
             raise HTTPException(400, "Marker times must be finite and nonnegative.")
     value["evidence"] = {**body.model_dump(), "alignment_method": "manual", "updated_at": time.time()}
-    return store.save("runs", value)
+    return present_run(store.save("runs", value))
 
 
 @app.post("/api/videos", status_code=201)
@@ -382,6 +437,8 @@ def video(video_id: str):
 @app.post("/api/runs/{run_id}/measurements")
 async def measurements(run_id: str, file: UploadFile = File(...)):
     value = read("runs", run_id)
+    if value.get("demonstration", {}).get("kind") == "colored_water":
+        raise HTTPException(400, "This is a colored-water demonstration; Bradford protein-concentration analysis does not apply. Attach visual evidence instead.")
     content = await file.read(1024 * 1024 + 1)
     if len(content) > 1024 * 1024:
         raise HTTPException(413, "Measurement CSV is too large.")
@@ -392,7 +449,7 @@ async def measurements(run_id: str, file: UploadFile = File(...)):
     value["measurements"] = result
     value["measurement_csv"] = content.decode("utf-8-sig")
     value["measurement_imported_at"] = time.time()
-    return store.save("runs", value)
+    return present_run(store.save("runs", value))
 
 
 @app.get("/api/measurements/template")
@@ -410,6 +467,7 @@ def export_run(run_id: str):
         for key, filename in (("gantry_yaml", "gantry.yaml"), ("deck_yaml", "deck.yaml"), ("fluids_yaml", "initial_fluids.yaml")):
             archive.writestr(filename, value["setup_snapshot"].get(key, ""))
         archive.writestr("evaluation.json", json.dumps(value, indent=2))
+        archive.writestr("preparation.json", json.dumps(preparation.build(value), indent=2))
         for capture in value.get('vision_captures', []):
             key = capture.get('id', '')
             if len(key) == 32 and all(c in '0123456789abcdef' for c in key):
@@ -452,8 +510,10 @@ async def send_to_cubos(run_id: str, body: HandoffInput):
             if not fresh["passed"]:
                 raise ValueError("Current offline validation failed; the run was not submitted.")
             current = read("runs", run_id)
-            if current.get("protocol_hash") != value.get("protocol_hash"):
-                raise ValueError("The protocol changed during handoff checks.")
+            if preparation.fingerprint(current) != preparation.fingerprint(value):
+                raise ValueError("The protocol or loading plan changed during handoff checks.")
+            handoff.submission(current, body)
+            value = current
             value.setdefault("handoffs", {})[key] = {"status": "submitting", "at": time.time()}
             store.save("runs", value)
             result = await handoff.send(value, body)

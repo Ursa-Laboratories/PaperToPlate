@@ -24,3 +24,7 @@ def seed():
     except KeyError:
         text = (examples / "bradford.yaml").read_text()
         store.save("runs", {"id": "bradford-example", "created_at": time.time(), "title": "Bradford · three samples in triplicate", "paper_id": "bradford-notes", "objective": "Prepare a Bradford assay plate with six standards, three already-diluted unknowns in triplicate and water-only blanks.", "setup_id": "picus120", "setup_snapshot": store.get("setups", "picus120"), "status": "example", "stage": "source", "example": True, "protocol_yaml": text, "protocol_hash": digest(text), "steps": describe_yaml(text), "review": None, "validation": None, "score": None, "events": [], "usage": [], "rubric": {"approved": False, "reviewer": "", "criteria": []}, "evidence": {"video_id": "demo", "offset_seconds": 0, "markers": [], "notes": "Existing Ursa demo footage. It is not a recording of this Bradford protocol."}, "manual_steps": [{"when": "before", "instruction": "Confirm source identities, calibration, liquid heights, tips and prepared 1:10 unknowns."}, {"when": "after", "instruction": "Incubate and read at 590/450 nm within the method's timing window."}]})
+    from .bradford_loading import seed_loading_example
+    seed_loading_example()
+    from .bradford_color_demo import seed_color_demo
+    seed_color_demo()

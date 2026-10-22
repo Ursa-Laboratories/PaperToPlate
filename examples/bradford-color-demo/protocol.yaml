@@ -1,0 +1,926 @@
+# Generated draft. Offline validation is not physical validation.
+protocol:
+- pick_up_tip:
+    position: tips.A1
+- transfer:
+    source: 10_vial_holder.A4
+    destination: 10_vial_holder.A5
+    volume_ul: 112.5
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.A2
+- transfer:
+    source: 10_vial_holder.A4
+    destination: 10_vial_holder.A5
+    volume_ul: 112.5
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.A3
+- transfer:
+    source: 10_vial_holder.A4
+    destination: 10_vial_holder.A5
+    volume_ul: 112.5
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.A4
+- transfer:
+    source: 10_vial_holder.A4
+    destination: 10_vial_holder.A5
+    volume_ul: 112.5
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.A5
+- transfer:
+    source: 10_vial_holder.A4
+    destination: 10_vial_holder.A5
+    volume_ul: 112.5
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.A6
+- transfer:
+    source: 10_vial_holder.A4
+    destination: 10_vial_holder.A5
+    volume_ul: 112.5
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.A7
+- transfer:
+    source: 10_vial_holder.A4
+    destination: 10_vial_holder.A5
+    volume_ul: 112.5
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.A8
+- transfer:
+    source: 10_vial_holder.A4
+    destination: 10_vial_holder.A5
+    volume_ul: 112.5
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.A9
+- transfer:
+    source: 10_vial_holder.A2
+    destination: 10_vial_holder.A5
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- mix:
+    position: 10_vial_holder.A5
+    volume_ul: 100.0
+    cycles: 10
+    speed: 50.0
+    height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.A10
+- transfer:
+    source: 10_vial_holder.B4
+    destination: plate.A1
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.A11
+- transfer:
+    source: 10_vial_holder.B4
+    destination: plate.B1
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.A12
+- transfer:
+    source: 10_vial_holder.B4
+    destination: plate.C1
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.B1
+- transfer:
+    source: 10_vial_holder.B4
+    destination: plate.A2
+    volume_ul: 90.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.B2
+- transfer:
+    source: 10_vial_holder.B4
+    destination: plate.B2
+    volume_ul: 90.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.B3
+- transfer:
+    source: 10_vial_holder.B4
+    destination: plate.C2
+    volume_ul: 90.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.B4
+- transfer:
+    source: 10_vial_holder.B4
+    destination: plate.A3
+    volume_ul: 80.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.B5
+- transfer:
+    source: 10_vial_holder.B4
+    destination: plate.B3
+    volume_ul: 80.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.B6
+- transfer:
+    source: 10_vial_holder.B4
+    destination: plate.C3
+    volume_ul: 80.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.B7
+- transfer:
+    source: 10_vial_holder.B4
+    destination: plate.A4
+    volume_ul: 70.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.B8
+- transfer:
+    source: 10_vial_holder.B4
+    destination: plate.B4
+    volume_ul: 70.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.B9
+- transfer:
+    source: 10_vial_holder.B4
+    destination: plate.C4
+    volume_ul: 70.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.B10
+- transfer:
+    source: 10_vial_holder.B4
+    destination: plate.A5
+    volume_ul: 60.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.B11
+- transfer:
+    source: 10_vial_holder.B4
+    destination: plate.B5
+    volume_ul: 60.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.B12
+- transfer:
+    source: 10_vial_holder.B4
+    destination: plate.C5
+    volume_ul: 60.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.C1
+- transfer:
+    source: 10_vial_holder.B4
+    destination: plate.A6
+    volume_ul: 50.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.C2
+- transfer:
+    source: 10_vial_holder.B4
+    destination: plate.B6
+    volume_ul: 50.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.C3
+- transfer:
+    source: 10_vial_holder.B4
+    destination: plate.C6
+    volume_ul: 50.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.C4
+- transfer:
+    source: 10_vial_holder.B4
+    destination: plate.A8
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.C5
+- transfer:
+    source: 10_vial_holder.B4
+    destination: plate.A8
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.C6
+- transfer:
+    source: 10_vial_holder.B4
+    destination: plate.B8
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.C7
+- transfer:
+    source: 10_vial_holder.B4
+    destination: plate.B8
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.C8
+- transfer:
+    source: 10_vial_holder.B4
+    destination: plate.C8
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.C9
+- transfer:
+    source: 10_vial_holder.B4
+    destination: plate.C8
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.C10
+- transfer:
+    source: 10_vial_holder.A1
+    destination: plate.A2
+    volume_ul: 10.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.C11
+- transfer:
+    source: 10_vial_holder.A1
+    destination: plate.B2
+    volume_ul: 10.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.C12
+- transfer:
+    source: 10_vial_holder.A1
+    destination: plate.C2
+    volume_ul: 10.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.D1
+- transfer:
+    source: 10_vial_holder.A1
+    destination: plate.A3
+    volume_ul: 20.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.D2
+- transfer:
+    source: 10_vial_holder.A1
+    destination: plate.B3
+    volume_ul: 20.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.D3
+- transfer:
+    source: 10_vial_holder.A1
+    destination: plate.C3
+    volume_ul: 20.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.D4
+- transfer:
+    source: 10_vial_holder.A1
+    destination: plate.A4
+    volume_ul: 30.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.D5
+- transfer:
+    source: 10_vial_holder.A1
+    destination: plate.B4
+    volume_ul: 30.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.D6
+- transfer:
+    source: 10_vial_holder.A1
+    destination: plate.C4
+    volume_ul: 30.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.D7
+- transfer:
+    source: 10_vial_holder.A1
+    destination: plate.A5
+    volume_ul: 40.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.D8
+- transfer:
+    source: 10_vial_holder.A1
+    destination: plate.B5
+    volume_ul: 40.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.D9
+- transfer:
+    source: 10_vial_holder.A1
+    destination: plate.C5
+    volume_ul: 40.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.D10
+- transfer:
+    source: 10_vial_holder.A1
+    destination: plate.A6
+    volume_ul: 50.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.D11
+- transfer:
+    source: 10_vial_holder.A1
+    destination: plate.B6
+    volume_ul: 50.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.D12
+- transfer:
+    source: 10_vial_holder.A1
+    destination: plate.C6
+    volume_ul: 50.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.E1
+- transfer:
+    source: 10_vial_holder.A5
+    destination: plate.A7
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.E2
+- transfer:
+    source: 10_vial_holder.A5
+    destination: plate.B7
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.E3
+- transfer:
+    source: 10_vial_holder.A5
+    destination: plate.C7
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.E4
+- transfer:
+    source: 10_vial_holder.A3
+    destination: plate.A1
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- mix:
+    position: plate.A1
+    volume_ul: 80.0
+    cycles: 3
+    speed: 50.0
+    height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.E5
+- transfer:
+    source: 10_vial_holder.A3
+    destination: plate.B1
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- mix:
+    position: plate.B1
+    volume_ul: 80.0
+    cycles: 3
+    speed: 50.0
+    height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.E6
+- transfer:
+    source: 10_vial_holder.A3
+    destination: plate.C1
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- mix:
+    position: plate.C1
+    volume_ul: 80.0
+    cycles: 3
+    speed: 50.0
+    height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.E7
+- transfer:
+    source: 10_vial_holder.A3
+    destination: plate.A2
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- mix:
+    position: plate.A2
+    volume_ul: 80.0
+    cycles: 3
+    speed: 50.0
+    height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.E8
+- transfer:
+    source: 10_vial_holder.A3
+    destination: plate.B2
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- mix:
+    position: plate.B2
+    volume_ul: 80.0
+    cycles: 3
+    speed: 50.0
+    height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.E9
+- transfer:
+    source: 10_vial_holder.A3
+    destination: plate.C2
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- mix:
+    position: plate.C2
+    volume_ul: 80.0
+    cycles: 3
+    speed: 50.0
+    height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.E10
+- transfer:
+    source: 10_vial_holder.A3
+    destination: plate.A3
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- mix:
+    position: plate.A3
+    volume_ul: 80.0
+    cycles: 3
+    speed: 50.0
+    height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.E11
+- transfer:
+    source: 10_vial_holder.A3
+    destination: plate.B3
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- mix:
+    position: plate.B3
+    volume_ul: 80.0
+    cycles: 3
+    speed: 50.0
+    height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.E12
+- transfer:
+    source: 10_vial_holder.A3
+    destination: plate.C3
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- mix:
+    position: plate.C3
+    volume_ul: 80.0
+    cycles: 3
+    speed: 50.0
+    height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.F1
+- transfer:
+    source: 10_vial_holder.A3
+    destination: plate.A4
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- mix:
+    position: plate.A4
+    volume_ul: 80.0
+    cycles: 3
+    speed: 50.0
+    height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.F2
+- transfer:
+    source: 10_vial_holder.A3
+    destination: plate.B4
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- mix:
+    position: plate.B4
+    volume_ul: 80.0
+    cycles: 3
+    speed: 50.0
+    height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.F3
+- transfer:
+    source: 10_vial_holder.A3
+    destination: plate.C4
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- mix:
+    position: plate.C4
+    volume_ul: 80.0
+    cycles: 3
+    speed: 50.0
+    height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.F4
+- transfer:
+    source: 10_vial_holder.A3
+    destination: plate.A5
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- mix:
+    position: plate.A5
+    volume_ul: 80.0
+    cycles: 3
+    speed: 50.0
+    height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.F5
+- transfer:
+    source: 10_vial_holder.A3
+    destination: plate.B5
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- mix:
+    position: plate.B5
+    volume_ul: 80.0
+    cycles: 3
+    speed: 50.0
+    height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.F6
+- transfer:
+    source: 10_vial_holder.A3
+    destination: plate.C5
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- mix:
+    position: plate.C5
+    volume_ul: 80.0
+    cycles: 3
+    speed: 50.0
+    height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.F7
+- transfer:
+    source: 10_vial_holder.A3
+    destination: plate.A6
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- mix:
+    position: plate.A6
+    volume_ul: 80.0
+    cycles: 3
+    speed: 50.0
+    height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.F8
+- transfer:
+    source: 10_vial_holder.A3
+    destination: plate.B6
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- mix:
+    position: plate.B6
+    volume_ul: 80.0
+    cycles: 3
+    speed: 50.0
+    height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.F9
+- transfer:
+    source: 10_vial_holder.A3
+    destination: plate.C6
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- mix:
+    position: plate.C6
+    volume_ul: 80.0
+    cycles: 3
+    speed: 50.0
+    height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.F10
+- transfer:
+    source: 10_vial_holder.A3
+    destination: plate.A7
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- mix:
+    position: plate.A7
+    volume_ul: 80.0
+    cycles: 3
+    speed: 50.0
+    height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.F11
+- transfer:
+    source: 10_vial_holder.A3
+    destination: plate.B7
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- mix:
+    position: plate.B7
+    volume_ul: 80.0
+    cycles: 3
+    speed: 50.0
+    height: 0
+- drop_tip:
+    position: waste
+- pick_up_tip:
+    position: tips.F12
+- transfer:
+    source: 10_vial_holder.A3
+    destination: plate.C7
+    volume_ul: 100.0
+    speed: 50.0
+    source_height: 0
+    destination_height: 0
+- mix:
+    position: plate.C7
+    volume_ul: 80.0
+    cycles: 3
+    speed: 50.0
+    height: 0
+- drop_tip:
+    position: waste

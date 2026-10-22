@@ -8,11 +8,12 @@ from . import llm, store
 from .compiler import compile_plan
 from .models import Extraction, Plan, Review
 from .review import human_clearance
+from .preparation import apply_stock_preparations
 from .validation import score, validate
 
 ACTIVE: dict[str, asyncio.Task] = {}
 SEMAPHORE = asyncio.Semaphore(1)
-PIPELINE_FIELDS = {"usage", "plan", "attempt", "protocol_yaml", "protocol_hash", "steps", "tip_count", "manual_interleaving", "review", "review_hash", "validation", "validation_hash", "score", "attempts", "status", "duration_seconds", "error", "extraction", "source_coverage"}
+PIPELINE_FIELDS = {"usage", "plan", "attempt", "protocol_yaml", "protocol_hash", "steps", "tip_count", "manual_interleaving", "review", "review_hash", "validation", "validation_hash", "score", "attempts", "status", "duration_seconds", "error", "extraction", "source_coverage", "setup_snapshot"}
 
 
 def save_progress(run_id: str, value: dict):
@@ -51,11 +52,12 @@ def paper_context(paper: dict) -> str:
 
 def setup_context(setup: dict) -> str:
     deck = yaml.safe_load(setup["deck_yaml"])
-    return json.dumps({"materials_and_sources": setup.get("materials", ""), "labware": deck.get("labware", {}), "first_available_tip": setup.get("first_tip", "A1"), "initial_fluids": yaml.safe_load(setup.get("fluids_yaml", "")) or {}, "pipette_transfer_policy": "Picus 120 uL: compiler divides transfers into <=100 uL strokes and allocates a fresh tip for every TRANSFER stroke, preventing return to stock after contact with a destination. Mixing cycles use one attached tip for the whole mix. To transfer then mix with the SAME tip, use mix_after_ul and mix_after_cycles on the transfer; do NOT add a separate mix operation. The cycles field has no effect on transfers. Mixing volume must be <=120 uL and <=available liquid. No arbitrary motion, unsupported tools, or auto homing. Respect tip inventory; report a required refill as a manual between-runs step rather than silently reusing tips."}, ensure_ascii=False)
+    return json.dumps({"materials_and_sources": setup.get("materials", ""), "labware": deck.get("labware", {}), "nominal_vial_capacity_ul": setup.get("nominal_vial_capacity_ul", 5000), "first_available_tip": setup.get("first_tip", "A1"), "initial_fluids": yaml.safe_load(setup.get("fluids_yaml", "")) or {}, "pipette_transfer_policy": "Picus 120 uL: each stroke is 5–120 uL in 0.1 uL increments. Compiler evenly splits larger transfers while preserving exact total volume and allocates a fresh tip for every TRANSFER stroke. Smaller transfers require a reviewed upstream dilution, never automatic rounding. Mixing cycles use one attached tip for the whole mix. Use mix_after_ul and mix_after_cycles for mixing on the transfer tip. Mixing volume must be <=120 uL and <=available liquid. No arbitrary motion or auto homing. Respect tip inventory; report a required refill as a manual between-runs step."}, ensure_ascii=False)
 
 
 async def generate_plan(paper, setup, objective, extraction, feedback=""):
     system = SOURCE_RULE + "\nYou are the protocol generator for a CubOS single-channel liquid-handling workbench. Produce a complete compact plan for the requested objective. Each operation may name multiple destinations with the SAME volume. Include standards, blanks and replicates when required by the objective. The compiler supplies pickup/drop-tip actions. Use only actual deck keys and well IDs. Source liquid identities come from the supplied material mapping, not from your guesses. Do not insert missing readout hardware. Keep reagent preparation, reader use and incubation explicit as manual steps. Calibration checks, tip/waste checks and source-loading confirmations belong to when=before, never between. Only an action that must actually interrupt the robot between liquid steps uses when=between and blocks direct single-run handoff. The supplied anchors already define numerical coordinates; relative offset zero is a defined value. Physical verification is an operator preflight prerequisite, not a missing numerical parameter to invent. Positive heights are above calibrated anchors; do not change calibration or infer new depths. If the source and setup cannot support the requested objective, produce the supported preparation portion and put every unresolved blocker in unresolved. Never silently omit a required phase."
+    system += "\nReturn stock_preparations for every externally loaded source: exact deck position, liquid identity, SOURCE concentration with units, human preparation recipe or ready-to-use instruction, and source citations. Do not confuse source concentration with final-well concentration. For unknown samples say the concentration is unknown and specify any required dilution. Never invent a parent-stock concentration or reagent identity. Leave missing concentration/preparation empty and explain the gap in unresolved. For load_volume_ul, omit to let deterministic code calculate demand plus a reserve, or specify a defensible initial load. Stock loads must fit the SMALLER of nominal vial capacity and configured working/capacity limits. Do not modify geometry. Empty intermediate vessels are not prepared stock liquids. Clearly separate human-before, robot operations and human-after. These are proposed stock loads, not existing live inventory."
     user = f"OBJECTIVE\n{objective}\nSETUP\n{setup_context(setup)}\nEXTRACTION\n{json.dumps(extraction)}\nSOURCE\n{paper_context(paper)}\nFEEDBACK FROM PREVIOUS ATTEMPT\n{feedback}"
     return await llm.complete(Plan, system, user, max_tokens=11000)
 
@@ -105,6 +107,11 @@ async def execute(run_id: str):
                     return
                 try:
                     compiled = compile_plan(plan, setup)
+                    if plan.get("stock_preparations"):
+                        prepared_setup = apply_stock_preparations(plan["stock_preparations"], setup, compiled["protocol_yaml"])
+                    else:
+                        prepared_setup = setup
+                    current["setup_snapshot"] = prepared_setup
                 except ValueError as exc:
                     if attempt == 1:
                         feedback = str(exc)
@@ -117,18 +124,18 @@ async def execute(run_id: str):
                 store.event(run_id, stage, "complete", f"Compiled {len(compiled['steps'])} CubOS commands using {compiled['tip_count']} tips")
                 if run.get("review_enabled", True):
                     store.event(run_id, "review", "running", "A separate model call is checking the paper against the protocol")
-                    review, usage = await review_run(paper, setup, current)
+                    review, usage = await review_run(paper, prepared_setup, current)
                     current["usage"].append({"stage": "review", **usage})
                     current["review"] = review
                     current["review_hash"] = compiled["protocol_hash"]
                     save_progress(run_id, current)
                     store.event(run_id, "review", "complete", review["summary"])
                 store.event(run_id, "validate", "running", "Checking the exact setup with the installed CubOS validator")
-                validation = await validate(setup, compiled["protocol_yaml"])
+                validation = await validate(prepared_setup, compiled["protocol_yaml"])
                 current = store.get("runs", run_id)
                 current["validation"] = validation
                 current["validation_hash"] = compiled["protocol_hash"]
-                current["score"] = score(current, setup, paper)
+                current["score"] = score(current, prepared_setup, paper)
                 current.setdefault("attempts", []).append({"attempt": attempt, "plan": plan, "protocol_yaml": compiled["protocol_yaml"], "protocol_hash": compiled["protocol_hash"], "review": current.get("review"), "validation": validation})
                 save_progress(run_id, current)
                 store.event(run_id, "validate", "complete" if validation["passed"] else "warning", "CubOS offline checks passed" if validation["passed"] else "CubOS found a validation issue")
@@ -139,7 +146,7 @@ async def execute(run_id: str):
                 break
             current = store.get("runs", run_id)
             current.update(status=readiness(current), duration_seconds=round(time.monotonic() - started, 2))
-            current["score"] = score(current, setup, paper)
+            current["score"] = score(current, current["setup_snapshot"], paper)
             save_progress(run_id, current)
             store.event(run_id, "score", "complete", "Evidence and offline results are ready for operator review. No physical experiment was run.")
         except asyncio.CancelledError:

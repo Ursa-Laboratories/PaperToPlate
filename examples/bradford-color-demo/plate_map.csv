@@ -1,0 +1,25 @@
+well,role,red_ul,diluted_yellow_ul,water_ul,blue_ul,final_volume_ul
+A1,red standard surrogate,0,0,100,100,200
+A2,red standard surrogate,10,0,90,100,200
+A3,red standard surrogate,20,0,80,100,200
+A4,red standard surrogate,30,0,70,100,200
+A5,red standard surrogate,40,0,60,100,200
+A6,red standard surrogate,50,0,50,100,200
+A7,yellow sample surrogate,0,100,0,100,200
+A8,water blank,0,0,200,0,200
+B1,red standard surrogate,0,0,100,100,200
+B2,red standard surrogate,10,0,90,100,200
+B3,red standard surrogate,20,0,80,100,200
+B4,red standard surrogate,30,0,70,100,200
+B5,red standard surrogate,40,0,60,100,200
+B6,red standard surrogate,50,0,50,100,200
+B7,yellow sample surrogate,0,100,0,100,200
+B8,water blank,0,0,200,0,200
+C1,red standard surrogate,0,0,100,100,200
+C2,red standard surrogate,10,0,90,100,200
+C3,red standard surrogate,20,0,80,100,200
+C4,red standard surrogate,30,0,70,100,200
+C5,red standard surrogate,40,0,60,100,200
+C6,red standard surrogate,50,0,50,100,200
+C7,yellow sample surrogate,0,100,0,100,200
+C8,water blank,0,0,200,0,200
