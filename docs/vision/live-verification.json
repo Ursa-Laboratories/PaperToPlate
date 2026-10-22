@@ -1,0 +1,32 @@
+{
+  "status": "Live positive tip smoke check; not independent accuracy evaluation",
+  "samples": 20,
+  "unique_processed_frames": 20,
+  "live_samples": 20,
+  "samples_with_tip": 20,
+  "tip_confidence_range": [
+    0.8635174036026001,
+    0.9005452394485474
+  ],
+  "inference_ms_range": [
+    66.13966706208885,
+    130.04833401646465
+  ],
+  "camera_fps_observed_approximately": 30,
+  "model_sha256": "f0f08287c466042c829110983154fa769684045cb9ea160c06ee4d07afdeb220",
+  "calibration": {
+    "original_positive_views": 3,
+    "original_background_regions": 2,
+    "derived_training_crops": 120,
+    "epochs": 30,
+    "imgsz": 512,
+    "labels": "User-confirmed tip presence; assistant-reviewed bounding boxes",
+    "runtime": "Generic overlapping tiles with learned detections; no fixed pipette location"
+  },
+  "limitations": [
+    "Repeated frames from one current scene are not independent trials.",
+    "The original source model missed this camera; local calibration was required.",
+    "Liquid-filled/empty discrimination and volume have not been validated on the MX Brio.",
+    "No robot movement or protocol was executed by the agent."
+  ]
+}

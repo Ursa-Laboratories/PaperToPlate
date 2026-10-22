@@ -177,3 +177,13 @@ receipts are kept in `artifacts/` and do not imply hardware validation.
 The included `start.sh` starts the app after a computer restart. Server process
 management is local to each installation. Build-machine logs and session state
 are not included in this repository.
+
+## Live tip and liquid detection
+
+The **Vision lab** link opens `http://127.0.0.1:8785/?vision=1`. It includes the
+MX Brio feed through CubOS, trained YOLO and experimental independent DINOv2
+models, recorded source examples, frame annotation and short evidence exports.
+Start configured services with `./demo.sh`; see [setup and operation](docs/vision/README.md)
+and [training/data requirements](docs/training.md). Model files are local
+artifacts and are not included in this repository. Source-test results are not
+claims of accuracy on the MX Brio or proof of liquid volume.

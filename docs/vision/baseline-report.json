@@ -1,0 +1,198 @@
+{
+  "created_at": "2026-10-22T18:08:25Z",
+  "status": "Source-data baseline; target-camera positive accuracy not established",
+  "source": {
+    "repository": "https://github.com/BDD-G/OT2-Computer-Vision",
+    "archive_name": "Training Data/Images_with_Labels_tips_n_Liquid.rar",
+    "archive_sha256": "bc9f0f998db0d2a1359f674c2a257ef7d291da6ce6b6ef399a445a5dc0155e9d",
+    "available_subset_images": 71,
+    "split_images": {
+      "train": 54,
+      "validation": 9,
+      "test": 8
+    },
+    "label_instances": {
+      "liquid": 432,
+      "tip": 563
+    },
+    "groups": {
+      "ai_h60": 16,
+      "ai_h60_blue": 18,
+      "ai_h60_light_blue": 2,
+      "ai_series": 12,
+      "deck": 7,
+      "tips_empty_residual": 1,
+      "tips_water": 7,
+      "tips_water_red": 8
+    }
+  },
+  "models": {
+    "yolo": {
+      "model_id": "ultralytics/yolov8n",
+      "classes": [
+        "tip",
+        "liquid"
+      ],
+      "epochs_requested": 12,
+      "test": {
+        "map50": 0.993911355134995,
+        "map50_95": 0.7300051643312653,
+        "precision": 0.9535690952296492,
+        "recall": 0.9814647974305163,
+        "per_class_map50": [
+          0.99282,
+          0.995
+        ],
+        "per_class_map50_95": [
+          0.7769969772188168,
+          0.6830133514437136
+        ],
+        "per_class_order": [
+          "tip",
+          "liquid"
+        ]
+      },
+      "seconds": 93.2,
+      "device": "mps"
+    },
+    "dino": {
+      "model_id": "facebookresearch/dinov2:dinov2_vits14",
+      "feature_dim": 384,
+      "head": "sklearn LogisticRegression(class_weight=balanced, max_iter=1000)",
+      "train_crops": 962,
+      "validation_crops": 102,
+      "test_crops": 152,
+      "validation": {
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "per_class": {
+          "tip": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 67
+          },
+          "liquid": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 8
+          },
+          "background": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 27
+          }
+        },
+        "confusion_matrix_rows_true_cols_pred": [
+          [
+            67,
+            0,
+            0
+          ],
+          [
+            0,
+            8,
+            0
+          ],
+          [
+            0,
+            0,
+            27
+          ]
+        ]
+      },
+      "test": {
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "per_class": {
+          "tip": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 64
+          },
+          "liquid": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 64
+          },
+          "background": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 24
+          }
+        },
+        "confusion_matrix_rows_true_cols_pred": [
+          [
+            64,
+            0,
+            0
+          ],
+          [
+            0,
+            64,
+            0
+          ],
+          [
+            0,
+            0,
+            24
+          ]
+        ]
+      },
+      "end_to_end_detection": {
+        "iou_threshold": 0.5,
+        "score_threshold": 0.5,
+        "per_class": {
+          "tip": {
+            "tp": 21,
+            "fp": 107,
+            "fn": 43,
+            "precision": 0.1640625,
+            "recall": 0.328125,
+            "f1": 0.21875
+          },
+          "liquid": {
+            "tp": 39,
+            "fp": 89,
+            "fn": 25,
+            "precision": 0.3046875,
+            "recall": 0.609375,
+            "f1": 0.40625
+          }
+        },
+        "note": "Independent sliding-window DINOv2 boxes; no YOLO proposals. Exploratory source-family metric, not MX Brio validation."
+      },
+      "seconds": 21.2,
+      "localization": "Independent dense sliding-window candidate boxes; no YOLO proposals. The optional dino_rerank adapter uses YOLO proposals separately."
+    }
+  },
+  "limitations": [
+    "Source archive provenance and license were not independently verified; images/weights remain local and are not redistributed.",
+    "The source set is small and capture-family split; held-out metrics estimate source-family transfer only, not MX Brio performance.",
+    "No MX Brio target-domain frames were available for human review during this run.",
+    "Detector outputs are visual evidence only and do not establish liquid volume, identity, sterility, or protocol correctness.",
+    "DINOv2 crop-head metrics are distinct from its lower end-to-end dense-box metrics; independent mode uses sliding windows and no YOLO proposals.",
+    "The official facebook/dinov3-vits16-pretrain-lvd1689m endpoint returned HTTP 401 (restricted/authenticated) in this environment; DINOv2 was used instead.",
+    "The original source model failed the first live positive tip check. Target-local calibration is evaluated separately."
+  ],
+  "camera_validation": {
+    "device": "MX Brio",
+    "frame_size": [
+      1920,
+      1080
+    ],
+    "capture_fps_observed_approximately": 30,
+    "yolo_inference_ms_observed_range": [
+      11,
+      15
+    ],
+    "real_protocol_executed": false,
+    "target_positive_accuracy_established": false,
+    "note": "Initial no-tip view was only a negative-scene smoke check. After the user attached a tip, the source model missed it; see live-verification.json for the subsequent camera-specific calibration."
+  }
+}

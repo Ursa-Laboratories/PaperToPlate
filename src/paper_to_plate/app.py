@@ -26,6 +26,7 @@ from .models import AdjudicationInput, EvidenceInput, HandoffInput, ProtocolEdit
 from .review import fingerprint, human_clearance
 from .seed import seed
 from .validation import score, validate
+from .vision_proxy import router as vision_router
 
 
 def read(kind, key):
@@ -49,6 +50,7 @@ async def lifespan(app):
 
 
 app = FastAPI(title="Ursa Paper to Plate", lifespan=lifespan)
+app.include_router(vision_router)
 HANDOFF_LOCKS: dict[str, asyncio.Lock] = {}
 
 
@@ -408,6 +410,12 @@ def export_run(run_id: str):
         for key, filename in (("gantry_yaml", "gantry.yaml"), ("deck_yaml", "deck.yaml"), ("fluids_yaml", "initial_fluids.yaml")):
             archive.writestr(filename, value["setup_snapshot"].get(key, ""))
         archive.writestr("evaluation.json", json.dumps(value, indent=2))
+        for capture in value.get('vision_captures', []):
+            key = capture.get('id', '')
+            if len(key) == 32 and all(c in '0123456789abcdef' for c in key):
+                image = ROOT / 'data' / 'vision' / 'captures' / f'{key}.jpg'
+                if image.is_file():
+                    archive.write(image, f'vision/{key}.jpg')
         source = read("papers", value["paper_id"])
         archive.writestr("source/metadata.json", json.dumps(source, ensure_ascii=False, indent=2))
         if source.get("file_path"):
