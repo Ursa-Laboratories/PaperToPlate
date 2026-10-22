@@ -126,3 +126,11 @@ the entire frame; it does not draw a fixed box at an annotated position.
 Liquid predictions still use the original source model on detected tip crops
 and require separate local liquid-filled/empty reference data. The original
 source baseline remains selectable for comparison.
+
+## October 22 camera adaptation
+
+A subsequent operator-run recording supplied visible pink liquid. The adapted
+local model is now replay-tested and enabled on the configured Mac; see the
+[results and reproduction guide](local-liquid-replay.md). This supersedes the
+initial camera evidence above. Independent-run reliability and volume measurement
+remain unvalidated.

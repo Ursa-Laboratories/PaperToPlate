@@ -50,9 +50,10 @@ def available_models(data_root: str | Path | None = None) -> list[dict[str, Any]
     models = root / "models"
     yolo = models / "yolov8n-tip-liquid-source.pt"
     local_tip = models / "local-tip.pt"
+    local_liquid = models / "local-liquid.pt"
     dino = models / "dino-v2-vits14-head.joblib"
     return [
-        {"id": "yolo", "label": "MX Brio · local tip + source liquid" if local_tip.is_file() else "YOLOv8n · source baseline", "available": yolo.is_file(), "detail": "Few-shot tip calibration; liquid detection remains unverified on this camera." if local_tip.is_file() else "Source-data detector; target-camera accuracy not established."},
+        {"id": "yolo", "label": ("MX Brio · local tip + pink liquid" if local_liquid.is_file() else "MX Brio · local tip + source liquid") if local_tip.is_file() else "YOLOv8n · source baseline", "available": yolo.is_file(), "detail": ("Trained on this camera's recorded pink liquid. Replay-tested; no µL measurement." if local_liquid.is_file() else "Few-shot tip calibration; liquid detection remains unverified on this camera.") if local_tip.is_file() else "Source-data detector; target-camera accuracy not established."},
         {"id": "yolo_source", "label": "YOLOv8n · original source baseline", "available": yolo.is_file(), "detail": "Unadapted OT-2 model for comparison and source examples."},
         {"id": "dino", "label": "DINOv2 · experimental detector", "available": dino.is_file(), "detail": "Independent DINOv2 localization. Low source-test precision; expect false positives."},
     ]
@@ -68,12 +69,13 @@ def _as_pil(image: Any) -> Image.Image:
 
 
 class YoloDetector:
-    def __init__(self, weights: Path, device: str | None = None, imgsz: int | None = None):
+    def __init__(self, weights: Path, device: str | None = None, imgsz: int | None = None, class_names: dict[int, str] | None = None):
         from ultralytics import YOLO
 
         self.weights = weights
         self.device = device
         self.imgsz = imgsz
+        self.class_names = CLASS_NAMES if class_names is None else class_names
         self.model = YOLO(str(weights))
 
     def predict(self, image: Any) -> list[dict[str, Any]]:
@@ -93,7 +95,7 @@ class YoloDetector:
         confidences = result.boxes.conf.detach().cpu().numpy()
         classes = result.boxes.cls.detach().cpu().numpy().astype(int)
         for box, confidence, class_id in zip(boxes, confidences, classes):
-            label = CLASS_NAMES.get(int(class_id))
+            label = self.class_names.get(int(class_id))
             if label:
                 detections.append({"label": label, "confidence": float(confidence), "box": [float(value) for value in box]})
         return detections
@@ -111,7 +113,12 @@ class CameraTipDetector:
         self.weights = models_dir / "local-tip.pt"
         self.device = device or ("mps" if torch.backends.mps.is_available() else "cpu")
         self.model = YOLO(str(self.weights))
-        self.liquid = YoloDetector(models_dir / "yolov8n-tip-liquid-source.pt", self.device, imgsz=640)
+        local_liquid = models_dir / "local-liquid.pt"
+        if local_liquid.is_file():
+            self.liquid = YoloDetector(local_liquid, self.device, imgsz=320, class_names={0: "liquid"})
+        else:
+            self.liquid = YoloDetector(models_dir / "yolov8n-tip-liquid-source.pt", self.device, imgsz=640)
+        self.checkpoint_paths = [self.weights, self.liquid.weights]
 
     def predict(self, image: Any) -> list[dict[str, Any]]:
         pil = _as_pil(image)

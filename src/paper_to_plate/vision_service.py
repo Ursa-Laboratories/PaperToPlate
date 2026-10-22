@@ -104,6 +104,7 @@ class Vision:
         self.loaded_id = None
         self.detector = None
         self.model_fingerprint = None
+        self.model_components = {}
         self.result = {}
         self.result_id = 0
         self.session_id = uuid.uuid4().hex
@@ -207,6 +208,9 @@ class Vision:
             local = self.data/'local-tip-report.json'
             if local.is_file():
                 result['local_tip_calibration'] = json.loads(local.read_text())
+            liquid = self.data/'local-liquid-report.json'
+            if liquid.is_file():
+                result['local_liquid_replay'] = json.loads(liquid.read_text())
             return result
         except (OSError, ValueError):
             return {'status': 'pending', 'target_domain_validated': False}
@@ -248,11 +252,14 @@ class Vision:
         from .vision_models import load_detector
         detector = load_detector(model_id, self.data)
         path = Path(detector.weights) if hasattr(detector, 'weights') else self.data/'models'/'dino-v2-vits14-head.joblib'
-        fingerprint = hashlib.sha256(path.read_bytes()).hexdigest()
+        paths = getattr(detector, 'checkpoint_paths', [path])
+        components = {Path(p).name: hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in paths}
+        fingerprint = hashlib.sha256(json.dumps(components, sort_keys=True).encode()).hexdigest()
         with self.lock:
             self.detector = detector
             self.loaded_id = model_id
             self.model_fingerprint = fingerprint
+            self.model_components = components
             self.model_error = None
 
     def inference_loop(self):
@@ -276,7 +283,7 @@ class Vision:
                     items = self.detector.predict(np.array(image))
                     detections = clean_detections(items, *image.size)
                     elapsed = (time.monotonic()-start)*1000
-                value = {'frame_id': frame_id, 'captured_at': timestamp, 'model': model_id, 'model_head_or_detector_sha256': self.model_fingerprint, 'source_frame_sha256': digest, 'inference_ms': elapsed, 'detections': detections}
+                value = {'frame_id': frame_id, 'captured_at': timestamp, 'model': model_id, 'model_bundle_sha256': self.model_fingerprint, 'model_components': self.model_components, 'source_frame_sha256': digest, 'inference_ms': elapsed, 'detections': detections}
                 annotated = render(image, detections, f'{model_id.upper()} | frame {frame_id} | {elapsed:.0f} ms | Research prediction - volume unverified')
                 with self.lock:
                     self.result = value

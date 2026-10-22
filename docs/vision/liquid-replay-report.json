@@ -1,0 +1,749 @@
+{
+  "source_recording": "data/vision/experiments/operator-protocol-20261022-152407/camera-original.mp4",
+  "label_source": "Assistant visually reviewed, not independent human ground truth",
+  "manifest_sha256": "c6b373b5021c90338518edaada16ce655d7cb357ca22062f03bfd7e9a5aff06c",
+  "model_sha256": "4458b43576918b41c47c3470ded2ad1e73a5a55717a7a889b23aaf403d211964",
+  "confidence_threshold": 0.25,
+  "iou_threshold": 0.5,
+  "scope": "Within-recording temporal holdout, not an independent run",
+  "volume_calibrated": false,
+  "results": {
+    "baseline": {
+      "train": {
+        "split": "train",
+        "label": "liquid",
+        "confidence": 0.25,
+        "iou_threshold": 0.5,
+        "tp": 0,
+        "fp": 0,
+        "fn": 4,
+        "precision": null,
+        "recall": 0.0,
+        "f1": null,
+        "aggregate": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "frame_presence": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "tn": 6
+        },
+        "presence_tp": 0,
+        "presence_fp": 0,
+        "presence_fn": 4,
+        "presence_tn": 6,
+        "positive_frames": 4,
+        "negative_frames": 6,
+        "false_alarm_count": 0,
+        "false_alarm_denominator": 6,
+        "false_alarm_rate": 0.0,
+        "missed_positive_frames": [
+          "f02277",
+          "f02280",
+          "f02283",
+          "f02286"
+        ],
+        "matched_ious": [],
+        "outcomes": {
+          "f02100": {
+            "ground_truth_count": 0,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [],
+            "presence": "true_negative"
+          },
+          "f02130": {
+            "ground_truth_count": 0,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [],
+            "presence": "true_negative"
+          },
+          "f02160": {
+            "ground_truth_count": 0,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [],
+            "presence": "true_negative"
+          },
+          "f02175": {
+            "ground_truth_count": 0,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [],
+            "presence": "true_negative"
+          },
+          "f02190": {
+            "ground_truth_count": 0,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [],
+            "presence": "true_negative"
+          },
+          "f02277": {
+            "ground_truth_count": 1,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "matched_ious": [],
+            "presence": "false_negative"
+          },
+          "f02280": {
+            "ground_truth_count": 1,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "matched_ious": [],
+            "presence": "false_negative"
+          },
+          "f02283": {
+            "ground_truth_count": 1,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "matched_ious": [],
+            "presence": "false_negative"
+          },
+          "f02286": {
+            "ground_truth_count": 1,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "matched_ious": [],
+            "presence": "false_negative"
+          },
+          "f02700": {
+            "ground_truth_count": 0,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [],
+            "presence": "true_negative"
+          }
+        },
+        "missing_prediction_ids": [],
+        "unknown_prediction_ids": []
+      },
+      "validation": {
+        "split": "validation",
+        "label": "liquid",
+        "confidence": 0.25,
+        "iou_threshold": 0.5,
+        "tp": 0,
+        "fp": 0,
+        "fn": 2,
+        "precision": null,
+        "recall": 0.0,
+        "f1": null,
+        "aggregate": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 2,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "frame_presence": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 2,
+          "tn": 2
+        },
+        "presence_tp": 0,
+        "presence_fp": 0,
+        "presence_fn": 2,
+        "presence_tn": 2,
+        "positive_frames": 2,
+        "negative_frames": 2,
+        "false_alarm_count": 0,
+        "false_alarm_denominator": 2,
+        "false_alarm_rate": 0.0,
+        "missed_positive_frames": [
+          "f02304",
+          "f02307"
+        ],
+        "matched_ious": [],
+        "outcomes": {
+          "f02304": {
+            "ground_truth_count": 1,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "matched_ious": [],
+            "presence": "false_negative"
+          },
+          "f02307": {
+            "ground_truth_count": 1,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "matched_ious": [],
+            "presence": "false_negative"
+          },
+          "f02445": {
+            "ground_truth_count": 0,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [],
+            "presence": "true_negative"
+          },
+          "f02610": {
+            "ground_truth_count": 0,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [],
+            "presence": "true_negative"
+          }
+        },
+        "missing_prediction_ids": [],
+        "unknown_prediction_ids": []
+      },
+      "test": {
+        "split": "test",
+        "label": "liquid",
+        "confidence": 0.25,
+        "iou_threshold": 0.5,
+        "tp": 0,
+        "fp": 0,
+        "fn": 4,
+        "precision": null,
+        "recall": 0.0,
+        "f1": null,
+        "aggregate": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "precision": null,
+          "recall": 0.0,
+          "f1": null
+        },
+        "frame_presence": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "tn": 4
+        },
+        "presence_tp": 0,
+        "presence_fp": 0,
+        "presence_fn": 4,
+        "presence_tn": 4,
+        "positive_frames": 4,
+        "negative_frames": 4,
+        "false_alarm_count": 0,
+        "false_alarm_denominator": 4,
+        "false_alarm_rate": 0.0,
+        "missed_positive_frames": [
+          "f02325",
+          "f02328",
+          "f02331",
+          "f02334"
+        ],
+        "matched_ious": [],
+        "outcomes": {
+          "f02325": {
+            "ground_truth_count": 1,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "matched_ious": [],
+            "presence": "false_negative"
+          },
+          "f02328": {
+            "ground_truth_count": 1,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "matched_ious": [],
+            "presence": "false_negative"
+          },
+          "f02331": {
+            "ground_truth_count": 1,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "matched_ious": [],
+            "presence": "false_negative"
+          },
+          "f02334": {
+            "ground_truth_count": 1,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "matched_ious": [],
+            "presence": "false_negative"
+          },
+          "f02475": {
+            "ground_truth_count": 0,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [],
+            "presence": "true_negative"
+          },
+          "f02490": {
+            "ground_truth_count": 0,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [],
+            "presence": "true_negative"
+          },
+          "f02505": {
+            "ground_truth_count": 0,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [],
+            "presence": "true_negative"
+          },
+          "f02820": {
+            "ground_truth_count": 0,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [],
+            "presence": "true_negative"
+          }
+        },
+        "missing_prediction_ids": [],
+        "unknown_prediction_ids": []
+      }
+    },
+    "adapted": {
+      "train": {
+        "split": "train",
+        "label": "liquid",
+        "confidence": 0.25,
+        "iou_threshold": 0.5,
+        "tp": 1,
+        "fp": 0,
+        "fn": 3,
+        "precision": 1.0,
+        "recall": 0.25,
+        "f1": 0.4,
+        "aggregate": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 3,
+          "precision": 1.0,
+          "recall": 0.25,
+          "f1": 0.4
+        },
+        "frame_presence": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 3,
+          "tn": 6
+        },
+        "presence_tp": 1,
+        "presence_fp": 0,
+        "presence_fn": 3,
+        "presence_tn": 6,
+        "positive_frames": 4,
+        "negative_frames": 6,
+        "false_alarm_count": 0,
+        "false_alarm_denominator": 6,
+        "false_alarm_rate": 0.0,
+        "missed_positive_frames": [
+          "f02277",
+          "f02280",
+          "f02283"
+        ],
+        "matched_ious": [
+          0.9195833348341496
+        ],
+        "outcomes": {
+          "f02100": {
+            "ground_truth_count": 0,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [],
+            "presence": "true_negative"
+          },
+          "f02130": {
+            "ground_truth_count": 0,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [],
+            "presence": "true_negative"
+          },
+          "f02160": {
+            "ground_truth_count": 0,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [],
+            "presence": "true_negative"
+          },
+          "f02175": {
+            "ground_truth_count": 0,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [],
+            "presence": "true_negative"
+          },
+          "f02190": {
+            "ground_truth_count": 0,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [],
+            "presence": "true_negative"
+          },
+          "f02277": {
+            "ground_truth_count": 1,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "matched_ious": [],
+            "presence": "false_negative"
+          },
+          "f02280": {
+            "ground_truth_count": 1,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "matched_ious": [],
+            "presence": "false_negative"
+          },
+          "f02283": {
+            "ground_truth_count": 1,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "matched_ious": [],
+            "presence": "false_negative"
+          },
+          "f02286": {
+            "ground_truth_count": 1,
+            "prediction_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [
+              0.9195833348341496
+            ],
+            "presence": "true_positive"
+          },
+          "f02700": {
+            "ground_truth_count": 0,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [],
+            "presence": "true_negative"
+          }
+        },
+        "missing_prediction_ids": [],
+        "unknown_prediction_ids": []
+      },
+      "validation": {
+        "split": "validation",
+        "label": "liquid",
+        "confidence": 0.25,
+        "iou_threshold": 0.5,
+        "tp": 1,
+        "fp": 0,
+        "fn": 1,
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.6666666666666666,
+        "aggregate": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 1,
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6666666666666666
+        },
+        "frame_presence": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 1,
+          "tn": 2
+        },
+        "presence_tp": 1,
+        "presence_fp": 0,
+        "presence_fn": 1,
+        "presence_tn": 2,
+        "positive_frames": 2,
+        "negative_frames": 2,
+        "false_alarm_count": 0,
+        "false_alarm_denominator": 2,
+        "false_alarm_rate": 0.0,
+        "missed_positive_frames": [
+          "f02307"
+        ],
+        "matched_ious": [
+          0.8897361720598568
+        ],
+        "outcomes": {
+          "f02304": {
+            "ground_truth_count": 1,
+            "prediction_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [
+              0.8897361720598568
+            ],
+            "presence": "true_positive"
+          },
+          "f02307": {
+            "ground_truth_count": 1,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "matched_ious": [],
+            "presence": "false_negative"
+          },
+          "f02445": {
+            "ground_truth_count": 0,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [],
+            "presence": "true_negative"
+          },
+          "f02610": {
+            "ground_truth_count": 0,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [],
+            "presence": "true_negative"
+          }
+        },
+        "missing_prediction_ids": [],
+        "unknown_prediction_ids": []
+      },
+      "test": {
+        "split": "test",
+        "label": "liquid",
+        "confidence": 0.25,
+        "iou_threshold": 0.5,
+        "tp": 3,
+        "fp": 0,
+        "fn": 1,
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571428571428571,
+        "aggregate": {
+          "tp": 3,
+          "fp": 0,
+          "fn": 1,
+          "precision": 1.0,
+          "recall": 0.75,
+          "f1": 0.8571428571428571
+        },
+        "frame_presence": {
+          "tp": 3,
+          "fp": 0,
+          "fn": 1,
+          "tn": 4
+        },
+        "presence_tp": 3,
+        "presence_fp": 0,
+        "presence_fn": 1,
+        "presence_tn": 4,
+        "positive_frames": 4,
+        "negative_frames": 4,
+        "false_alarm_count": 0,
+        "false_alarm_denominator": 4,
+        "false_alarm_rate": 0.0,
+        "missed_positive_frames": [
+          "f02334"
+        ],
+        "matched_ious": [
+          0.6497696057191665,
+          0.7009182246487926,
+          0.6636623693575666
+        ],
+        "outcomes": {
+          "f02325": {
+            "ground_truth_count": 1,
+            "prediction_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [
+              0.6497696057191665
+            ],
+            "presence": "true_positive"
+          },
+          "f02328": {
+            "ground_truth_count": 1,
+            "prediction_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [
+              0.7009182246487926
+            ],
+            "presence": "true_positive"
+          },
+          "f02331": {
+            "ground_truth_count": 1,
+            "prediction_count": 1,
+            "tp": 1,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [
+              0.6636623693575666
+            ],
+            "presence": "true_positive"
+          },
+          "f02334": {
+            "ground_truth_count": 1,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "matched_ious": [],
+            "presence": "false_negative"
+          },
+          "f02475": {
+            "ground_truth_count": 0,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [],
+            "presence": "true_negative"
+          },
+          "f02490": {
+            "ground_truth_count": 0,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [],
+            "presence": "true_negative"
+          },
+          "f02505": {
+            "ground_truth_count": 0,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [],
+            "presence": "true_negative"
+          },
+          "f02820": {
+            "ground_truth_count": 0,
+            "prediction_count": 0,
+            "tp": 0,
+            "fp": 0,
+            "fn": 0,
+            "matched_ious": [],
+            "presence": "true_negative"
+          }
+        },
+        "missing_prediction_ids": [],
+        "unknown_prediction_ids": []
+      }
+    }
+  },
+  "limitations": [
+    "Single recorded transfer; temporal windows remain correlated.",
+    "Only red/pink visible liquid is represented.",
+    "No microlitre ground truth.",
+    "Labels are assistant-reviewed and should be checked by a lab operator.",
+    "No threshold was selected from the test window."
+  ],
+  "training": {
+    "weights": "data/vision/models/local-liquid.pt",
+    "weights_sha256": "4458b43576918b41c47c3470ded2ad1e73a5a55717a7a889b23aaf403d211964",
+    "epochs": 35,
+    "imgsz": 320,
+    "counts": {
+      "train": 258,
+      "validation": 4,
+      "test": 8
+    },
+    "selection": "Fixed-epoch final checkpoint; test partition not used for training or selection",
+    "label_source": "assistant visual review of original frames",
+    "volume_calibrated": false
+  },
+  "replay": {
+    "source": "data/vision/experiments/operator-protocol-20261022-152407/camera-original.mp4",
+    "source_fps": 15.0,
+    "replay_fps": 5,
+    "frames": 963,
+    "liquid_positive_frames": 15,
+    "liquid_positive_times": [
+      152.4,
+      152.6,
+      152.8,
+      153.0,
+      153.2,
+      153.4,
+      153.6,
+      154.0,
+      154.2,
+      154.4,
+      154.6,
+      154.8,
+      155.0,
+      155.2,
+      155.4
+    ],
+    "wall_seconds": 44.84,
+    "volume_calibrated": false,
+    "note": "Full-recording replay includes both training and held-out windows; use evaluation.json for held-out metrics."
+  },
+  "recording_sha256": "a7ce6a016b5c96114e5610c3beec7949f9635a4821bbf1e6cee398325a1460a1",
+  "target_domain_independently_validated": false,
+  "miss_analysis": "At 155.6s the upstream tip detector returns no tip, preventing downstream liquid detection.",
+  "software_tests": "28 focused vision tests passed (see validation log)"
+}
