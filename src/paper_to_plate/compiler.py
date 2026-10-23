@@ -36,7 +36,10 @@ def compile_plan(raw: dict, setup: dict) -> dict:
     first = setup.get("first_tip", "A1")
     if first not in slots:
         raise ValueError("First tip is outside the supplied rack.")
-    slots = [s for s in slots[slots.index(first):] if rack.get("tip_present", {}).get(s, True)]
+    excluded = set(setup.get("excluded_tips", []))
+    if not excluded.issubset(set(slots)):
+        raise ValueError("Excluded tip is outside the supplied rack.")
+    slots = [s for s in slots[slots.index(first):] if rack.get("tip_present", {}).get(s, True) and s not in excluded]
     steps, trace = [], []
     tip_index = 0
 

@@ -27,6 +27,9 @@ from .review import fingerprint, human_clearance
 from .seed import seed
 from .validation import score, validate
 from .vision_proxy import router as vision_router
+from .color_pipeline import router as color_router
+from .exploration import router as exploration_router
+from . import run_recording, station
 from .bond import router as bond_router
 from .design_api import router as design_router
 
@@ -48,15 +51,22 @@ async def lifespan(app):
     for run in store.list_all("runs"):
         if run.get("status") in ("running", "queued"):
             store.update_run(run["id"], status="interrupted", error="The application restarted before this model run finished. No hardware was contacted.")
+    for run in store.list_all("runs"):
+        recording = run.get("execution_recording") or {}
+        if recording.get("status") == "recording":
+            run_recording.watch(run["id"])
     yield
     tasks = list(pipeline.ACTIVE.values())
     for task in tasks:
         task.cancel()
     await asyncio.gather(*tasks, return_exceptions=True)
+    await run_recording.shutdown()
 
 
 app = FastAPI(title="Ursa Paper to Plate", lifespan=lifespan)
 app.include_router(vision_router)
+app.include_router(color_router)
+app.include_router(exploration_router)
 app.include_router(bond_router)
 app.include_router(design_router)
 HANDOFF_LOCKS: dict[str, asyncio.Lock] = {}
@@ -294,6 +304,7 @@ def edit_protocol(run_id: str, body: ProtocolEdit):
         raise HTTPException(400, str(exc)) from exc
     value.update(protocol_yaml=body.protocol_yaml, protocol_hash=digest(body.protocol_yaml), steps=steps, validation=None, validation_hash=None, review=None, review_hash=None, loading_confirmation=None, score=None, status="needs_attention", edited_at=time.time())
     value.pop("execution_summary", None)
+    value.pop("checks_basis", None)
     value["protocol_edited"] = True
     if value.get("adjudication"):
         value.setdefault("adjudication_history", []).append(value["adjudication"])
@@ -353,6 +364,8 @@ async def review(run_id: str):
     current = read("runs", run_id)
     if digest(current.get("protocol_yaml", "")) != version or preparation.fingerprint(current) != setup_version:
         raise HTTPException(409, "The protocol changed during review.")
+    if current.get("review"):
+        current.setdefault("review_history", []).append({"review": current["review"], "review_hash": current.get("review_hash"), "replaced_at": time.time()})
     current.update(review=result, review_hash=version)
     if current.get("adjudication"):
         current.setdefault("adjudication_history", []).append(current["adjudication"])
@@ -468,6 +481,11 @@ def export_run(run_id: str):
             archive.writestr(filename, value["setup_snapshot"].get(key, ""))
         archive.writestr("evaluation.json", json.dumps(value, indent=2))
         archive.writestr("preparation.json", json.dumps(preparation.build(value), indent=2))
+        event_file = store.folder('execution_events') / f'{run_id}.jsonl'
+        if event_file.is_file():
+            archive.write(event_file, 'execution-events.jsonl')
+        if value.get('execution_recording'):
+            archive.writestr('recording.json', json.dumps(value['execution_recording'], indent=2))
         for capture in value.get('vision_captures', []):
             key = capture.get('id', '')
             if len(key) == 32 and all(c in '0123456789abcdef' for c in key):
@@ -505,7 +523,9 @@ async def send_to_cubos(run_id: str, body: HandoffInput):
             raise HTTPException(409, "This experiment already has a submission attempt in that mode. Inspect CubOS; do not replay it from here.")
         # The app never calls this route during generation or validation.
         try:
-            handoff.submission(value, body)
+            payload = handoff.submission(value, body)
+            if not body.mock_mode:
+                await station.verify_setup(value)
             fresh = await validate(value["setup_snapshot"], value["protocol_yaml"])
             if not fresh["passed"]:
                 raise ValueError("Current offline validation failed; the run was not submitted.")
@@ -514,17 +534,41 @@ async def send_to_cubos(run_id: str, body: HandoffInput):
                 raise ValueError("The protocol or loading plan changed during handoff checks.")
             handoff.submission(current, body)
             value = current
+            if body.record_execution:
+                await run_recording.start(value, body, payload['run_id'])
+                latest = read('runs', run_id)
+                if preparation.fingerprint(latest) != preparation.fingerprint(value):
+                    await run_recording.stop(run_id, 'preparation_changed_before_submission')
+                    raise ValueError('The preparation changed while recording started. No robot run was submitted.')
+                value = latest
             value.setdefault("handoffs", {})[key] = {"status": "submitting", "at": time.time()}
             store.save("runs", value)
+            if body.record_execution:
+                run_recording.watch(run_id)
             result = await handoff.send(value, body)
         except (ValueError, KeyError) as exc:
+            if value.get('execution_recording') and value.get('handoffs', {}).get(key):
+                await run_recording.stop(run_id, 'submission_rejected')
             raise HTTPException(409, str(exc)) from exc
         except httpx.HTTPError as exc:
             raise HTTPException(502, "CubOS did not return a confirmed result. Inspect Operator before any retry; the submission may have been accepted.") from exc
+        value = read('runs', run_id)
         value["handoff"] = {"at": time.time(), "mock_mode": body.mock_mode, "response": result}
         value["handoffs"][key] = {"status": "accepted", **value["handoff"]}
         store.save("runs", value)
         return result
+
+
+@app.get('/api/runs/{run_id}/execution')
+async def execution_status(run_id: str):
+    return await run_recording.live_status(read('runs',run_id))
+
+
+@app.post('/api/runs/{run_id}/recording/stop')
+async def stop_execution_recording(run_id: str):
+    read('runs',run_id)
+    await run_recording.stop(run_id,'operator_stopped_recording')
+    return present_run(read('runs',run_id))
 
 
 dist = ROOT / "frontend" / "dist"

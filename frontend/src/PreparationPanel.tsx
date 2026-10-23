@@ -14,7 +14,7 @@ export default function PreparationPanel(props:Props){
  const allLoaded=sheet.stocks.length>0&&sheet.stocks.every(s=>loaded.includes(s.position));
  const configured=Math.min(...sheet.stocks.map(s=>s.effective_capacity_ul??Infinity));
  const robot=run.execution_summary?.length?run.execution_summary:sheet.robot_operations.length?Array.from(new Set(sheet.robot_operations)):['Perform the transfers and mixing shown in the generated protocol.'];
- const colorDemo=run.demonstration?.kind==='colored_water';
+ const colorDemo=run.demonstration?.kind==='colored_water'||Boolean(run.exploration_id);
  const validated=sheet.validation_ready;
  const reviewed=sheet.review_ready;
  function beginEdit(){setStocks(sheet!.stocks.map(s=>({position:s.position,material:s.material,concentration:s.concentration,preparation:s.preparation,load_volume_ul:s.load_volume_ul,citations:s.citations||[]})));setEditing(true);}
@@ -33,7 +33,7 @@ export default function PreparationPanel(props:Props){
     <div className="stock-table-wrap"><table className="stock-table"><thead><tr><th>Vial</th><th>Stock</th><th>Load</th><th>Loaded</th></tr></thead><tbody>
      {sheet.stocks.map((stock,i)=><tr key={stock.position} className={sheet.confirmed||loaded.includes(stock.position)?'stock-loaded':''}>
       <th scope="row"><span className="vial-position">{position(stock.position)}</span></th>
-      <td>{editing?<><label className="field">Stock<input value={stocks[i]?.material||''} onChange={e=>edit(i,{material:e.target.value})}/></label><label className="field">Concentration<input value={stocks[i]?.concentration||''} onChange={e=>edit(i,{concentration:e.target.value})}/></label><label className="field">Preparation<textarea rows={3} value={stocks[i]?.preparation||''} onChange={e=>edit(i,{preparation:e.target.value})}/></label></>:<strong>{colorDemo?stock.material.split(' · ')[0].replace(' water',''):stock.material}{!colorDemo&&stock.concentration?` · ${stock.concentration}`:''}</strong>}</td>
+      <td>{editing?<><label className="field">Stock<input value={stocks[i]?.material||''} onChange={e=>edit(i,{material:e.target.value})}/></label><label className="field">Concentration<input value={stocks[i]?.concentration||''} onChange={e=>edit(i,{concentration:e.target.value})}/></label><label className="field">Preparation<textarea rows={3} value={stocks[i]?.preparation||''} onChange={e=>edit(i,{preparation:e.target.value})}/></label></>:<strong>{colorDemo?stock.material.split(' · ')[0].replace(' working dye','').replace(' water',''):stock.material}{!colorDemo&&stock.concentration?` · ${stock.concentration}`:''}</strong>}</td>
       <td>{editing?<label className="field">µL<input type="number" min="0.1" step="0.1" value={stocks[i]?.load_volume_ul??''} onChange={e=>edit(i,{load_volume_ul:e.target.value===''?null:Number(e.target.value)})}/></label>:<strong>{volume(stock.load_volume_ul)}</strong>}</td>
       <td><input type="checkbox" aria-label={`Loaded vial ${position(stock.position)}`} disabled={editing||busy||sheet.confirmed} checked={sheet.confirmed||loaded.includes(stock.position)} onChange={e=>setLoaded(old=>e.target.checked?[...old,stock.position]:old.filter(x=>x!==stock.position))}/></td>
      </tr>)}
@@ -46,7 +46,7 @@ export default function PreparationPanel(props:Props){
    <aside className="execution-column">
     <section className="robot-work"><div className="bench-section-heading"><div className="owner-symbol"><Robot size={23}/></div><div><h2>CubOS</h2></div></div><details className="prep-detail"><summary>{run.steps?.length||0} commands</summary><ol>{robot.map((step,i)=><li key={i}><span>{String(i+1).padStart(2,'0')}</span><p>{step}</p></li>)}</ol></details><button className="text-link" onClick={onInspect}>View protocol <ArrowRight size={16}/></button></section>
     {sheet.human_after.length>0&&<details className="after-run prep-detail"><summary>After run</summary>{sheet.human_after.map((step,i)=><p key={i}>{step}</p>)}</details>}
-    <section className="bench-run-state"><div className="readiness-row"><span>{validated?<CheckCircle/>:<WarningCircle/>} Validation</span><button className="text-link" disabled={busy} onClick={onValidate}>{validated?'Recheck':'Validate'}</button></div><div className="readiness-row"><span>{reviewed?<CheckCircle/>:<WarningCircle/>} Review</span><button className="text-link" disabled={busy} onClick={onReview}>{reviewed?'View':'Review'}</button></div><div className="readiness-row"><span>{sheet.confirmed?<CheckCircle/>:<WarningCircle/>} Loading</span></div></section>
+    <section className="bench-run-state"><div className="readiness-row"><span>{validated?<CheckCircle/>:<WarningCircle/>} Validation</span><button className="text-link" disabled={busy} onClick={onValidate}>{validated?'Recheck':'Validate'}</button></div><div className="readiness-row"><span>{reviewed?<CheckCircle/>:<WarningCircle/>} Checks</span><button className="text-link" disabled={busy} onClick={onReview}>{reviewed?'View':'Check'}</button></div><div className="readiness-row"><span>{sheet.confirmed?<CheckCircle/>:<WarningCircle/>} Loading</span></div></section>
    </aside>
   </div>
  </div>;

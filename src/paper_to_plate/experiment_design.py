@@ -23,6 +23,8 @@ class MixtureSettings(StrictModel):
     yellow_source: str = Field(default="10_vial_holder.A2", max_length=100)
     blue_source: str = Field(default="10_vial_holder.A3", max_length=100)
     water_source: str = Field(default="10_vial_holder.A4", max_length=100)
+    source_height_mm: float = Field(default=0,ge=-100,le=0,allow_inf_nan=False)
+    start_row: str = Field(default="A", pattern=r"^[A-H]$")
     first_tip: str = Field(default="A1", pattern=r"^[A-H](?:[1-9]|1[0-2])$")
 
 
@@ -38,6 +40,8 @@ def design_mixtures(settings: MixtureSettings):
         ("Red + blue", (1, 0, 1), 2, "mixture"), ("Yellow + blue", (0, 1, 1), 2, "mixture")]
     recipes += [(f"Center repeat {i + 1}", (1, 1, 1), 3, "technical_repeat") for i in range(3)]
     recipes += [("Water blank", (0, 0, 0), 1, "blank")]
+    if ord(settings.start_row) - 65 + settings.blocks > 8:
+        raise ValueError("The requested rows exceed the 96-well plate.")
     rows = []
     for block in range(settings.blocks):
         shuffled = list(recipes)
@@ -45,7 +49,7 @@ def design_mixtures(settings: MixtureSettings):
         for column, (label, weights, divisor, role) in enumerate(shuffled, 1):
             volumes = {c: dye_units * w // divisor / 10 for c, w in zip(COLORS, weights)}
             volumes["water"] = round(settings.total_ul - sum(volumes.values()), 1)
-            rows.append({"well": f"{chr(65 + block)}{column}", "block": block + 1, "label": label, "role": role,
+            rows.append({"well": f"{chr(ord(settings.start_row) + block)}{column}", "block": block + 1, "label": label, "role": role,
                          "volumes_ul": volumes, "total_ul": settings.total_ul, "origin": "calculated",
                          "rationale": "Water background" if role == "blank" else "Center repeatability" if role == "technical_repeat" else "Sample the constrained red/yellow/blue mixture space"})
     return {"kind": "three-component mixture screen", "wells": rows, "seed": settings.seed,
@@ -94,7 +98,7 @@ def compile_design(settings: MixtureSettings, setup: dict, design: dict):
         parts = [(c, row["volumes_ul"][c]) for c in ("water", *COLORS) if row["volumes_ul"][c] > 0]
         for index, (color, volume) in enumerate(parts):
             operations.append({"action": "transfer", "source": sources[color], "destinations": ["plate." + row["well"]],
-                "volume_ul": volume, "mix_after_ul": min(60, settings.total_ul / 2) if index == len(parts) - 1 else 0,
+                "volume_ul": volume, "source_height": settings.source_height_mm, "mix_after_ul": min(60, settings.total_ul / 2) if index == len(parts) - 1 else 0,
                 "mix_after_cycles": 3, "purpose": f"{row['well']} · {row['label']}: add {volume:g} uL {color}", "citations": []})
     stocks = [{"position": pos, "material": color + (" working dye" if color != "water" else ""),
         "concentration": "Water, no added dye" if color == "water" else "User-provided working stock; absolute dye concentration unmeasured",

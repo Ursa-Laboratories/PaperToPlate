@@ -1,0 +1,11 @@
+import {useEffect,useState} from 'react';
+import {api} from './api';
+import type {Run} from './types';
+
+type Execution={reachable:boolean;station_url?:string;run?:{run_id:string;state:string;error?:string}|null;recording?:{id:string;active?:boolean;status:string;video_healthy?:boolean;frames?:number;stop_reason?:string}|null};
+export default function ExecutionPanel({run}:{run:Run}){
+ const [state,setState]=useState<Execution|null>(null),[error,setError]=useState('');
+ useEffect(()=>{let cancelled=false;let timer:ReturnType<typeof setTimeout>;const poll=async()=>{try{const value=await api<Execution>(`/runs/${run.id}/execution`);if(!cancelled){setState(value);setError('');}}catch(e){if(!cancelled)setError((e as Error).message);}if(!cancelled)timer=setTimeout(poll,2000);};poll();return()=>{cancelled=true;clearTimeout(timer);};},[run.id]);
+ const rec=state?.recording;
+ return <section className="execution-receipt"><div className="content-heading"><h3>{state?.run?`CubOS · ${state.run.state}`:rec?.stop_reason==='cubos_succeeded'?'Recorded run · succeeded':rec?.stop_reason==='cubos_cancelled'?'Recorded run · cancelled':'Waiting for CubOS status'}</h3><span>{rec?.status==='stop_unconfirmed'?'Recording status unknown':rec?.active?'● Recording':rec?`Recording · ${rec.status}`:''}</span></div>{state?.station_url&&<a className="text-link" href={state.station_url} target="_blank" rel="noreferrer">CubOS controls</a>}{error&&<p role="alert">{error}</p>}{state?.run?.error&&<p role="alert">{state.run.error}</p>}{rec?.active&&rec.video_healthy===false&&<p className="inline-warning">Video stopped unexpectedly. Inspect CubOS; the robot has not been stopped by this app.</p>}{rec&&<div className="color-pipeline-actions">{rec.active?<><img src="/api/vision/stream" alt="Live camera observations"/><button className="small-button" onClick={async()=>{try{await api(`/runs/${run.id}/recording/stop`,{method:'POST'});}catch(e){setError((e as Error).message);}}}>Stop recording</button></>:<><video controls src={`/api/vision/recordings/${rec.id}/video`} preload="metadata"/><a href={`/api/vision/recordings/${rec.id}/video`}>Download video</a><a href={`/api/vision/recordings/${rec.id}/archive`}>Video + observations</a></>}</div>}</section>;
+}

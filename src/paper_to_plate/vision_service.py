@@ -10,6 +10,9 @@ import hashlib
 import io
 import json
 import os
+import shutil
+import signal
+import subprocess
 import threading
 import time
 import uuid
@@ -112,6 +115,8 @@ class Vision:
         self.unique_frames = 0
         self.camera_status = {}
         self.recording = None
+        self.video_process = None
+        self.video_log = None
 
     def start(self):
         self.stop.clear()
@@ -121,6 +126,8 @@ class Vision:
             self.threads.append(thread)
 
     def close(self):
+        if self.recording:
+            self.stop_recording(self.recording['id'], 'worker_shutdown')
         self.stop.set()
         for thread in self.threads:
             thread.join(timeout=3)
@@ -172,26 +179,86 @@ class Vision:
         if not self.recording:
             return None
         remaining = max(0., self.recording['ends_at']-time.time())
-        return {'id': self.recording['id'], 'active': remaining > 0,
-                'frames': self.recording['frames'], 'seconds_remaining': round(remaining, 1)}
+        video = self.recording.get('video', False)
+        process_alive = bool(self.video_process and self.video_process.poll() is None)
+        return {'id': self.recording['id'], 'active': remaining > 0 and not self.recording.get('stopped'),
+                'frames': self.recording['frames'], 'seconds_remaining': round(remaining, 1),
+                'video': video, 'video_healthy': process_alive if video else None,
+                'context': self.recording.get('context', {}), 'stop_reason': self.recording.get('stop_reason')}
 
-    def start_recording(self, duration):
+    def start_recording(self, duration, context=None, video=False):
         with self.lock:
             if self.recording_status() and self.recording_status()['active']:
                 raise ValueError('A recording is already active.')
             key = uuid.uuid4().hex
             folder = self.data/'recordings'/key
             folder.mkdir(parents=True)
-            self.recording = {'id': key, 'ends_at': time.time()+duration, 'frames': 0, 'last_saved': 0.}
-            atomic_json(folder/'session.json', {'id': key, 'started_at': time.time(), 'duration_seconds': duration, 'session_id': self.session_id, 'camera': 'MX Brio', 'model': self.model_id, 'protocol_alignment': None, 'label_source': 'model_predictions_unreviewed', 'target_domain_validated': False})
+            self.video_process = None
+            self.recording = {'id': key, 'ends_at': time.time()+duration, 'frames': 0, 'last_saved': 0., 'video': video, 'context': context or {}}
+            atomic_json(folder/'session.json', {'id': key, 'started_at': time.time(), 'duration_seconds': duration, 'session_id': self.session_id, 'camera': 'MX Brio', 'model': self.model_id, 'protocol_alignment': 'local timestamps; CubOS events recorded separately; clock offset not calibrated' if context else None, 'context': context or {}, 'video': video, 'label_source': 'model_predictions_unreviewed', 'target_domain_validated': False})
+            if video:
+                executable = shutil.which('ffmpeg')
+                if not executable:
+                    self.recording['stopped'] = True
+                    raise ValueError('ffmpeg is required for run video recording.')
+                self.video_log = open(folder/'video.log', 'wb')
+                self.video_process = subprocess.Popen([executable, '-hide_banner', '-loglevel', 'warning',
+                    '-r', '30', '-i', CAMERA_URL+'/stream', '-an', '-t', str(duration), '-vf', 'fps=15,scale=1280:-2',
+                    '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '23', '-pix_fmt', 'yuv420p',
+                    '-g', '15', '-flush_packets', '1', '-frag_duration', '1000000',
+                    '-movflags', 'frag_keyframe+empty_moov', '-y', str(folder/'video.mp4')],
+                    stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=self.video_log)
+                # A process spawn alone is not proof that the stream opened.
+                deadline = time.monotonic()+8
+                while time.monotonic() < deadline:
+                    if self.video_process.poll() is not None:
+                        self.stop_recording(key, 'video_start_failed')
+                        raise ValueError('Camera video recording could not start; no robot run should be submitted.')
+                    if (folder/'video.mp4').exists() and (folder/'video.mp4').stat().st_size > 100:
+                        break
+                    time.sleep(.1)
+                else:
+                    self.stop_recording(key, 'video_start_timeout')
+                    raise ValueError('Video recording did not produce data in time.')
+            timer = threading.Timer(duration, self.expire_recording, args=(key,))
+            timer.daemon = True
+            timer.start()
+            return self.recording_status()
+
+    def expire_recording(self, key):
+        with self.lock:
+            if self.recording and self.recording['id'] == key and not self.recording.get('stopped'):
+                self.stop_recording(key, 'duration_limit')
+
+    def stop_recording(self, key, reason='operator_stop'):
+        with self.lock:
+            if not self.recording or self.recording['id'] != key:
+                raise ValueError('Recording is not the active session.')
+            if self.recording.get('stopped'):
+                return self.recording_status()
+            self.recording.update(stopped=True, stop_reason=reason, ends_at=time.time())
+            process = self.video_process
+            if process and process.poll() is None:
+                process.send_signal(signal.SIGINT)
+                try:
+                    process.wait(timeout=5)
+                except subprocess.TimeoutExpired:
+                    process.kill(); process.wait(timeout=2)
+            if self.video_log:
+                self.video_log.close(); self.video_log = None
+            path = self.data/'recordings'/key/'session.json'
+            meta = json.loads(path.read_text())
+            meta.update(finished_at=time.time(), stop_reason=reason, observation_frames=self.recording['frames'],
+                        video_returncode=process.returncode if process else None)
+            atomic_json(path, meta)
             return self.recording_status()
 
     def record_observation(self, image, value):
         with self.lock:
             recording = self.recording
-            if not recording or time.time() >= recording['ends_at'] or time.time()-recording['last_saved'] < .5:
+            if not recording or recording.get('stopped') or time.time() >= recording['ends_at'] or time.time()-recording['last_saved'] < .5:
                 return
-            if recording['frames'] >= 120:
+            if recording['frames'] >= 7200:
                 return
             folder = self.data/'recordings'/recording['id']
             filename = f"frame-{recording['frames']:04d}.jpg"
@@ -402,7 +469,9 @@ def capture(body: CaptureInput | None = None):
 
 
 class RecordingInput(BaseModel):
-    duration_seconds: int = Field(default=30, ge=5, le=60)
+    duration_seconds: int = Field(default=30, ge=5, le=3600)
+    context: dict[str, str] = Field(default_factory=dict)
+    video: bool = False
 
 
 @app.post('/recording')
@@ -410,9 +479,30 @@ def record(body: RecordingInput):
     if vision.status()['state'] != 'live':
         raise HTTPException(409, 'Recording requires a fresh camera and working detector.')
     try:
-        return vision.start_recording(body.duration_seconds)
+        return vision.start_recording(body.duration_seconds, body.context, body.video)
     except ValueError as exc:
         raise HTTPException(409, str(exc)) from exc
+
+
+@app.post('/recordings/{key}/stop')
+def stop_recording(key: str):
+    try:
+        return vision.stop_recording(key)
+    except ValueError as exc:
+        raise HTTPException(409, str(exc)) from exc
+
+
+@app.get('/recordings/{key}/video')
+def recording_video(key: str):
+    from fastapi.responses import FileResponse
+    if len(key) != 32 or any(c not in '0123456789abcdef' for c in key):
+        raise HTTPException(404)
+    path = vision.data/'recordings'/key/'video.mp4'
+    if not path.is_file():
+        raise HTTPException(404, 'No video was recorded for this session.')
+    if vision.recording and vision.recording['id'] == key and vision.recording_status()['active']:
+        raise HTTPException(409, 'Stop recording before downloading the video.')
+    return FileResponse(path, media_type='video/mp4', filename=f'color-run-{key}.mp4')
 
 
 @app.get('/recordings/{key}/archive')
@@ -424,12 +514,15 @@ def recording_archive(key: str):
         raise HTTPException(404)
     if vision.recording and vision.recording['id'] == key and vision.recording_status()['active']:
         raise HTTPException(409, 'Wait for the recording to finish.')
-    output = io.BytesIO()
-    with ZipFile(output, 'w', ZIP_DEFLATED) as archive:
+    from fastapi.responses import FileResponse
+    output = folder/'evidence.zip'
+    temporary = folder/f'.archive-{uuid.uuid4().hex}.tmp'
+    with ZipFile(temporary, 'w', ZIP_DEFLATED) as archive:
         for path in sorted(folder.iterdir()):
-            if path.is_file() and path.suffix in ('.json', '.jsonl', '.jpg'):
+            if path.is_file() and path.suffix in ('.json', '.jsonl', '.jpg', '.mp4'):
                 archive.write(path, path.name)
-    return Response(output.getvalue(), media_type='application/zip', headers={'Content-Disposition': f'attachment; filename="vision-{key}.zip"'})
+    temporary.replace(output)
+    return FileResponse(output, media_type='application/zip', filename=f'vision-{key}.zip')
 
 
 @app.get('/captures/{key}/image')

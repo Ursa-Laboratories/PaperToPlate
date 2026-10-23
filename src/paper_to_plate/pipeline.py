@@ -9,6 +9,7 @@ from .compiler import compile_plan
 from .models import Extraction, Plan, Review
 from .review import human_clearance
 from .preparation import apply_stock_preparations
+from .preparation import build as build_preparation
 from .validation import score, validate
 
 ACTIVE: dict[str, asyncio.Task] = {}
@@ -64,12 +65,56 @@ async def generate_plan(paper, setup, objective, extraction, feedback=""):
 
 async def review_run(paper, setup, run):
     system = SOURCE_RULE + "\nYou are a separate skeptical scientific protocol reviewer. Compare the candidate with the objective, actual paper and lab capabilities. Check missing steps, source identities, controls, units, dilution arithmetic, replicates, reagent compatibility, contamination, timing, mixing, required readouts and unsupported assumptions. Do not accept the generator's claims as evidence. Review the full requested scope, including all manual steps. No_issues_found means no issues found by this model, not independent validation or approval to operate hardware. Identify critical gaps and specific operator questions; do not fabricate source quotes. Understand the compiler contract: transfer cycles is ignored; mixing uses one attached tip, including multiple cycles; mix_after_ul performs mixing on the same tip as the transfer. Offset 0 uses an existing deck anchor, not an unknown absolute height. Distinguish missing experimental facts from ordinary physical commissioning prerequisites; commissioning checks belong before the run."
+    if run.get("demonstration", {}).get("kind") == "colored_water":
+        system += "\nThis run is explicitly a colored-water surrogate demonstration. Review liquid identities, dilution arithmetic, controls, replicate allocation and compilable preparation. Real protein, Bradford chemistry, absorbance readout and color-development incubation are deliberately outside scope; do not request them as missing demo steps. Do not claim biochemical equivalence or protein quantification. Physical source loading and commissioning remain operator prerequisites."
     commands = yaml.safe_load(run.get("protocol_yaml", "")) or {}
     command_rows = commands.get("protocol", [])
     transfer_volumes = [step["transfer"].get("volume_ul") for step in command_rows if "transfer" in step]
     picks = [step["pick_up_tip"].get("position") for step in command_rows if "pick_up_tip" in step]
+    attached = None
+    mixing_receipt = []
+    for i, step in enumerate(command_rows):
+        if 'pick_up_tip' in step:
+            attached = step['pick_up_tip']['position']
+        elif 'drop_tip' in step:
+            attached = None
+        elif 'mix' in step:
+            mixing_receipt.append({'command_index':i,'position':step['mix']['position'],
+                'attached_tip':attached,'previous_command':next(iter(command_rows[i-1])) if i else None,
+                'next_command':next(iter(command_rows[i+1])) if i+1<len(command_rows) else None})
     receipt = {"emitted_commands": len(command_rows), "tip_pickups": len(picks), "distinct_tip_positions": len(set(picks)), "tip_discards": sum("drop_tip" in step for step in command_rows), "largest_emitted_transfer_ul": max(transfer_volumes, default=0), "tip_positions": picks, "note": "These counts are derived from the actual YAML. Generated totals above 120 uL are split by the compiler; judge the emitted transfers, not the aggregate plan volume. A mix_after uses the transfer tip. Physical calibration remains operator-owned."}
+    receipt['mixing_tip_trace'] = mixing_receipt
+    receipt['mixes_without_an_attached_tip'] = [x['command_index'] for x in mixing_receipt if not x['attached_tip']]
+    system += "\nAll pipetting heights are millimetres, not micrometres. A negative source_height is an intentional offset below the calibrated vial anchor. Do not infer air aspiration or collision from its sign alone; use native validation for bounds and ask the operator about physical immersion. Three separate identical center wells ARE technical repeats; do not demand repeats of repeats. Read the actual per-well sums including water, not an individual dye aliquot, when checking mixing volume. A camera screen using user-provided dyes does not require biological assay readouts or the original paper's extra robots."
     system += "\nUse the deterministic compilation receipt to check tip counts, discard presence and split transfers. Do not claim these actions are missing when the receipt and actual commands show them. Limit findings to twelve concrete issues; use exact enums and concise JSON."
+    system += "\nThe mixing_tip_trace is computed by walking the actual commands in order. A mix with previous_command=transfer, next_command=drop_tip and an attached_tip occurs BEFORE discard and uses that transfer tip; it is not missing-tip mixing. Source height 0 is a labware-relative calibrated anchor, not the deck surface. For implementation findings cite command indices in detail and leave citations empty. Only literal quotations from paper pages belong in citations; do not invent page citations for setup JSON or the compilation receipt."
+    if run.get("demonstration", {}).get("kind") == "colored_water":
+        deck = yaml.safe_load(setup["deck_yaml"])["labware"]
+        initial = {p: float(v["volume_ul"]) for p, v in (yaml.safe_load(setup["fluids_yaml"]) or {}).get("fluids", {}).items()}
+        balances, peaks = dict(initial), dict(initial)
+        for row in command_rows:
+            if "transfer" in row:
+                args = row["transfer"]
+                balances[args["source"]] = balances.get(args["source"], 0) - args["volume_ul"]
+                balances[args["destination"]] = balances.get(args["destination"], 0) + args["volume_ul"]
+                peaks[args["destination"]] = max(peaks.get(args["destination"], 0), balances[args["destination"]])
+        receipt.update(pipette_min_ul=5, pipette_max_ul=120, smallest_transfer_ul=min(transfer_volumes, default=0),
+            labware_limits={k: {field: value.get(field) for field in ("rows", "columns", "capacity_ul", "working_volume_ul")} for k, value in deck.items()},
+            initial_ul=initial, peak_ul=peaks, final_ul=balances, loading_sheet=build_preparation(run),
+            offline_validation_passed=bool((run.get("validation") or {}).get("passed")))
+        system += "\nThe receipt gives the authoritative CONFIGURED pipette limits and capacities. Initial volume zero means EMPTY, not zero capacity. Split strokes preserve the total; repeated strokes are not duplicate dosing. Plain water blanks do not need dye homogenization. Pipette mixing on the final addition is explicit in the plan. Calibration accuracy and reachable liquid depth still need operator verification; do not invent a missing numeric limit when the receipt supplies it. Check actual contradictions, and use needs_operator_review for remaining physical prerequisites. Do not invent quotations or citations; leave citations empty when no exact source text is supplied."
+        evidence = run.get("design_evidence") or {}
+        compiled_commands = []
+        for index, row in enumerate(command_rows):
+            command, args = next(iter(row.items()))
+            # Review the actual emitted strokes, not aggregate plan additions.
+            compiled_commands.append({"index": index, "command": command,
+                **{key: args[key] for key in ("source", "destination", "position", "volume_ul", "cycles") if key in args}})
+        plan_context = {key: value for key, value in (run.get("plan") or {}).items() if key != "operations"}
+        user = json.dumps({"objective": run["objective"], "scope": "Colored-water liquid-handling demonstration, not protein quantification",
+            "source_reference": evidence.get("method_reference"), "reviewed_source_facts": (evidence.get("design") or {}).get("source_facts", []),
+            "preparation_and_scope": plan_context, "compiled_commands": compiled_commands, "compiled_receipt": receipt}, ensure_ascii=False)
+        return await llm.complete(Review, system, user, max_tokens=4500)
     user = json.dumps({"objective": run["objective"], "setup": setup_context(setup), "plan": run.get("plan"), "compilation_receipt": receipt, "protocol_yaml": run.get("protocol_yaml", "")[:65000], "source": paper_context(paper)}, ensure_ascii=False)
     return await llm.complete(Review, system, user, max_tokens=7000)
 

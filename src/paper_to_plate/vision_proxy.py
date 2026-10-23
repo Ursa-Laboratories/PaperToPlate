@@ -15,9 +15,24 @@ ALLOWED = {'status', 'model', 'stream', 'frame.jpg', 'capture', 'annotations', '
 @router.api_route('/{path:path}', methods=['GET', 'POST'])
 async def proxy(path: str, request: Request):
     parts = path.split('/')
-    valid = path in ALLOWED or (len(parts) == 3 and ((parts[0] in ('captures', 'examples') and parts[2] == 'image') or (parts[0] == 'recordings' and parts[2] == 'archive')) and parts[1].replace('-', '').isalnum())
+    valid = path in ALLOWED or (len(parts) == 3 and ((parts[0] in ('captures', 'examples') and parts[2] == 'image') or (parts[0] == 'recordings' and parts[2] in ('archive', 'video', 'stop'))) and parts[1].replace('-', '').isalnum())
     if not valid:
         return JSONResponse({'detail': 'Unknown vision endpoint'}, status_code=404)
+    if len(parts)==3 and parts[0]=='recordings' and parts[2] in ('video','archive') and request.method=='GET':
+        client = httpx.AsyncClient(timeout=60,trust_env=False)
+        upstream = await client.send(client.build_request('GET',WORKER+'/'+path,
+            headers={'Range':request.headers['range']} if 'range' in request.headers else {}),stream=True)
+        if upstream.status_code not in (200,206):
+            content=await upstream.aread(); await upstream.aclose(); await client.aclose()
+            return Response(content,status_code=upstream.status_code,media_type='application/json')
+        async def download():
+            try:
+                async for chunk in upstream.aiter_bytes():
+                    yield chunk
+            finally:
+                await upstream.aclose(); await client.aclose()
+        headers={k:v for k,v in upstream.headers.items() if k in ('content-length','content-range','accept-ranges','content-disposition')}
+        return StreamingResponse(download(),status_code=upstream.status_code,media_type=upstream.headers.get('content-type'),headers=headers)
     if path == 'stream' and request.method == 'GET':
         async def stream():
             try:

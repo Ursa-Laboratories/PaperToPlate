@@ -101,6 +101,22 @@ def test_recording_keeps_prediction_provenance_and_enforces_single_session(tmp_p
     assert archive.content.startswith(b'PK')
 
 
+def test_long_recording_explicit_stop_retains_protocol_context(tmp_path,monkeypatch):
+    worker=service.Vision(tmp_path)
+    monkeypatch.setattr(service,'vision',worker)
+    worker.raw=Image.new('RGB',(100,100));worker.received_at=worker.changed_at=time.time()
+    worker.loaded_id='yolo';worker.result={'model':'yolo','captured_at':time.time(),'detections':[]}
+    client=TestClient(service.app)
+    response=client.post('/recording',json={'duration_seconds':1800,'context':{'run_id':'fixture','protocol_hash':'abc'},'video':False})
+    assert response.status_code==200
+    key=response.json()['id']
+    assert client.post(f'/recordings/{key}/stop').json()['active'] is False
+    meta=json.loads((tmp_path/'recordings'/key/'session.json').read_text())
+    assert meta['context']['protocol_hash']=='abc' and meta['finished_at']
+    assert client.get(f'/recordings/{key}/video').status_code==404
+    worker.expire_recording('different-session')  # old timers must not stop a new session
+
+
 def test_capture_links_paper_and_protocol_revision(workspace, monkeypatch):
     import httpx
     from paper_to_plate import store, vision_proxy

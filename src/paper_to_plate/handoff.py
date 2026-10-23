@@ -19,6 +19,8 @@ def submission(run: dict, request: HandoffInput) -> dict:
     if run.get("manual_interleaving"):
         raise ValueError("This procedure has manual actions between robot steps. Split it into separately reviewed runs first.")
     if not request.mock_mode:
+        if run.get("requires_station_refresh"):
+            raise ValueError("This draft uses a recorded setup. Reconnect CubOS and prepare it again with current inventory before a physical run.")
         if not all((request.operator_confirmed, request.manual_steps_confirmed, request.setup_confirmed)):
             raise ValueError("The operator must confirm the reviewed procedure, physical setup and manual steps.")
         if not run.get("review") or run.get("review_hash") != current_hash:
@@ -35,7 +37,9 @@ def submission(run: dict, request: HandoffInput) -> dict:
             raise ValueError("Confirm every stock on the current preparation sheet before a physical Run.")
     setup = run["setup_snapshot"]
     payload = {"run_id": f"paper-{run['id'][:32]}-{'mock' if request.mock_mode else 'hardware'}-{current_hash[:12]}", "gantry_config": setup["gantry_yaml"], "deck_config": setup["deck_yaml"], "protocol_yaml": run["protocol_yaml"], "mock_mode": request.mock_mode, "metadata": {"source": "ursa-paper-to-plate", "benchmark_run_id": run["id"], "protocol_hash": current_hash}}
-    if setup.get("fluids_yaml"):
+    if setup.get("station_fluid_state_id") and not request.mock_mode:
+        payload["state"] = {"fluid_state_id": setup["station_fluid_state_id"]}
+    elif setup.get("fluids_yaml") and not request.mock_mode:
         initial = yaml.safe_load(setup["fluids_yaml"])
         payload["state"] = {"initial_state": {"label": "Paper to Plate operator-verified setup", "fluids": initial["fluids"]}}
     return payload

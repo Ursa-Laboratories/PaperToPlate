@@ -117,6 +117,8 @@ class HandoffInput(StrictModel):
     manual_steps_confirmed: bool = False
     setup_confirmed: bool = False
     preparation_hash: str | None = None
+    record_execution: bool = False
+    recording_limit_seconds: int = Field(default=1800, ge=5, le=3600)
 
 
 class PreparationEdit(StrictModel):

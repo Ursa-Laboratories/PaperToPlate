@@ -1,0 +1,29 @@
+{
+  "design_id": "3bf971fddd4f4ffca4dd2f1c5f4a0d20",
+  "run_id": "f1a0501c8e5043deba5e0399c30710f7",
+  "source_doi": "10.3791/1918",
+  "source_retrieved_through_bond": true,
+  "bond_request_ids": [
+    "3a19ba665e3a4a09926d1006abc9dcf1",
+    "65ef9ac7dc0d47eb98ec703bb36921cb"
+  ],
+  "well_count": 24,
+  "final_well_volume_ul": 200,
+  "tip_count": 72,
+  "command_count": 238,
+  "smallest_transfer_ul": 10.0,
+  "largest_transfer_ul": 112.5,
+  "configured_pipette_range_ul": [
+    5,
+    120
+  ],
+  "configured_vial_working_capacity_ul": 4000,
+  "intermediate_A5_peak_ul": 1000,
+  "offline_validation_passed": true,
+  "hardware_contacted": false,
+  "physical_accuracy_verified": false,
+  "ai_review_status": "Completed with the approved demo receipt and byte-identical public compiled strokes. Pipette limits and final well volumes acknowledged. Physical calibration remains an operator-owned critical check.",
+  "operator_status": "No loading confirmation, human approval or physical handoff performed.",
+  "review_history_count": 2,
+  "review_caveat": "The reviewer still raises a generic reagent-blank warning. The selected Ernst/Zor method explicitly requires a water-only optical blank and a separate reagent-only zero standard; do not change the recipe based on that generic warning."
+}

@@ -1,0 +1,885 @@
+{
+  "mode": "recorded_demo",
+  "retrieved_at": 1792697601.401161,
+  "query": "Find a plate-based Bradford assay that measures protein in an unknown sample using a standard curve. Recreate its pipetting structure as a colored-water demonstration: red for standards, yellow for one unknown, blue for reagent, plus plain water. Include dilution, replicates and blanks. I have a 120 uL single-channel pipette and a camera, but no protein or absorbance reader.",
+  "searches": [
+    {
+      "query": "Find a plate-based Bradford assay that measures protein in an unknown sample using a standard curve. Recreate its pipetting structure as a colored-water demonstration: red for standards, yellow for one unknown, blue for reagent, plus plain water. Include dilution, replicates and blanks. I have a 120 uL single-channel pipette and a camera, but no protein or absorbance reader.",
+      "result": {
+        "query": "Find a plate-based Bradford assay that measures protein in an unknown sample using a standard curve. Recreate its pipetting structure as a colored-water demonstration: red for standards, yellow for one unknown, blue for reagent, plus plain water. Include dilution, replicates and blanks. I have a 120 uL single-channel pipette and a camera, but no protein or absorbance reader.",
+        "query_type": "semantic",
+        "confidence": "ambiguous_match",
+        "top_similarity": 0.7943,
+        "spread": 0.0194,
+        "count": 6,
+        "warnings": [
+          "Multiple similar results - top match may not be definitive"
+        ],
+        "hints": [],
+        "papers": [
+          {
+            "id": "37747186",
+            "base_id": "37747186",
+            "title": "RGBradford: Protein Quantitation with a Smartphone Camera.",
+            "abstract": "Protein quantitation is an essential procedure in life sciences research. Amongst several other methods, the Bradford assay is one of the most used. Because of its widespread, the limitations and advantages of the Bradford assay have been exhaustively reported, including several modifications of the original method to improve its performance. One of the alterations of the original method is the use of a smartphone camera as an analytical instrument. Taking advantage of the three forms of the Coomassie Brilliant Blue dye that exist in the conditions of the Bradford assay, this paper describes how to accurately quantify protein in samples using color data extracted from a single picture of a microplate. After performing the assay in a microplate, a picture is taken using a smartphone camera, and RGB color data is extracted from the picture using a free and open-source image analysis software application. Then, the ratio of blue to green intensity (in the RGB scale) of samples with unknown concentrations of protein is used to calculate the protein content based on a standard curve. No significant difference is observed between values calculated using RGB color data and those calculated using conventional absorbance data.",
+            "categories": [
+              "Smartphone",
+              "Biological Assay"
+            ],
+            "datestamp": "2023-09-26",
+            "doi": "10.3791/65547",
+            "authors": [
+              "Moreira, Daniel C"
+            ],
+            "source": "pubmed",
+            "semantic_score": 0.7943116517901372,
+            "bm25_score": null,
+            "title_trgm_score": null,
+            "abstract_trgm_score": null,
+            "final_score": 0.7943116517901372,
+            "dates": {
+              "first_available": {
+                "value": "2023-09-08",
+                "precision": "day",
+                "basis": "electronic_publication"
+              }
+            },
+            "relevance_score": 0.7943,
+            "match_quality": "good",
+            "citation_count": null,
+            "url": "https://pubmed.ncbi.nlm.nih.gov/37747186/"
+          },
+          {
+            "id": "35987416",
+            "base_id": "35987416",
+            "title": "RGBradford: Accurate measurement of protein concentration using a smartphone camera and the blue to green intensity ratio.",
+            "abstract": "The color shift caused by the interaction between proteins and Coomassie Brilliant Blue in the Bradford assay can be recorded with a smartphone camera. Color data can then be extracted from pictures and processed as analytical signals. Here, I present a simple procedure to accurately measure protein levels using color data from pictures of microplates. Plotting the ratio of blue to green intensity (RGB scale) as a function of protein concentration results in a linear (R2\u00a0\u2265\u00a00.99) relationship, from which protein levels in biological samples can be calculated with no significant difference from values obtained using absorbance data (RGB versus absorbance curves).",
+            "categories": [
+              "Colorimetry",
+              "Smartphone",
+              "Colorimetry",
+              "Coomassie Brilliant Blue",
+              "Digital image analysis",
+              "Mobile phone",
+              "Portable instrumentation",
+              "Spectrophotometry"
+            ],
+            "datestamp": "2022-09-13",
+            "doi": "10.1016/j.ab.2022.114839",
+            "authors": [
+              "Moreira, Daniel C"
+            ],
+            "source": "pubmed",
+            "semantic_score": 0.7900020672616743,
+            "bm25_score": null,
+            "title_trgm_score": null,
+            "abstract_trgm_score": null,
+            "final_score": 0.7900020672616743,
+            "dates": {
+              "first_available": {
+                "value": "2022-08-18",
+                "precision": "day",
+                "basis": "electronic_publication"
+              }
+            },
+            "relevance_score": 0.79,
+            "match_quality": "good",
+            "citation_count": null,
+            "url": "https://pubmed.ncbi.nlm.nih.gov/35987416/"
+          },
+          {
+            "id": "34483361",
+            "base_id": "34483361",
+            "title": "Quantifying Protein Concentrations Using Smartphone Colorimetry: A New Method for an Established Test.",
+            "abstract": "Proteins are involved in nearly every biological process, which makes them of interest to a range of scientists. Previous work has shown that hand-held cameras can be used to determine the concentration of colored analytes in solution, and this paper extends the approach to reactions involving a color change in order to quantify protein concentration (e.g., green to blue). Herein, we describe the successful use of smartphone colorimetry to quantify protein concentration using two common colorimetric biochemical methods, the Bradford and biuret assays. The ease of the experimental setup makes these lab experiments accessible to a wide range of students and can be used as both high school and college level laboratory experiments.",
+            "categories": [
+              "Analytical Chemistry",
+              "Biochemistry",
+              "First-Year Undergraduate/General",
+              "Hands-On Learning/Manipulatives",
+              "High School/Introductory Chemistry",
+              "Laboratory Instruction",
+              "Proteins/Peptides",
+              "Quantitative Analysis",
+              "UV\u2013Vis Spectroscopy"
+            ],
+            "datestamp": "2021-09-07",
+            "doi": "10.1021/acs.jchemed.6b00676",
+            "authors": [
+              "Gee, Clifford T",
+              "Kehoe, Eric",
+              "Pomerantz, William C K"
+            ],
+            "source": "pubmed",
+            "semantic_score": 0.7823924239471625,
+            "bm25_score": null,
+            "title_trgm_score": null,
+            "abstract_trgm_score": null,
+            "final_score": 0.7823924239471625,
+            "dates": {
+              "first_available": {
+                "value": "2017-05-03",
+                "precision": "day",
+                "basis": "electronic_publication"
+              }
+            },
+            "relevance_score": 0.7824,
+            "match_quality": "good",
+            "citation_count": null,
+            "total_authors": 4,
+            "authors_truncated": true,
+            "url": "https://pubmed.ncbi.nlm.nih.gov/34483361/"
+          },
+          {
+            "id": "40407044",
+            "base_id": "40407044",
+            "title": "Freezing diluted bovine serum albumin standards does not significantly affect standard curves.",
+            "abstract": "Total protein isolation followed by quantitation using a colorimetric method, such as the bicinchoninic acid (BCA) assay is a common laboratory protocol. Protein concentrations are determined by comparing extracted samples to a standard curve generated from serial dilutions of a reference protein, such as bovine serum albumin (BSA). This study aimed to identify the most reproducible and accurate method for quantifying protein concentrations in an experimental series over time. We analyzed the effect of serial freeze-thaws, inter-person and intra-person variability in standard preparation and assay execution. Absorbance was measured at 565 nanometers (nm) using an Epoch Microplate Spectrophotometer (Agilent Technologies, Inc., Santa Clara, CA) with Gen5 Data Analysis software. The most consistent and accurate method for determining the protein concentrations over time is to prepare a large batch of diluted BSA standards, aliquot them into small portions, and store them frozen.",
+            "categories": [
+              "Serum Albumin, Bovine",
+              "Bicinchoninic acid (BCA) assay",
+              "bovine serum albumin (BSA)",
+              "freeze-thaw",
+              "protein quantification",
+              "standard curve"
+            ],
+            "datestamp": "2025-05-23",
+            "doi": "10.1080/07366205.2025.2502268",
+            "authors": [
+              "Sheets, Rachelle",
+              "Rajaboina, Bhavik",
+              "Bromberg, Caitlin E"
+            ],
+            "source": "pubmed",
+            "semantic_score": 0.7542953873402947,
+            "bm25_score": null,
+            "title_trgm_score": null,
+            "abstract_trgm_score": null,
+            "final_score": 0.7542953873402947,
+            "dates": {
+              "first_available": {
+                "value": "2025-03",
+                "precision": "month",
+                "basis": "journal_issue"
+              }
+            },
+            "relevance_score": 0.7543,
+            "match_quality": "good",
+            "citation_count": null,
+            "total_authors": 8,
+            "authors_truncated": true,
+            "url": "https://pubmed.ncbi.nlm.nih.gov/40407044/"
+          },
+          {
+            "id": "24271900",
+            "base_id": "24271900",
+            "title": "Measuring plant protein with the Bradford assay : 1. Evaluation and standard method.",
+            "abstract": "The suitability of the Bradford protein assay for measuring plant protein was evaluated and a standard method developed. The assay involves extraction of dried, fresh, or frozen plant material in 0.1 NaOH for 30 min. Replicate 100-\u03bcl aliquots of centrifuged supernatant are assayed with 5 ml Bio-Rad Bradford dye reagent (Coomassie brilliant blue G-250) diluted 1:4 and containing 3 mg/ml soluble polyvinylpyrollidone. Absorbance at 595 nm is recorded after 15 min against an NaOH blank. Samples are calibrated against a ribulose 1,5-diphosphate carboxylase-oxygenase standard in NaOH. Procedures for plant preparation, extraction stability, the effects of phenol removal and quinone formation, and assay recovery are evaluated. Assay absorbance stability and techniques for increasing absorbance stability are reported. Changes in protein quality are briefly discussed.",
+            "categories": [],
+            "datestamp": "2013-11-26",
+            "doi": "10.1007/BF01015193",
+            "authors": [
+              "Jones, C G",
+              "Daniel Hare, J",
+              "Compton, S J"
+            ],
+            "source": "pubmed",
+            "semantic_score": 0.7533468636883387,
+            "bm25_score": null,
+            "title_trgm_score": null,
+            "abstract_trgm_score": null,
+            "final_score": 0.7533468636883387,
+            "dates": {
+              "first_available": {
+                "value": "1989-03",
+                "precision": "month",
+                "basis": "journal_issue"
+              }
+            },
+            "relevance_score": 0.7533,
+            "match_quality": "good",
+            "citation_count": null,
+            "url": "https://pubmed.ncbi.nlm.nih.gov/24271900/"
+          },
+          {
+            "id": "32238597",
+            "base_id": "32238597",
+            "title": "Bradford Assay for Determining Protein Concentration.",
+            "abstract": "The Bradford assay is a quick and fairly sensitive method for measuring the concentrations of proteins. It is based on the shift in absorbance maximum of Coomassie Brilliant Blue G-250 dye from 465 to 595 nm following binding to denatured proteins in solution.",
+            "categories": [],
+            "datestamp": "2021-06-03",
+            "doi": "10.1101/pdb.prot102269",
+            "authors": [
+              "Kielkopf, Clara L",
+              "Bauer, William",
+              "Urbatsch, Ina L"
+            ],
+            "source": "pubmed",
+            "semantic_score": 0.7499685598477908,
+            "bm25_score": null,
+            "title_trgm_score": null,
+            "abstract_trgm_score": null,
+            "final_score": 0.7499685598477908,
+            "dates": {
+              "first_available": {
+                "value": "2020-04-01",
+                "precision": "day",
+                "basis": "electronic_publication"
+              }
+            },
+            "relevance_score": 0.75,
+            "match_quality": "good",
+            "citation_count": null,
+            "url": "https://pubmed.ncbi.nlm.nih.gov/32238597/"
+          }
+        ],
+        "_meta": {
+          "request_id": "c17d3a8d29884a389f706ceb59d02a4b",
+          "tool": "semantic_search_papers",
+          "duration_ms": 605,
+          "server_version": "0.4.1",
+          "db_duration_ms": 605
+        }
+      },
+      "retrieved_at": 1792697523.094441,
+      "mode": "live"
+    },
+    {
+      "query": "Linearization of the Bradford protein assay Ernst Zor 2010 microplate standard curve bovine serum albumin",
+      "result": {
+        "query": "Linearization of the Bradford protein assay Ernst Zor 2010 microplate standard curve bovine serum albumin",
+        "query_type": "semantic",
+        "confidence": "good_match",
+        "top_similarity": 0.8445,
+        "spread": 0.0242,
+        "count": 6,
+        "warnings": [
+          "83% of results lack DOI. Use filter_papers_with_doi to restrict to papers with DOI identifiers."
+        ],
+        "hints": [],
+        "papers": [
+          {
+            "id": "8660509",
+            "base_id": "8660509",
+            "title": "Linearization of the Bradford protein assay increases its sensitivity: theoretical and experimental studies.",
+            "abstract": "Determination of microgram quantities of protein in the Bradford Coomassie brilliant blue assay is accomplished by measurement of absorbance at 590 nm. However, as intrinsic nonlinearity compromises the sensitivity and accuracy of this method. It is shown that under standard assay conditions, the ratio of the absorbances, 590 nm over 450 nm, is strictly linear with protein concentration. This simple procedure increases the accuracy and improves the sensitivity of the assay about 10-fold, permitting quantitation down to 50 ng of bovine serum albumin. Furthermore, protein assay in presence of up to 35-fold weight excess of sodium dodecyl sulfate (detergent) over bovine serum albumin (protein) can be performed. A linear equation that perfectly fits the experimental data is provided on the basis of mass action and Beer's law.",
+            "categories": [],
+            "datestamp": "1997-02-12",
+            "doi": "",
+            "authors": [
+              "Zor, T",
+              "Selinger, Z"
+            ],
+            "source": "pubmed",
+            "semantic_score": 0.8445371177623214,
+            "bm25_score": null,
+            "title_trgm_score": null,
+            "abstract_trgm_score": null,
+            "final_score": 0.8445371177623214,
+            "dates": {
+              "first_available": {
+                "value": "1996-05-01",
+                "precision": "day",
+                "basis": "journal_issue"
+              }
+            },
+            "relevance_score": 0.8445,
+            "match_quality": "good",
+            "citation_count": null,
+            "url": "https://pubmed.ncbi.nlm.nih.gov/8660509/"
+          },
+          {
+            "id": "20386536",
+            "base_id": "20386536",
+            "title": "Linearization of the bradford protein assay.",
+            "abstract": "Determination of microgram quantities of protein in the Bradford Coomassie brilliant blue assay is accomplished by measurement of absorbance at 590 nm. This most common assay enables rapid and simple protein quantification in cell lysates, cellular fractions, or recombinant protein samples, for the purpose of normalization of biochemical measurements. However, an intrinsic nonlinearity compromises the sensitivity and accuracy of this method. It is shown that under standard assay conditions, the ratio of the absorbance measurements at 590 nm and 450 nm is strictly linear with protein concentration. This simple procedure increases the accuracy and improves the sensitivity of the assay about 10-fold, permitting quantification down to 50 ng of bovine serum albumin. Furthermore, the interference commonly introduced by detergents that are used to create the cell lysates is greatly reduced by the new protocol. A linear equation developed on the basis of mass action and Beer's law perfectly fits the experimental data.",
+            "categories": [
+              "Linear Models"
+            ],
+            "datestamp": "2010-04-30",
+            "doi": "10.3791/1918",
+            "authors": [
+              "Ernst, Orna",
+              "Zor, Tsaffrir"
+            ],
+            "source": "pubmed",
+            "semantic_score": 0.8374724540325913,
+            "bm25_score": null,
+            "title_trgm_score": null,
+            "abstract_trgm_score": null,
+            "final_score": 0.8374724540325913,
+            "dates": {
+              "first_available": {
+                "value": "2010-04-12",
+                "precision": "day",
+                "basis": "electronic_publication"
+              }
+            },
+            "relevance_score": 0.8375,
+            "match_quality": "good",
+            "citation_count": null,
+            "url": "https://pubmed.ncbi.nlm.nih.gov/20386536/"
+          },
+          {
+            "id": "8789714",
+            "base_id": "8789714",
+            "title": "A mathematical model for the description of the Coomassie brilliant blue protein assay.",
+            "abstract": "The Coomassie brilliant blue dye-binding method for protein assay has become important relatively recently. The basis of the assay method is the binding of dye to protein, with production of a dye-protein complex which absorbs light intensely at 620 nm, but the mechanism of the binding process is not well understood. In this paper, two mathematical models for the binding process are developed, one involving the binding of both protonated (green) and deprotonated (blue) forms of the dye. The second model allows only binding of the blue species to proteins. These models are tested for their ability to estimate number of dye-binding sites (n) and binding constants (Kd) from protein assay data. The models are also tested for their ability to reproduce the experimental assay curve using either known values or reasonable estimates of the equation parameters. The models are shown to be approximately equal in ability to reproduce experimental data related to the protein assay, which somewhat favors the simpler of the two models. In this paper, a method for estimating n and Kd from standard curve-fitting procedures is established. Hitherto, binding constants were only available from assay data taken under conditions of very large molar protein/dye ratios. The possibility of protonated forms of the dye binding to proteins was not ruled out by this study, but for many purposes the use of the simple dye-binding model, in which only the deprotonated dye species binds, is sufficient.",
+            "categories": [],
+            "datestamp": "1996-11-07",
+            "doi": "",
+            "authors": [
+              "Atherton, B A",
+              "Cunningham, E L",
+              "Splittgerber, A G"
+            ],
+            "source": "pubmed",
+            "semantic_score": 0.808711100672268,
+            "bm25_score": null,
+            "title_trgm_score": null,
+            "abstract_trgm_score": null,
+            "final_score": 0.808711100672268,
+            "dates": {
+              "first_available": {
+                "value": "1996-01-15",
+                "precision": "day",
+                "basis": "journal_issue"
+              }
+            },
+            "relevance_score": 0.8087,
+            "match_quality": "good",
+            "citation_count": null,
+            "url": "https://pubmed.ncbi.nlm.nih.gov/8789714/"
+          },
+          {
+            "id": "3760586",
+            "base_id": "3760586",
+            "title": "Computer-assisted determination of protein concentrations from dye-binding and bicinchoninic acid protein assays performed in microtiter plates.",
+            "abstract": "The bicinchoninic acid protein assay was scaled down to operate in the wells of microtiter plates. The total volume of the assay was reduced to 210 microliters and required only 10 microliters of sample per assay. The assay can be rapidly performed and then read with a plate reader. The analysis of the data was performed with a microcomputer interfaced with the reader. A computer program was developed to analyze the data from the bicinchoninic acid assay as well as the dye-binding assay at either the high or low protein concentration ranges. Based upon the absorbance values of the standards, the program computed a linear regression formula which was then used to calculate the concentrations of the sample proteins. A series of assays performed using bovine serum albumin, alpha-chymotrypsin and gamma globulin demonstrated that the scaled down bicinchoninic acid assay produced linear absorption versus concentration data with average correlation coefficients between 0.9967 and 0.9940 at the high and low concentration ranges respectively. The protein-to-protein variation and proper selection of either protein assay based upon the presence of interfering materials was considered.",
+            "categories": [
+              "Quinolines"
+            ],
+            "datestamp": "1986-11-12",
+            "doi": "",
+            "authors": [
+              "Lane, R D",
+              "Federman, D",
+              "Flora, J L"
+            ],
+            "source": "pubmed",
+            "semantic_score": 0.8060702063153398,
+            "bm25_score": null,
+            "title_trgm_score": null,
+            "abstract_trgm_score": null,
+            "final_score": 0.8060702063153398,
+            "dates": {
+              "first_available": {
+                "value": "1986-09-27",
+                "precision": "day",
+                "basis": "journal_issue"
+              }
+            },
+            "relevance_score": 0.8061,
+            "match_quality": "good",
+            "citation_count": null,
+            "total_authors": 4,
+            "authors_truncated": true,
+            "url": "https://pubmed.ncbi.nlm.nih.gov/3760586/"
+          },
+          {
+            "id": "2742138",
+            "base_id": "2742138",
+            "title": "Refinement of the Coomassie brilliant blue G assay for quantitative protein determination.",
+            "abstract": "Minor modifications of the Bradford method [1976) Anal. Biochem. 72, 248-254) increase the sensitivity of the Coomassie brilliant blue G microassay for protein quantitation. This is reached by selecting the proper dye source, by alterations in the dye, ethanol, and phosphoric acid concentrations, and by including Triton X-100 in the reaction mixture. The modified assay conditions allow proteins to be detected above 0.2 micrograms and from a solution above 0.4 micrograms/ml. The extinction coefficient of the dye-protein complex was 0.144 +/- 0.010 for 1 microgram bovine serum albumin in the final reaction mixture of 1 ml. In general, the modified procedure exhibits the same specificity, advantages, and drawbacks as described for the original Bradford assay.",
+            "categories": [
+              "Rosaniline Dyes"
+            ],
+            "datestamp": "1989-08-10",
+            "doi": "",
+            "authors": [
+              "L\u00f6ffler, B M",
+              "Kunze, H"
+            ],
+            "source": "pubmed",
+            "semantic_score": 0.8046592709968224,
+            "bm25_score": null,
+            "title_trgm_score": null,
+            "abstract_trgm_score": null,
+            "final_score": 0.8046592709968224,
+            "dates": {
+              "first_available": {
+                "value": "1989-02-15",
+                "precision": "day",
+                "basis": "journal_issue"
+              }
+            },
+            "relevance_score": 0.8047,
+            "match_quality": "good",
+            "citation_count": null,
+            "url": "https://pubmed.ncbi.nlm.nih.gov/2742138/"
+          },
+          {
+            "id": "4040719",
+            "base_id": "4040719",
+            "title": "Adaptation of the dye-binding protein assay to microtiter plates.",
+            "abstract": "The dye-binding protein assay has been adapted for use with microtiter plates and a plate reader. The total volume of the assay was reduced to 0.2 ml, with equal volumes of sample and diluted dye reagent being used. Because of the small volume, the assay is conservative of both protein sample and reagent. The use of microtiter plates allows the absorbance of samples to be read using a plate reader, markedly reducing the time needed for evaluating sample absorbances. This assay is quite sensitive, with a limit of less than 0.5 micrograms bovine serum albumin. In addition, the assay has been calibrated with homogeneous nitrate reductase. The response of nitrate reductase in the assay is about 70% of that of the standard protein, bovine serum albumin. The response of several other proteins was evaluated and the differences in response are discussed.",
+            "categories": [
+              "Coloring Agents"
+            ],
+            "datestamp": "1985-08-29",
+            "doi": "",
+            "authors": [
+              "Redinbaugh, M G",
+              "Campbell, W H"
+            ],
+            "source": "pubmed",
+            "semantic_score": 0.7989058988591355,
+            "bm25_score": null,
+            "title_trgm_score": null,
+            "abstract_trgm_score": null,
+            "final_score": 0.7989058988591355,
+            "dates": {
+              "first_available": {
+                "value": "1985-05-15",
+                "precision": "day",
+                "basis": "journal_issue"
+              }
+            },
+            "relevance_score": 0.7989,
+            "match_quality": "good",
+            "citation_count": null,
+            "url": "https://pubmed.ncbi.nlm.nih.gov/4040719/"
+          }
+        ],
+        "_meta": {
+          "request_id": "c271780d3d3a4b6f932b13f79064a13e",
+          "tool": "semantic_search_papers",
+          "duration_ms": 725,
+          "server_version": "0.4.1",
+          "db_duration_ms": 724
+        }
+      },
+      "retrieved_at": 1792697601.401161,
+      "mode": "live"
+    }
+  ],
+  "result": {
+    "papers": [
+      {
+        "id": "8660509",
+        "base_id": "8660509",
+        "title": "Linearization of the Bradford protein assay increases its sensitivity: theoretical and experimental studies.",
+        "abstract": "Determination of microgram quantities of protein in the Bradford Coomassie brilliant blue assay is accomplished by measurement of absorbance at 590 nm. However, as intrinsic nonlinearity compromises the sensitivity and accuracy of this method. It is shown that under standard assay conditions, the ratio of the absorbances, 590 nm over 450 nm, is strictly linear with protein concentration. This simple procedure increases the accuracy and improves the sensitivity of the assay about 10-fold, permitting quantitation down to 50 ng of bovine serum albumin. Furthermore, protein assay in presence of up to 35-fold weight excess of sodium dodecyl sulfate (detergent) over bovine serum albumin (protein) can be performed. A linear equation that perfectly fits the experimental data is provided on the basis of mass action and Beer's law.",
+        "categories": [],
+        "datestamp": "1997-02-12",
+        "doi": "",
+        "authors": [
+          "Zor, T",
+          "Selinger, Z"
+        ],
+        "source": "pubmed",
+        "semantic_score": 0.8445371177623214,
+        "bm25_score": null,
+        "title_trgm_score": null,
+        "abstract_trgm_score": null,
+        "final_score": 0.8445371177623214,
+        "dates": {
+          "first_available": {
+            "value": "1996-05-01",
+            "precision": "day",
+            "basis": "journal_issue"
+          }
+        },
+        "relevance_score": 0.8445,
+        "match_quality": "good",
+        "citation_count": null,
+        "url": "https://pubmed.ncbi.nlm.nih.gov/8660509/"
+      },
+      {
+        "id": "20386536",
+        "base_id": "20386536",
+        "title": "Linearization of the bradford protein assay.",
+        "abstract": "Determination of microgram quantities of protein in the Bradford Coomassie brilliant blue assay is accomplished by measurement of absorbance at 590 nm. This most common assay enables rapid and simple protein quantification in cell lysates, cellular fractions, or recombinant protein samples, for the purpose of normalization of biochemical measurements. However, an intrinsic nonlinearity compromises the sensitivity and accuracy of this method. It is shown that under standard assay conditions, the ratio of the absorbance measurements at 590 nm and 450 nm is strictly linear with protein concentration. This simple procedure increases the accuracy and improves the sensitivity of the assay about 10-fold, permitting quantification down to 50 ng of bovine serum albumin. Furthermore, the interference commonly introduced by detergents that are used to create the cell lysates is greatly reduced by the new protocol. A linear equation developed on the basis of mass action and Beer's law perfectly fits the experimental data.",
+        "categories": [
+          "Linear Models"
+        ],
+        "datestamp": "2010-04-30",
+        "doi": "10.3791/1918",
+        "authors": [
+          "Ernst, Orna",
+          "Zor, Tsaffrir"
+        ],
+        "source": "pubmed",
+        "semantic_score": 0.8374724540325913,
+        "bm25_score": null,
+        "title_trgm_score": null,
+        "abstract_trgm_score": null,
+        "final_score": 0.8374724540325913,
+        "dates": {
+          "first_available": {
+            "value": "2010-04-12",
+            "precision": "day",
+            "basis": "electronic_publication"
+          }
+        },
+        "relevance_score": 0.8375,
+        "match_quality": "good",
+        "citation_count": null,
+        "url": "https://pubmed.ncbi.nlm.nih.gov/20386536/"
+      },
+      {
+        "id": "8789714",
+        "base_id": "8789714",
+        "title": "A mathematical model for the description of the Coomassie brilliant blue protein assay.",
+        "abstract": "The Coomassie brilliant blue dye-binding method for protein assay has become important relatively recently. The basis of the assay method is the binding of dye to protein, with production of a dye-protein complex which absorbs light intensely at 620 nm, but the mechanism of the binding process is not well understood. In this paper, two mathematical models for the binding process are developed, one involving the binding of both protonated (green) and deprotonated (blue) forms of the dye. The second model allows only binding of the blue species to proteins. These models are tested for their ability to estimate number of dye-binding sites (n) and binding constants (Kd) from protein assay data. The models are also tested for their ability to reproduce the experimental assay curve using either known values or reasonable estimates of the equation parameters. The models are shown to be approximately equal in ability to reproduce experimental data related to the protein assay, which somewhat favors the simpler of the two models. In this paper, a method for estimating n and Kd from standard curve-fitting procedures is established. Hitherto, binding constants were only available from assay data taken under conditions of very large molar protein/dye ratios. The possibility of protonated forms of the dye binding to proteins was not ruled out by this study, but for many purposes the use of the simple dye-binding model, in which only the deprotonated dye species binds, is sufficient.",
+        "categories": [],
+        "datestamp": "1996-11-07",
+        "doi": "",
+        "authors": [
+          "Atherton, B A",
+          "Cunningham, E L",
+          "Splittgerber, A G"
+        ],
+        "source": "pubmed",
+        "semantic_score": 0.808711100672268,
+        "bm25_score": null,
+        "title_trgm_score": null,
+        "abstract_trgm_score": null,
+        "final_score": 0.808711100672268,
+        "dates": {
+          "first_available": {
+            "value": "1996-01-15",
+            "precision": "day",
+            "basis": "journal_issue"
+          }
+        },
+        "relevance_score": 0.8087,
+        "match_quality": "good",
+        "citation_count": null,
+        "url": "https://pubmed.ncbi.nlm.nih.gov/8789714/"
+      },
+      {
+        "id": "3760586",
+        "base_id": "3760586",
+        "title": "Computer-assisted determination of protein concentrations from dye-binding and bicinchoninic acid protein assays performed in microtiter plates.",
+        "abstract": "The bicinchoninic acid protein assay was scaled down to operate in the wells of microtiter plates. The total volume of the assay was reduced to 210 microliters and required only 10 microliters of sample per assay. The assay can be rapidly performed and then read with a plate reader. The analysis of the data was performed with a microcomputer interfaced with the reader. A computer program was developed to analyze the data from the bicinchoninic acid assay as well as the dye-binding assay at either the high or low protein concentration ranges. Based upon the absorbance values of the standards, the program computed a linear regression formula which was then used to calculate the concentrations of the sample proteins. A series of assays performed using bovine serum albumin, alpha-chymotrypsin and gamma globulin demonstrated that the scaled down bicinchoninic acid assay produced linear absorption versus concentration data with average correlation coefficients between 0.9967 and 0.9940 at the high and low concentration ranges respectively. The protein-to-protein variation and proper selection of either protein assay based upon the presence of interfering materials was considered.",
+        "categories": [
+          "Quinolines"
+        ],
+        "datestamp": "1986-11-12",
+        "doi": "",
+        "authors": [
+          "Lane, R D",
+          "Federman, D",
+          "Flora, J L"
+        ],
+        "source": "pubmed",
+        "semantic_score": 0.8060702063153398,
+        "bm25_score": null,
+        "title_trgm_score": null,
+        "abstract_trgm_score": null,
+        "final_score": 0.8060702063153398,
+        "dates": {
+          "first_available": {
+            "value": "1986-09-27",
+            "precision": "day",
+            "basis": "journal_issue"
+          }
+        },
+        "relevance_score": 0.8061,
+        "match_quality": "good",
+        "citation_count": null,
+        "total_authors": 4,
+        "authors_truncated": true,
+        "url": "https://pubmed.ncbi.nlm.nih.gov/3760586/"
+      },
+      {
+        "id": "2742138",
+        "base_id": "2742138",
+        "title": "Refinement of the Coomassie brilliant blue G assay for quantitative protein determination.",
+        "abstract": "Minor modifications of the Bradford method [1976) Anal. Biochem. 72, 248-254) increase the sensitivity of the Coomassie brilliant blue G microassay for protein quantitation. This is reached by selecting the proper dye source, by alterations in the dye, ethanol, and phosphoric acid concentrations, and by including Triton X-100 in the reaction mixture. The modified assay conditions allow proteins to be detected above 0.2 micrograms and from a solution above 0.4 micrograms/ml. The extinction coefficient of the dye-protein complex was 0.144 +/- 0.010 for 1 microgram bovine serum albumin in the final reaction mixture of 1 ml. In general, the modified procedure exhibits the same specificity, advantages, and drawbacks as described for the original Bradford assay.",
+        "categories": [
+          "Rosaniline Dyes"
+        ],
+        "datestamp": "1989-08-10",
+        "doi": "",
+        "authors": [
+          "L\u00f6ffler, B M",
+          "Kunze, H"
+        ],
+        "source": "pubmed",
+        "semantic_score": 0.8046592709968224,
+        "bm25_score": null,
+        "title_trgm_score": null,
+        "abstract_trgm_score": null,
+        "final_score": 0.8046592709968224,
+        "dates": {
+          "first_available": {
+            "value": "1989-02-15",
+            "precision": "day",
+            "basis": "journal_issue"
+          }
+        },
+        "relevance_score": 0.8047,
+        "match_quality": "good",
+        "citation_count": null,
+        "url": "https://pubmed.ncbi.nlm.nih.gov/2742138/"
+      },
+      {
+        "id": "4040719",
+        "base_id": "4040719",
+        "title": "Adaptation of the dye-binding protein assay to microtiter plates.",
+        "abstract": "The dye-binding protein assay has been adapted for use with microtiter plates and a plate reader. The total volume of the assay was reduced to 0.2 ml, with equal volumes of sample and diluted dye reagent being used. Because of the small volume, the assay is conservative of both protein sample and reagent. The use of microtiter plates allows the absorbance of samples to be read using a plate reader, markedly reducing the time needed for evaluating sample absorbances. This assay is quite sensitive, with a limit of less than 0.5 micrograms bovine serum albumin. In addition, the assay has been calibrated with homogeneous nitrate reductase. The response of nitrate reductase in the assay is about 70% of that of the standard protein, bovine serum albumin. The response of several other proteins was evaluated and the differences in response are discussed.",
+        "categories": [
+          "Coloring Agents"
+        ],
+        "datestamp": "1985-08-29",
+        "doi": "",
+        "authors": [
+          "Redinbaugh, M G",
+          "Campbell, W H"
+        ],
+        "source": "pubmed",
+        "semantic_score": 0.7989058988591355,
+        "bm25_score": null,
+        "title_trgm_score": null,
+        "abstract_trgm_score": null,
+        "final_score": 0.7989058988591355,
+        "dates": {
+          "first_available": {
+            "value": "1985-05-15",
+            "precision": "day",
+            "basis": "journal_issue"
+          }
+        },
+        "relevance_score": 0.7989,
+        "match_quality": "good",
+        "citation_count": null,
+        "url": "https://pubmed.ncbi.nlm.nih.gov/4040719/"
+      },
+      {
+        "id": "37747186",
+        "base_id": "37747186",
+        "title": "RGBradford: Protein Quantitation with a Smartphone Camera.",
+        "abstract": "Protein quantitation is an essential procedure in life sciences research. Amongst several other methods, the Bradford assay is one of the most used. Because of its widespread, the limitations and advantages of the Bradford assay have been exhaustively reported, including several modifications of the original method to improve its performance. One of the alterations of the original method is the use of a smartphone camera as an analytical instrument. Taking advantage of the three forms of the Coomassie Brilliant Blue dye that exist in the conditions of the Bradford assay, this paper describes how to accurately quantify protein in samples using color data extracted from a single picture of a microplate. After performing the assay in a microplate, a picture is taken using a smartphone camera, and RGB color data is extracted from the picture using a free and open-source image analysis software application. Then, the ratio of blue to green intensity (in the RGB scale) of samples with unknown concentrations of protein is used to calculate the protein content based on a standard curve. No significant difference is observed between values calculated using RGB color data and those calculated using conventional absorbance data.",
+        "categories": [
+          "Smartphone",
+          "Biological Assay"
+        ],
+        "datestamp": "2023-09-26",
+        "doi": "10.3791/65547",
+        "authors": [
+          "Moreira, Daniel C"
+        ],
+        "source": "pubmed",
+        "semantic_score": 0.7943116517901372,
+        "bm25_score": null,
+        "title_trgm_score": null,
+        "abstract_trgm_score": null,
+        "final_score": 0.7943116517901372,
+        "dates": {
+          "first_available": {
+            "value": "2023-09-08",
+            "precision": "day",
+            "basis": "electronic_publication"
+          }
+        },
+        "relevance_score": 0.7943,
+        "match_quality": "good",
+        "citation_count": null,
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37747186/"
+      },
+      {
+        "id": "35987416",
+        "base_id": "35987416",
+        "title": "RGBradford: Accurate measurement of protein concentration using a smartphone camera and the blue to green intensity ratio.",
+        "abstract": "The color shift caused by the interaction between proteins and Coomassie Brilliant Blue in the Bradford assay can be recorded with a smartphone camera. Color data can then be extracted from pictures and processed as analytical signals. Here, I present a simple procedure to accurately measure protein levels using color data from pictures of microplates. Plotting the ratio of blue to green intensity (RGB scale) as a function of protein concentration results in a linear (R2\u00a0\u2265\u00a00.99) relationship, from which protein levels in biological samples can be calculated with no significant difference from values obtained using absorbance data (RGB versus absorbance curves).",
+        "categories": [
+          "Colorimetry",
+          "Smartphone",
+          "Colorimetry",
+          "Coomassie Brilliant Blue",
+          "Digital image analysis",
+          "Mobile phone",
+          "Portable instrumentation",
+          "Spectrophotometry"
+        ],
+        "datestamp": "2022-09-13",
+        "doi": "10.1016/j.ab.2022.114839",
+        "authors": [
+          "Moreira, Daniel C"
+        ],
+        "source": "pubmed",
+        "semantic_score": 0.7900020672616743,
+        "bm25_score": null,
+        "title_trgm_score": null,
+        "abstract_trgm_score": null,
+        "final_score": 0.7900020672616743,
+        "dates": {
+          "first_available": {
+            "value": "2022-08-18",
+            "precision": "day",
+            "basis": "electronic_publication"
+          }
+        },
+        "relevance_score": 0.79,
+        "match_quality": "good",
+        "citation_count": null,
+        "url": "https://pubmed.ncbi.nlm.nih.gov/35987416/"
+      },
+      {
+        "id": "34483361",
+        "base_id": "34483361",
+        "title": "Quantifying Protein Concentrations Using Smartphone Colorimetry: A New Method for an Established Test.",
+        "abstract": "Proteins are involved in nearly every biological process, which makes them of interest to a range of scientists. Previous work has shown that hand-held cameras can be used to determine the concentration of colored analytes in solution, and this paper extends the approach to reactions involving a color change in order to quantify protein concentration (e.g., green to blue). Herein, we describe the successful use of smartphone colorimetry to quantify protein concentration using two common colorimetric biochemical methods, the Bradford and biuret assays. The ease of the experimental setup makes these lab experiments accessible to a wide range of students and can be used as both high school and college level laboratory experiments.",
+        "categories": [
+          "Analytical Chemistry",
+          "Biochemistry",
+          "First-Year Undergraduate/General",
+          "Hands-On Learning/Manipulatives",
+          "High School/Introductory Chemistry",
+          "Laboratory Instruction",
+          "Proteins/Peptides",
+          "Quantitative Analysis",
+          "UV\u2013Vis Spectroscopy"
+        ],
+        "datestamp": "2021-09-07",
+        "doi": "10.1021/acs.jchemed.6b00676",
+        "authors": [
+          "Gee, Clifford T",
+          "Kehoe, Eric",
+          "Pomerantz, William C K"
+        ],
+        "source": "pubmed",
+        "semantic_score": 0.7823924239471625,
+        "bm25_score": null,
+        "title_trgm_score": null,
+        "abstract_trgm_score": null,
+        "final_score": 0.7823924239471625,
+        "dates": {
+          "first_available": {
+            "value": "2017-05-03",
+            "precision": "day",
+            "basis": "electronic_publication"
+          }
+        },
+        "relevance_score": 0.7824,
+        "match_quality": "good",
+        "citation_count": null,
+        "total_authors": 4,
+        "authors_truncated": true,
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34483361/"
+      },
+      {
+        "id": "40407044",
+        "base_id": "40407044",
+        "title": "Freezing diluted bovine serum albumin standards does not significantly affect standard curves.",
+        "abstract": "Total protein isolation followed by quantitation using a colorimetric method, such as the bicinchoninic acid (BCA) assay is a common laboratory protocol. Protein concentrations are determined by comparing extracted samples to a standard curve generated from serial dilutions of a reference protein, such as bovine serum albumin (BSA). This study aimed to identify the most reproducible and accurate method for quantifying protein concentrations in an experimental series over time. We analyzed the effect of serial freeze-thaws, inter-person and intra-person variability in standard preparation and assay execution. Absorbance was measured at 565 nanometers (nm) using an Epoch Microplate Spectrophotometer (Agilent Technologies, Inc., Santa Clara, CA) with Gen5 Data Analysis software. The most consistent and accurate method for determining the protein concentrations over time is to prepare a large batch of diluted BSA standards, aliquot them into small portions, and store them frozen.",
+        "categories": [
+          "Serum Albumin, Bovine",
+          "Bicinchoninic acid (BCA) assay",
+          "bovine serum albumin (BSA)",
+          "freeze-thaw",
+          "protein quantification",
+          "standard curve"
+        ],
+        "datestamp": "2025-05-23",
+        "doi": "10.1080/07366205.2025.2502268",
+        "authors": [
+          "Sheets, Rachelle",
+          "Rajaboina, Bhavik",
+          "Bromberg, Caitlin E"
+        ],
+        "source": "pubmed",
+        "semantic_score": 0.7542953873402947,
+        "bm25_score": null,
+        "title_trgm_score": null,
+        "abstract_trgm_score": null,
+        "final_score": 0.7542953873402947,
+        "dates": {
+          "first_available": {
+            "value": "2025-03",
+            "precision": "month",
+            "basis": "journal_issue"
+          }
+        },
+        "relevance_score": 0.7543,
+        "match_quality": "good",
+        "citation_count": null,
+        "total_authors": 8,
+        "authors_truncated": true,
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40407044/"
+      },
+      {
+        "id": "24271900",
+        "base_id": "24271900",
+        "title": "Measuring plant protein with the Bradford assay : 1. Evaluation and standard method.",
+        "abstract": "The suitability of the Bradford protein assay for measuring plant protein was evaluated and a standard method developed. The assay involves extraction of dried, fresh, or frozen plant material in 0.1 NaOH for 30 min. Replicate 100-\u03bcl aliquots of centrifuged supernatant are assayed with 5 ml Bio-Rad Bradford dye reagent (Coomassie brilliant blue G-250) diluted 1:4 and containing 3 mg/ml soluble polyvinylpyrollidone. Absorbance at 595 nm is recorded after 15 min against an NaOH blank. Samples are calibrated against a ribulose 1,5-diphosphate carboxylase-oxygenase standard in NaOH. Procedures for plant preparation, extraction stability, the effects of phenol removal and quinone formation, and assay recovery are evaluated. Assay absorbance stability and techniques for increasing absorbance stability are reported. Changes in protein quality are briefly discussed.",
+        "categories": [],
+        "datestamp": "2013-11-26",
+        "doi": "10.1007/BF01015193",
+        "authors": [
+          "Jones, C G",
+          "Daniel Hare, J",
+          "Compton, S J"
+        ],
+        "source": "pubmed",
+        "semantic_score": 0.7533468636883387,
+        "bm25_score": null,
+        "title_trgm_score": null,
+        "abstract_trgm_score": null,
+        "final_score": 0.7533468636883387,
+        "dates": {
+          "first_available": {
+            "value": "1989-03",
+            "precision": "month",
+            "basis": "journal_issue"
+          }
+        },
+        "relevance_score": 0.7533,
+        "match_quality": "good",
+        "citation_count": null,
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24271900/"
+      },
+      {
+        "id": "32238597",
+        "base_id": "32238597",
+        "title": "Bradford Assay for Determining Protein Concentration.",
+        "abstract": "The Bradford assay is a quick and fairly sensitive method for measuring the concentrations of proteins. It is based on the shift in absorbance maximum of Coomassie Brilliant Blue G-250 dye from 465 to 595 nm following binding to denatured proteins in solution.",
+        "categories": [],
+        "datestamp": "2021-06-03",
+        "doi": "10.1101/pdb.prot102269",
+        "authors": [
+          "Kielkopf, Clara L",
+          "Bauer, William",
+          "Urbatsch, Ina L"
+        ],
+        "source": "pubmed",
+        "semantic_score": 0.7499685598477908,
+        "bm25_score": null,
+        "title_trgm_score": null,
+        "abstract_trgm_score": null,
+        "final_score": 0.7499685598477908,
+        "dates": {
+          "first_available": {
+            "value": "2020-04-01",
+            "precision": "day",
+            "basis": "electronic_publication"
+          }
+        },
+        "relevance_score": 0.75,
+        "match_quality": "good",
+        "citation_count": null,
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32238597/"
+      }
+    ],
+    "count": 12,
+    "_meta": {
+      "request_id": "c17d3a8d29884a389f706ceb59d02a4b",
+      "tool": "semantic_search_papers",
+      "duration_ms": 605,
+      "server_version": "0.4.1",
+      "db_duration_ms": 605
+    }
+  }
+}
